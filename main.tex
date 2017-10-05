@@ -1,5 +1,13 @@
-\documentclass{article}
-\usepackage[utf8]{inputenc}
+\documentclass[dvipdfmx, a4paper]{article}
+
+\input{preamble}
+
 \begin{document}
-(Type your content here.)
+\maketitle
+\setcounter{section}{-1}
+\subimport{sections/}{section0}
+\subimport{sections/}{section1}
+%\subimport{sections/}{section2}
+%\subimport{sections/}{section3}
+
 \end{document}

@@ -1,0 +1,64 @@
+%% preamble
+
+% titles
+\title{宇宙機制御工学}
+\date{\the\year/\the\month/\the\day}
+\author{Shun Arahata\and Hirotaka Kondo \and Ryosuke Morita}
+
+% packages and librariees
+\usepackage[utf8]{inputenc}				%Japanese fonts
+\usepackage[ipaex]{pxchfon}
+\usepackage{amsmath,amssymb, mathrsfs}	%math
+\usepackage{siunitx, physics}
+\usepackage{graphicx}					%figures
+\usepackage{subcaption, wrapfig}
+\usepackage{tikz}
+\usetikzlibrary{calc, patterns, decorations, angles, calendar, backgrounds, shadows, mindmap}
+\usepackage{tcolorbox}					%tables
+\usepackage{longtable, float, multirow, array, listliketab, enumitem, tabularx}
+\usepackage{listings}					%listings
+\usepackage{comment}
+\usepackage{hyperref}					%URL, link
+\usepackage{url}
+\usepackage{pxjahyper}
+\usepackage{overcite}					%setting of citation
+\usepackage{pxrubrica}					%rubi
+\usepackage{fancyhdr, lastpage}			%pagelayout
+\usepackage{import, grffile}			%file management
+\usepackage{standalone}
+
+% set up for hyperref
+\hypersetup{%
+	bookmarksnumbered = true,%
+	hidelinks,%
+	colorlinks = true,%
+	linkcolor = black,%
+	urlcolor = cyan,%
+	citecolor = black,%
+	filecolor = magenta,%
+	setpagesize = false,%
+	pdftitle = {宇宙機制御工学},%
+	pdfauthor = {Shun Arahata, Hirotaka Kondo, Ryosuke Morita},%
+	pdfkeywords = {},%
+	}
+
+% set up for siunitx
+\sisetup{%
+	%detect-family = true,
+	detect-inline-family = math,
+	detect-weight = true,
+	detect-inline-weight = math,
+    %input-product = *,
+    quotient-mode = fraction,
+	fraction-function = \frac,
+	inter-unit-product = \ensuremath{\hspace{-1.5pt}\cdot\hspace{-1.5pt}},
+	per-mode = symbol,
+	product-units = single,
+	}
+
+% setting of line skip
+\setlength{\lineskiplimit}{6pt}
+\setlength{\lineskip}{6pt}
+
+% change cite form 
+\renewcommand{\citeform}[1]{[#1]}

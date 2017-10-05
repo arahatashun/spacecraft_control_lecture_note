@@ -1,0 +1,48 @@
+\documentclass[class=article, crop=false, preview=false, dvipdfmx, a4paper]{standalone}
+\input{../preamble}
+\begin{document}
+
+\section{宇宙機の制御の概要}
+宇宙機$\rightarrow$ロケット、人工衛星、宇宙ステーションetc......
+\begin{enumerate}
+\item 航法(Navigation)\\
+自分の状態($\rightarrow$位置、速度、角速度、姿勢)を知ること
+\item 誘導(Guidance)\\
+目標値を決める
+\item 制御(Control)\\
+目標値を実現するために自分の位置、速度などを変更
+\end{enumerate}
+1,2,3全てを合わせて制御と呼ぶこともある.
+
+\begin{enumerate}
+      \renewcommand{\labelenumi}{\alph{enumi}).}
+      \item 軌道の制御$\cdots$維持(外乱に対して),移行(ランデブー、地球周回からの脱出)
+      \item 姿勢の制御$\cdots$カメラのポインティング、変更(姿勢マヌーバ)、エンジンのポインティング
+\end{enumerate}
+講義では姿勢の制御を扱っていく.
+
+\subsection{姿勢制御の重要な要求}
+\begin{enumerate}
+\item 姿勢決定精度$\rightarrow$Navigationの精度[deg]\\
+		$\mbox{    　}\downarrow$\\
+ 観測対象の位置推定に影響
+\item 姿勢安定度$\rightarrow$「ぶれ」の大きさ \quad [deg/sec] or ○ deg 以内( ○ 秒間)
+\item 姿勢制御(指向）精度$\rightarrow$特定の方向に向ける精度
+\item マニューバビリティ(Maneuverability) どれだけ迅速に姿勢変更できるか
+\end{enumerate}
+\subsection{設計アイテム}
+\begin{itemize}
+\item 機器(センサー(知る)、アクチュエータ(動かす)、Computer(考える))
+\item アルゴリズム(決定則、制御則、アノマリー対策)
+\item 検証方法(シミュレータ,HILLS$\rightarrow$Hardware-in-the-loop-simulator,3軸テーブル、
+軌道上で検証)
+\end{itemize}
+\subsection{要求精度の例(だいち ALOS-1)}
+
+\begin{tabular}{cll}
+\textbullet & 決定精度 & \SI{2e-4}{deg}(オフライン),\SI{4e-4}{deg}(オンライン) \\
+\textbullet & 安定度 & \SI{4e-4}{deg}を5秒間 \\
+\textbullet & 指向精度 & \SI{0.1}{deg}
+\end{tabular}
+
+\end{document}
