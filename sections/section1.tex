@@ -206,6 +206,7 @@ C^i_b \left( t + \delta t \right)
 \subsection{Euler角}
 i-frameからb-frameへの変換を$x, y, z$軸いずれかの軸まわりの3回の回転で達成する際の，3つの回転角で姿勢を表現する。
 
+%%%%後で直す
 \begin{wrapfigure}{l}{20zw}
 \begin{tikzpicture}
 \coordinate (O) at (0, 0);
@@ -229,6 +230,7 @@ $Z \rightarrow Y \rightarrow Z$ \par
 $\varphi \rightarrow \theta \rightarrow \phi$ \par
 $\num{3 x 2 x 2} = 12\text{通り}$
 
+
 Euler角の微分方程式
 \begin{align}
 \dot{\phi} & = \omega_x + \omega_y \sin\phi \tan\theta + \omega_z \cos\phi \tan\theta \\ 
@@ -245,11 +247,16 @@ $\theta = \ang{90} or \ang{270}$ \par
 }
 
 \subsection{Quaternion(四元数,オイラーパラメータ)}
-i-frameからb-frameへの変換は,必ず$\underbrace{{ある軸}}_{$\bm{p}^i=(l, m, n)^T$(単位ベクトル)}$周りの１回の$\underbrace{\text{回転}}_{\text{回転角}\theta}$で達成できる.
+i-frameからb-frameへの変換は,必ず$\underbrace{{\text{ある軸}}}_{\bm{p}^i=(l, m, n)^T \text{単位ベクトル}}$周りの１回の$\underbrace{\text{回転}}_{\text{回転角}\theta}$で達成できる.
 
 \begin{align}
-|\bm{q}|=1
-\bm{q} = 
+|\bm{q}|=
+\begin{bmatrix}
+   q_0 \\
+   q_1\\
+   q_2 \\
+   q_3 
+\end{bmatrix}
 \begin{bmatrix}
        \cos{\frac{\theta}{2}} \\
        l\sin{\frac{\theta}{2}} \\
@@ -257,11 +264,11 @@ i-frameからb-frameへの変換は,必ず$\underbrace{{ある軸}}_{$\bm{p}^i=(
 	    n\sin{\frac{\theta}{2}}
 \end{bmatrix} 
 \end{align}
-{\color{green}
-順番に注意,定義色々
-     ($\|i\| =1$) 
+
+{\color{red}
+順番に注意,定義色々,$\|i\| =1$
 }
-\end{align}
+
 Quaternionの微分方程式
 \begin{equation}
 \dot{\bm{q}} = \frac{1}{2} Q \bm{\omega}^\mathrm{b}
@@ -270,10 +277,43 @@ Quaternionの微分方程式
     -q_1 & -q_2 & -q_3 \\
     q_0 & -q_3 & q_2 \\
     q_3 & q_0 & q_1 \\
-    
+    -q_2 & q_1 & q_0 \\ 
+    \end{bmatrix}
+    \begin{bmatrix}
+    \omega_x \\
+    \omega_y \\
+    \omega_z
     \end{bmatrix}
 \end{equation}
+$\bm{q} \rightarrow$DCM
+\begin{equation}
+C_b^i = 
+\begin{bmatrix}
+{q_0}^2 + {q_1}^2 - {q_2}^2 - {q_3}^2 & 2(q_1 q_2 - q_0 q_3) & 2(q_1 q_3 + q_0 q_2) \\
+2(q_1 q_2 - q_0 q_3) & {q_0}^2 + {q_1}^2 - {q_2}^2 - {q_3}^2 & 2(q_2 q_3 + q_0 q_1) \\
+2(q_1 q_3 - q_0 q_2) & 2(q_2 q_3 + q_0 q_1) & {q_0}^2 + {q_1}^2 - {q_2}^2 - {q_3}^2 \\
+\end{bmatrix}
+\end{equation}
 
+
+\subsection{3つの姿勢表現の比較}
+\begin{table}[H]
+\centering
+\caption{姿勢表現}
+\begin{tabular}{p{5zw}|l|l|l}
+ & DCM & オイラー角 & Quaternion \\ \hline
+要素数 & 9   & 3     & 4          \\ \hline
+冗長数 & $6^*$   & 0     & $1(|\bm{q}| = 1)$         \\ \hline
+特異点　& --- & 有（$\theta = \pm\ang{90}$のとき） & --- \\ \hline
+時間更新の計算負荷 & 小～中 & 大 & 　小
+\end{tabular}
+\end{table}
+                
+\begin{align}
+* \;C^i_b = [\bm{a}_1, \bm{a}_2, \bm{a}_3] \\
+\| \bm{a}_i\| = 1(i=1,2,3) \\
+\bm{a}_i \cdot \bm{a}_j = 0 (i \ne j)
+\end{align}
 
 
 \end{document}
