@@ -12,17 +12,17 @@
  \item Inertial Frame 固定
  \end{enumerate}
  上付き文字のiはInertial,bはBodyの意味
- \[ \mathbbm{x^i}=C^i_b\mathbbm{x^b} \]
+ \[ \mathbbm{x}^i=C^i_b\mathbbm{x}^b \]
  $C^i_b$は姿勢の表現と考える
- \[ \mathbbm{x^b} = C^b_i \mathbbm{x^i} = \underbrace{C^b_i C^i_b}_{\mathbb{I}} \mathbbm{x^b} = \mathbb{I} \mathbbm{x^b}
+ \[ \mathbbm{x}^b = C^b_i \mathbbm{x}^i = \underbrace{C^b_i C^i_b}_{\mathbb{I}} \mathbbm{x}^b = \mathbb{I} \mathbbm{x}^b
  	\rightarrow {C^i_b}^{-1} = C^b_i \]
 
 \begin{tabular}{ll}
-i-frameの3つの基底ベクトル & $\mathbbm{i_1}$,$\mathbbm{i_2}$,$\mathbbm{i_3}$ \\
-b-frameの3つの基底ベクトル & $\mathbbm{b_1}$,$\mathbbm{b_2}$,$\mathbbm{b_3}$
+i-frameの3つの基底ベクトル & $\mathbbm{i}_1$,$\mathbbm{i}_2$,$\mathbbm{i}_3$ \\
+b-frameの3つの基底ベクトル & $\mathbbm{b}_1$,$\mathbbm{b_2}$,$\mathbbm{b_3}$
 \end{tabular}
 
-$\mathbbm{x^i}=
+$\mathbbm{x}^i=
  	\begin{pmatrix}
     	x^i_1\\
         x^i_2\\
@@ -30,11 +30,11 @@ $\mathbbm{x^i}=
     \end{pmatrix}$
 とすると
 \begin{equation}
-\mathbbm{x} = \sum_{k=1}^{3} x^i_k \mathbbm{i_k} \label{eq:1}
+\mathbbm{x} = \sum_{k=1}^{3} x^i_k \mathbbm{i}_k \label{eq:1}
 \end{equation}
 
 一方で
-$\mathbbm{x^b}=
+$\mathbbm{x}^b=
     \begin{pmatrix}
     	x^b_1\\
         x^b_2\\
@@ -42,14 +42,14 @@ $\mathbbm{x^b}=
     \end{pmatrix}$
 とすると
 \begin{equation}
-\mathbbm{x} = \sum_{k=1}^{3} x^b_k \mathbbm{b_k}  \label{eq:2}
+\mathbbm{x} = \sum_{k=1}^{3} x^b_k \mathbbm{b}_k  \label{eq:2}
 \end{equation}
-\eqref{eq:1}と\eqref{eq:2}は同じ.(2)式の両辺に$\mathbbm{i_1}$をかけて内積をとると
+\eqref{eq:1}と\eqref{eq:2}は同じ.(2)式の両辺に$\mathbbm{i}_1$をかけて内積をとると
 \[ x^i_1 =
 	\left(
-		\mathbbm{i_1} \cdot \mathbbm{b_1},
-        \mathbbm{i_1} \cdot \mathbbm{b_2},
-        \mathbbm{i_1} \cdot \mathbbm{b_3}
+		\mathbbm{i}_1 \cdot \mathbbm{b}_1,
+        \mathbbm{i}_1 \cdot \mathbbm{b}_2,
+        \mathbbm{i}_1 \cdot \mathbbm{b}_3
     \right)
 	\begin{pmatrix}
     	x^b_1\\
@@ -66,15 +66,15 @@ $x^i_2, x^i_3$も同様にして
 \end{pmatrix}
 =
 \begin{pmatrix}
-	\mathbbm{i_1} \cdot \mathbbm{b_1} & 
-    \mathbbm{i_1} \cdot \mathbbm{b_2} & 
-    \mathbbm{i_1} \cdot \mathbbm{b_3} \\
-    \mathbbm{i_2} \cdot \mathbbm{b_1} &
-    \mathbbm{i_2} \cdot \mathbbm{b_2} &
-    \mathbbm{i_2} \cdot \mathbbm{b_3} \\
-    \mathbbm{i_3} \cdot \mathbbm{b_1} & 
-    \mathbbm{i_3} \cdot \mathbbm{b_2} & 
-    \mathbbm{i_3} \cdot \mathbbm{b_3}
+	\mathbbm{i}_1 \cdot \mathbbm{b}_1 & 
+    \mathbbm{i}_1 \cdot \mathbbm{b}_2 & 
+    \mathbbm{i}_1 \cdot \mathbbm{b}_3 \\
+    \mathbbm{i}_2 \cdot \mathbbm{b}_1 &
+    \mathbbm{i}_2 \cdot \mathbbm{b}_2 &
+    \mathbbm{i}_2 \cdot \mathbbm{b}_3 \\
+    \mathbbm{i}_3 \cdot \mathbbm{b}_1 & 
+    \mathbbm{i}_3 \cdot \mathbbm{b}_2 & 
+    \mathbbm{i}_3 \cdot \mathbbm{b}_3
 \end{pmatrix}
 \begin{pmatrix}
 	x^b_1\\
@@ -138,14 +138,14 @@ $\mathbbm{x}^i_1$には2個の情報がある$\rightarrow$2個の星があれば
 \subsection{DCMの微分方程式(DCMの時間変化と角速度の関係、キネマティクス)}
 \ding{"E2} 基本式\\
 \text{*}$\cdots$回転座標系から見た変化\\
-$\mathbbm{\omega}\cdots$回転角速度(bのiに対する)
+$\bm{\omega}\cdots$回転角速度(bのiに対する)
 \[ \frac{d\mathbbm{x}}{dt}=\frac{d^*\mathbbm{x}}{dt}+\bm{\omega}\times\mathbbm{x} \]
 
 \begin{enumerate}[label = \maru{\theenumi}]
 \item $\mathbbm{x}$として回転座標系に固定したベクトルを使う
 \begin{align}
 \frac{d^*}{dt}\mathbbm{x} & = \bm{0} \\
-\frac{d\mathbbm{x^i} }{dt}& = \mathbbm{0}+ \bm{\omega^i}\times \mathbbm{x^i} 
+\frac{d\mathbbm{x}^i }{dt}& = \mathbbm{0}+ \bm{\omega^i}\times \mathbbm{x}^i 
 \end{align}
 $\mathbbm{x}^i  = c^i_b \mathbbm{x}^b$を代入すると
 \begin{align*}
