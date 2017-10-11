@@ -12,17 +12,17 @@
  \item Inertial Frame 固定
  \end{enumerate}
  上付き文字のiはInertial,bはBodyの意味
- \[ \vec{x^i}=C^i_b\vec{x^b} \]
+ \[ \mathbbmtt{x^i}=C^i_b\mathbbmtt{x^b} \]
  $C^i_b$は姿勢の表現と考える
- \[ \vec{x^b} = C^b_i \vec{x^i} = \underbrace{C^b_i C^i_b}_{\mathbb{I}} \vec{x^b} = \mathbb{I} \vec{x^b}
+ \[ \mathbbmtt{x^b} = C^b_i \mathbbmtt{x^i} = \underbrace{C^b_i C^i_b}_{\mathbb{I}} \mathbbmtt{x^b} = \mathbb{I} \mathbbmtt{x^b}
  	\rightarrow {C^i_b}^{-1} = C^b_i \]
 
 \begin{tabular}{ll}
-i-frameの3つの基底ベクトル & $\vec{i_1}$,$\vec{i_2}$,$\vec{i_3}$ \\
-b-frameの3つの基底ベクトル & $\vec{b_1}$,$\vec{b_2}$,$\vec{b_3}$
+i-frameの3つの基底ベクトル & $\mathbbmtt{i_1}$,$\mathbbmtt{i_2}$,$\mathbbmtt{i_3}$ \\
+b-frameの3つの基底ベクトル & $\mathbbmtt{b_1}$,$\mathbbmtt{b_2}$,$\mathbbmtt{b_3}$
 \end{tabular}
 
-$\vec{x^i}=
+$\mathbbmtt{x^i}=
  	\begin{pmatrix}
     	x^i_1\\
         x^i_2\\
@@ -30,11 +30,11 @@ $\vec{x^i}=
     \end{pmatrix}$
 とすると
 \begin{equation}
-\vec{x} = \sum_{k=1}^{3} x^i_k \vec{i_k} \label{eq:1}
+\mathbbmtt{x} = \sum_{k=1}^{3} x^i_k \mathbbmtt{i_k} \label{eq:1}
 \end{equation}
 
 一方で
-$\vec{x^b}=
+$\mathbbmtt{x^b}=
     \begin{pmatrix}
     	x^b_1\\
         x^b_2\\
@@ -42,14 +42,14 @@ $\vec{x^b}=
     \end{pmatrix}$
 とすると
 \begin{equation}
-\vec{x} = \sum_{k=1}^{3} x^b_k \vec{b_k}  \label{eq:2}
+\mathbbmtt{x} = \sum_{k=1}^{3} x^b_k \mathbbmtt{b_k}  \label{eq:2}
 \end{equation}
-\eqref{eq:1}と\eqref{eq:2}は同じ.(2)式の両辺に$\vec{i_1}$をかけて内積をとると
+\eqref{eq:1}と\eqref{eq:2}は同じ.(2)式の両辺に$\mathbbmtt{i_1}$をかけて内積をとると
 \[ x^i_1 =
 	\left(
-		\vec{i_1} \cdot \vec{b_1},
-        \vec{i_1} \cdot \vec{b_2},
-        \vec{i_1} \cdot \vec{b_3}
+		\mathbbmtt{i_1} \cdot \mathbbmtt{b_1},
+        \mathbbmtt{i_1} \cdot \mathbbmtt{b_2},
+        \mathbbmtt{i_1} \cdot \mathbbmtt{b_3}
     \right)
 	\begin{pmatrix}
     	x^b_1\\
@@ -66,15 +66,15 @@ $x^i_2, x^i_3$も同様にして
 \end{pmatrix}
 =
 \begin{pmatrix}
-	\vec{i_1} \cdot \vec{b_1} & 
-    \vec{i_1} \cdot \vec{b_2} & 
-    \vec{i_1} \cdot \vec{b_3} \\
-    \vec{i_2} \cdot \vec{b_1} &
-    \vec{i_2} \cdot \vec{b_2} &
-    \vec{i_2} \cdot \vec{b_3} \\
-    \vec{i_3} \cdot \vec{b_1} & 
-    \vec{i_3} \cdot \vec{b_2} & 
-    \vec{i_3} \cdot \vec{b_3}
+	\mathbbmtt{i_1} \cdot \mathbbmtt{b_1} & 
+    \mathbbmtt{i_1} \cdot \mathbbmtt{b_2} & 
+    \mathbbmtt{i_1} \cdot \mathbbmtt{b_3} \\
+    \mathbbmtt{i_2} \cdot \mathbbmtt{b_1} &
+    \mathbbmtt{i_2} \cdot \mathbbmtt{b_2} &
+    \mathbbmtt{i_2} \cdot \mathbbmtt{b_3} \\
+    \mathbbmtt{i_3} \cdot \mathbbmtt{b_1} & 
+    \mathbbmtt{i_3} \cdot \mathbbmtt{b_2} & 
+    \mathbbmtt{i_3} \cdot \mathbbmtt{b_3}
 \end{pmatrix}
 \begin{pmatrix}
 	x^b_1\\
@@ -83,7 +83,7 @@ $x^i_2, x^i_3$も同様にして
 \end{pmatrix}
 \]
 つまり
-\[ \vec{x^i} = C^i_b\vec{x^b} \]
+\[ \mathbbmtt{x^i} = C^i_b\mathbbmtt{x^b} \]
 また
 \begin{align}
 C_b^{i\mathrm{T}} & = C_i^b \\
@@ -95,9 +95,9 @@ C_b^{i-1} & = C^b_i
 \subsubsection{DCMの求め方}
 \begin{enumerate}[label = \maru{\theenumi}]
 \item スタートラッカーにより星を観測する\\
-$\rightarrow$3つの星からb-frameの$\vec{s^b_1},\vec{s^b_2},\vec{s^b_3}$がもとまる.(単位ベクトル)
+$\rightarrow$3つの星からb-frameの$\mathbbmtt{s^b_1},\mathbbmtt{s^b_2},\mathbbmtt{s^b_3}$がもとまる.(単位ベクトル)
 \item この3つの星が天球上のどの星かを同定する(pattern matching,identification)\\
-$\rightarrow\vec{s^i_1},\vec{s^i_2},\vec{s^i_3}$がもとまる.
+$\rightarrow\mathbbmtt{s^i_1},\mathbbmtt{s^i_2},\mathbbmtt{s^i_3}$がもとまる.
 \hfil
 \begin{minipage}{2.3cm}
 \begin{figure}[H]
@@ -116,44 +116,44 @@ $\rightarrow\vec{s^i_1},\vec{s^i_2},\vec{s^i_3}$がもとまる.
 以上から
 \begin{align}
 \begin{pmatrix}
-	\vec{s^i_1}, & \vec{s^i_2}, & \vec{s^i_3}
+	\mathbbmtt{s^i_1}, & \mathbbmtt{s^i_2}, & \mathbbmtt{s^i_3}
 \end{pmatrix}
 & = 
 C^i_b
 \begin{pmatrix}
-	\vec{s^i_1},\vec{s^i_2},\vec{s^i_3}
+	\mathbbmtt{s^i_1},\mathbbmtt{s^i_2},\mathbbmtt{s^i_3}
 \end{pmatrix}
 \\
 \rightarrow 
 C^i_b & = 
 \begin{pmatrix}
-\vec{s^i_1}, & \vec{s^i_2}, & \vec{s^i_3}
+\mathbbmtt{s^i_1}, & \mathbbmtt{s^i_2}, & \mathbbmtt{s^i_3}
 \end{pmatrix}
-\left( \vec{s^i_1},\vec{s^i_2},\vec{s^i_3} \right)^{-1}\mbox{注：独立なので逆行列が存在}
+\left( \mathbbmtt{s^i_1},\mathbbmtt{s^i_2},\mathbbmtt{s^i_3} \right)^{-1}\mbox{注：独立なので逆行列が存在}
 \end{align}
 (参考)\\
-$\vec{x^i_1}$には2個の情報がある$\rightarrow$2個の星があれば姿勢(3自由度)がわかるはず.
+$\mathbbmtt{x^i_1}$には2個の情報がある$\rightarrow$2個の星があれば姿勢(3自由度)がわかるはず.
 
 
 \subsection{DCMの微分方程式(DCMの時間変化と角速度の関係、キネマティクス)}
 \ding{"E2} 基本式\\
 \text{*}$\cdots$回転座標系から見た変化\\
-$\vec{\omega}\cdots$回転角速度(bのiに対する)
-\[ \frac{d\vec{x}}{dt}=\frac{d^*\vec{x}}{dt}+\vec{\omega}\times\vec{x} \]
+$\mathbbmtt{\omega}\cdots$回転角速度(bのiに対する)
+\[ \frac{d\mathbbmtt{x}}{dt}=\frac{d^*\mathbbmtt{x}}{dt}+\mathbbmtt{\omega}\times\mathbbmtt{x} \]
 
 \begin{enumerate}[label = \maru{\theenumi}]
-\item $\vec{x}$として回転座標系に固定したベクトルを使う
+\item $\mathbbmtt{x}$として回転座標系に固定したベクトルを使う
 \begin{align}
-\frac{d^*}{dt}\vec{x} & = \vec{0} \\
-\frac{d\vec{x^i} }{dt}& = \vec{0}+ \vec{\omega^i}\times \vec{x^i} 
+\frac{d^*}{dt}\mathbbmtt{x} & = \mathbbmtt{0} \\
+\frac{d\mathbbmtt{x^i} }{dt}& = \mathbbmtt{0}+ \mathbbmtt{\omega^i}\times \mathbbmtt{x^i} 
 \end{align}
-$\vec{x^i}  = c^i_b \vec{x^b}$を代入すると
+$\mathbbmtt{x^i}  = c^i_b \mathbbmtt{x^b}$を代入すると
 \begin{align*}
-\dot{c^i_b} \vec{x^i} + C^i_b \overbrace{\dot{\vec{x^b}}}^
-{\vec{x}\text{は固定されているので}\vec{0}}
-	& =\vec{\omega^i} \times (c^i_b \vec{x^b}) \\
-	& = [\vec{\omega^i} \times] c^i_b \vec{x^b} \\
-   \vec{\omega^i} \times
+\dot{c^i_b} \mathbbmtt{x^i} + C^i_b \overbrace{\dot{\mathbbmtt{x^b}}}^
+{\mathbbmtt{x}\text{は固定されているので}\mathbbmtt{0}}
+	& =\mathbbmtt{\omega^i} \times (c^i_b \mathbbmtt{x^b}) \\
+	& = [\mathbbmtt{\omega^i} \times] c^i_b \mathbbmtt{x^b} \\
+   \mathbbmtt{\omega^i} \times
 	& \equiv
     \begin{pmatrix}
       0 & -\omega_3 & \omega_2 \\
@@ -163,24 +163,24 @@ $\vec{x^i}  = c^i_b \vec{x^b}$を代入すると
     \text{skew synmetiric form of }\omega
 \end{align*}
 \begin{equation}
-\therefore \dot{c^i_b\vec x^b} = [\vec \omega^i \times]c^i_b \vec x^b
+\therefore \dot{c^i_b\mathbbmtt x^b} = [\mathbbmtt \omega^i \times]c^i_b \mathbbmtt x^b
 \end{equation}
-これが任意の$\vec x^b$について成り立つので,
+これが任意の$\mathbbmtt x^b$について成り立つので,
 \begin{equation}
-\dot{c^i_b} = [\vec \omega \times] c^i_b
+\dot{c^i_b} = [\mathbbmtt \omega \times] c^i_b
 \end{equation}
 
-\item $\vec{x}$として慣性系に固定されたベクトルを使う(i-frameにfix)
-\[ \vec{0} = \frac{d^*x}{dt} + \vec{\omega} \times \vec{x} \]
-\[\therefore \dot{\vec{x^b}} + \vec{\omega^b} \times \vec{x}^b = \vec{0} \]
-一方,$\vec{x^i}=C^i_b\vec{x^b}$より
+\item $\mathbbmtt{x}$として慣性系に固定されたベクトルを使う(i-frameにfix)
+\[ \mathbbmtt{0} = \frac{d^*x}{dt} + \mathbbmtt{\omega} \times \mathbbmtt{x} \]
+\[\therefore \dot{\mathbbmtt{x^b}} + \mathbbmtt{\omega^b} \times \mathbbmtt{x}^b = \mathbbmtt{0} \]
+一方,$\mathbbmtt{x^i}=C^i_b\mathbbmtt{x^b}$より
 \begin{align}
-\dot{\vec{x^i}}&=\dot{C^i_b}\vec{x^b}+C^i_b\dot{\vec{x^b}}
-=\vec{0} \quad \left(\vec{x}\text{はiframeにfix}\right)\\
-\therefore \dot{C^i_b}\vec{x}^b&=-C^i_b\vec{x}^b\\
-&=-C^i_b\left(- \vec{\omega^b} \times \vec{x}^b\right)\\
-&=C^i_b[\vec{\omega^b} \times] \vec{x}^b\\
-\rightarrow \dot{C^i_b}&=C^i_b[\vec{\omega^b}\times]
+\dot{\mathbbmtt{x^i}}&=\dot{C^i_b}\mathbbmtt{x^b}+C^i_b\dot{\mathbbmtt{x^b}}
+=\mathbbmtt{0} \quad \left(\mathbbmtt{x}\text{はiframeにfix}\right)\\
+\therefore \dot{C^i_b}\mathbbmtt{x}^b&=-C^i_b\mathbbmtt{x}^b\\
+&=-C^i_b\left(- \mathbbmtt{\omega^b} \times \mathbbmtt{x}^b\right)\\
+&=C^i_b[\mathbbmtt{\omega^b} \times] \mathbbmtt{x}^b\\
+\rightarrow \dot{C^i_b}&=C^i_b[\mathbbmtt{\omega^b}\times]
 \end{align}
 
 (補足)　IRU系での姿勢の計算\\
@@ -191,7 +191,7 @@ $=$ジャイロを使って姿勢角、角速度を知るシステム
 %underbraceしました
 \[
 C^i_b\left(t\right)
-\xrightarrow[\underbrace{\vec{w}^b \ \text{or} \ \vec{w}^i }_{\text{ジャイロから得られる}}]{\dot{C^i_b} = \cdots \text{の式}}
+\xrightarrow[\underbrace{\mathbbmtt{w}^b \ \text{or} \ \mathbbmtt{w}^i }_{\text{ジャイロから得られる}}]{\dot{C^i_b} = \cdots \text{の式}}
 C^i_b \left( t + \delta t \right)
 \quad\quad
 \delta t = \SI{10}{ms}, \SI{1}{ms}
