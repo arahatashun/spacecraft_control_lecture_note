@@ -5,11 +5,13 @@
 \date{\the\year/\the\month/\the\day}
 \author{Shun Arahata\and Hirotaka Kondo \and Ryosuke Morita}
 
-% packages and librariees
+% packages and libraries
 \usepackage[utf8]{inputenc}				%Japanese fonts
 \usepackage[ipaex]{pxchfon}
-\usepackage{amsmath,amssymb, mathrsfs}	%math
+\usepackage{pifont}
+\usepackage{mathtools, amssymb, mathrsfs, bbm}	%math
 \usepackage{siunitx, physics}
+\usepackage[table]{xcolor}				%colors
 \usepackage{graphicx}					%figures
 \usepackage{subcaption, wrapfig}
 \usepackage{tikz}
@@ -62,3 +64,13 @@
 
 % change cite form 
 \renewcommand{\citeform}[1]{[#1]}
+
+% number equations only when they are referred to in the text
+\mathtoolsset{showonlyrefs=true}
+
+% circle numbers
+\def\maru#1{%
+	\leavevmode \setbox0\hbox{$\bigcirc$}%
+	\copy0\kern-\wd0 \hbox to\wd0{\hfil{\small#1}\hfil}%
+    }
+

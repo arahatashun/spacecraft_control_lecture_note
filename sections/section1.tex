@@ -7,18 +7,22 @@
 \subsection{Direction Cosine Matrix(DCM)}
 　宇宙機に固定された座標系が慣性系に対してどっちを向いているか？$\Rightarrow$座標変換\\
  $\therefore$直交座標系の間の変換行列として定義
- \begin{enumerate}
+\begin{enumerate}[label = \maru{\theenumi}]
  \item Body Frame 衛星にくくりつけられた座標系、変動する 
  \item Inertial Frame 固定
  \end{enumerate}
  上付き文字のiはInertial,bはBodyの意味
- \[ \vec{x^i}=C^b_i\vec{x^b} \]
+ \[ \vec{x^i}=C^i_b\vec{x^b} \]
  $C^i_b$は姿勢の表現と考える
- \[ \vec{x^b} = C^b_i \vec{x^i} = C^b_i C^b_i \vec{x^b} = I \vec{x^b}
+ \[ \vec{x^b} = C^b_i \vec{x^i} = \underbrace{C^b_i C^i_b}_{\mathbb{I}} \vec{x^b} = \mathbb{I} \vec{x^b}
  	\rightarrow {C^i_b}^{-1} = C^b_i \]
- i-frameの3つの基底ベクトル$\vec{i_1}$,$\vec{i_2}$,$\vec{i_3}$\\
- b-frameの3つの基底ベクトル$\vec{b_1}$,$\vec{b_2}$,$\vec{b_3}$\\
- $\vec{x^i}=
+
+\begin{tabular}{ll}
+i-frameの3つの基底ベクトル & $\vec{i_1}$,$\vec{i_2}$,$\vec{i_3}$ \\
+b-frameの3つの基底ベクトル & $\vec{b_1}$,$\vec{b_2}$,$\vec{b_3}$
+\end{tabular}
+
+$\vec{x^i}=
  	\begin{pmatrix}
     	x^i_1\\
         x^i_2\\
@@ -26,7 +30,7 @@
     \end{pmatrix}$
 とすると
 \begin{equation}
-\vec{x} = \sum_{k=1}^{3} x^i_k \vec{i_k}
+\vec{x} = \sum_{k=1}^{3} x^i_k \vec{i_k} \label{eq:1}
 \end{equation}
 
 一方で
@@ -38,12 +42,12 @@ $\vec{x^b}=
     \end{pmatrix}$
 とすると
 \begin{equation}
-\vec{x} = \sum_{k=1}^{3} x^b_k \vec{b_k} 
+\vec{x} = \sum_{k=1}^{3} x^b_k \vec{b_k}  \label{eq:2}
 \end{equation}
-上の二式は同じ.(2)式の両辺に$\vec{i_1}$をかけて内積をとると
+\eqref{eq:1}と\eqref{eq:2}は同じ.(2)式の両辺に$\vec{i_1}$をかけて内積をとると
 \[ x^i_1 =
 	\left(
-		\vec{i_1} \cdot \vec{b_1}
+		\vec{i_1} \cdot \vec{b_1},
         \vec{i_1} \cdot \vec{b_2},
         \vec{i_1} \cdot \vec{b_3}
     \right)
@@ -80,55 +84,77 @@ $x^i_2, x^i_3$も同様にして
 \]
 つまり
 \[ \vec{x^i} = C^i_b\vec{x^b} \]
+また
+\begin{align}
+C_b^{i\mathrm{T}} & = C_i^b \\
+C_b^{i-1} & = C^b_i
+\end{align}
+となるので$C_b^i$はUnitary行列
+
 
 \subsubsection{DCMの求め方}
-\begin{enumerate}
+\begin{enumerate}[label = \maru{\theenumi}]
 \item スタートラッカーにより星を観測する\\
 $\rightarrow$3つの星からb-frameの$\vec{s^b_1},\vec{s^b_2},\vec{s^b_3}$がもとまる.(単位ベクトル)
 \item この3つの星が天球上のどの星かを同定する(pattern matching,identification)\\
 $\rightarrow\vec{s^i_1},\vec{s^i_2},\vec{s^i_3}$がもとまる.
+\hfil
+\begin{minipage}{2.3cm}
+\begin{figure}[H]
+\tikz{%
+	\draw (0, 0) rectangle (2, 1);
+    \draw [->] (1, 0.7)node[fill=white]{$\star$}
+    	to[bend right] (0.6, 0.3)node[fill=white]{$\star$}
+        to[bend right] (1.4, 0.3)node[fill=white]{$\star$}
+        to[bend right] (1, 0.7);
+    }
+\end{figure}
+\end{minipage}
+明るさの離角
 \end{enumerate}
+
 以上から
-\begin{align*}
+\begin{align}
 \begin{pmatrix}
 	\vec{s^i_1}, & \vec{s^i_2}, & \vec{s^i_3}
 \end{pmatrix}
-& = &
+& = 
 C^i_b
 \begin{pmatrix}
 	\vec{s^i_1},\vec{s^i_2},\vec{s^i_3}
 \end{pmatrix}
 \\
 \rightarrow 
-C^i_b & = &
+C^i_b & = 
 \begin{pmatrix}
 \vec{s^i_1}, & \vec{s^i_2}, & \vec{s^i_3}
 \end{pmatrix}
 \left( \vec{s^i_1},\vec{s^i_2},\vec{s^i_3} \right)^{-1}\mbox{注：独立なので逆行列が存在}
-\end{align*}
+\end{align}
 (参考)\\
 $\vec{x^i_1}$には2個の情報がある$\rightarrow$2個の星があれば姿勢(3自由度)がわかるはず.
 
 
 \subsection{DCMの微分方程式(DCMの時間変化と角速度の関係、キネマティクス)}
-$\Rightarrow$基本式\\
+\ding{"E2} 基本式\\
 \text{*}$\cdots$回転座標系から見た変化\\
 $\vec{\omega}\cdots$回転角速度(bのiに対する)
 \[ \frac{d\vec{x}}{dt}=\frac{d^*\vec{x}}{dt}+\vec{\omega}\times\vec{x} \]
 
-\begin{enumerate}
+\begin{enumerate}[label = \maru{\theenumi}]
 \item $\vec{x}$として回転座標系に固定したベクトルを使う
-\begin{align*}
+\begin{align}
 \frac{d^*}{dt}\vec{x} & = \vec{0} \\
-\frac{d^*}{dt}\vec{x} & = \vec{\omega^i}\times \vec{x^i} \\
-\vec{x^i} & = c^i_b \vec{x^b}
-\end{align*}
-を代入すると
+\frac{d\vec{x^i} }{dt}& = \vec{0}+ \vec{\omega^i}\times \vec{x^i} 
+\end{align}
+$\vec{x^i}  = c^i_b \vec{x^b}$を代入すると
 \begin{align*}
-\dot{c^i_b} \vec{x^i} + c^i_b \dot{\vec{x^b}}
+\dot{c^i_b} \vec{x^i} + C^i_b \overbrace{\dot{\vec{x^b}}}^
+{\vec{x}\text{は固定されているので}\vec{0}}
 	& =\vec{\omega^i} \times (c^i_b \vec{x^b}) \\
-	& = [\vec{\omega^i} \times] c^i_b \vec{x^b} \nonumber \\
-	& =
+	& = [\vec{\omega^i} \times] c^i_b \vec{x^b} \\
+   \vec{\omega^i} \times
+	& \equiv
     \begin{pmatrix}
       0 & -\omega_3 & \omega_2 \\
       \omega_3 & 0 & -\omega_1 \\ 
@@ -141,23 +167,31 @@ $\vec{\omega}\cdots$回転角速度(bのiに対する)
 \end{equation}
 これが任意の$\vec x^b$について成り立つので,
 \begin{equation}
-c^i_b = [\vec \omega \times] c^i_b
+\dot{c^i_b} = [\vec \omega \times] c^i_b
 \end{equation}
 
 \item $\vec{x}$として慣性系に固定されたベクトルを使う(i-frameにfix)
 \[ \vec{0} = \frac{d^*x}{dt} + \vec{\omega} \times \vec{x} \]
 \[\therefore \dot{\vec{x^b}} + \vec{\omega^b} \times \vec{x}^b = \vec{0} \]
-一方,
+一方,$\vec{x^i}=C^i_b\vec{x^b}$より
+\begin{align}
+\dot{\vec{x^i}}&=\dot{C^i_b}\vec{x^b}+C^i_b\dot{\vec{x^b}}
+=\vec{0} \quad \left(\vec{x}\text{はiframeにfix}\right)\\
+\therefore \dot{C^i_b}\vec{x}^b&=-C^i_b\vec{x}^b\\
+&=-C^i_b\left(- \vec{\omega^b} \times \vec{x}^b\right)\\
+&=C^i_b[\vec{\omega^b} \times] \vec{x}^b\\
+\rightarrow \dot{C^i_b}&=C^i_b[\vec{\omega^b}\times]
+\end{align}
 
 (補足)　IRU系での姿勢の計算\\
 IRU$\rightarrow$
 Inertial Reference Unit
 $=$ジャイロを使って姿勢角、角速度を知るシステム
 %%% footnoteは数式モード中では使えない。どうしよう。
+%underbraceしました
 \[
 C^i_b\left(t\right)
-\xrightarrow[\vec{w}^b \text{or} \vec{w}^i \footnote{ジャイロから得られる
-}]{\dot{C^i_b} = \cdots \text{の式}}
+\xrightarrow[\underbrace{\vec{w}^b \ \text{or} \ \vec{w}^i }_{\text{ジャイロから得られる}}]{\dot{C^i_b} = \cdots \text{の式}}
 C^i_b \left( t + \delta t \right)
 \quad\quad
 \delta t = \SI{10}{ms}, \SI{1}{ms}
