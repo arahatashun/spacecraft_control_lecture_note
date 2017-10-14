@@ -86,8 +86,8 @@ $x^i_2, x^i_3$も同様にして
 \[ \bm{x}^i = C^i_b\bm{x}^b\]
 また
 \begin{align}
-C_b^{i\mathrm{T}} & = C_i^b \\
-C_b^{i-1} & = C^b_i
+{C_b^{i}}^\mathrm{T} & = C_i^b \\
+{C_b^{i}}^{-1} & = C^b_i
 \end{align}
 となるので$C_b^i$はUnitary行列
 
@@ -103,7 +103,7 @@ $\rightarrow\bm{s}^i_1,\bm{s}^i_2,\bm{s}^i_3$がもとまる.
 \begin{figure}[H]
 \tikz{%
 	\draw (0, 0) rectangle (2, 1);
-    \draw [->] (1, 0.7)node[fill=white]{$\star$}
+    \draw [->] (1, 0.7)node[fill=white]{$\star$}%\ding{"49}
     	to[bend right] (0.6, 0.3)node[fill=white]{$\star$}
         to[bend right] (1.4, 0.3)node[fill=white]{$\star$}
         to[bend right] (1, 0.7);
@@ -148,9 +148,12 @@ $\bm{\omega}\cdots$回転角速度(bのiに対する)
 \frac{d\bm{x}^i }{dt}& = \bm{0}+ \bm{\omega^i}\times \bm{x}^i 
 \end{align}
 $\bm{x}^i  = c^i_b \bm{x}^b$を代入すると
+%%%%%%%%%%%%%%%%%%%% 実験
 \begin{align*}
-\dot{c^i_b} \bm{x}^i + C^i_b \overbrace{\dot{\bm{x}^b}}^
-{\bm{x}\text{は固定されているので}\bm{0}}
+%\dot{c^i_b} \bm{x}^i + C^i_b \overbrace{\dot{\bm{x}^b}}^
+%{\bm{x}\text{は固定されているので}\bm{0}}
+\dot{c^i_b} \bm{x}^i + C^i_b
+\overexpl{\dot{\bm{x}^b}}{\bm{x}\text{は固定されているので}\bm{0}}%%%%実験
 	& =\bm{\omega}^i \times (c^i_b \bm{x}^b) \\
 	& = [\bm{\omega}^i \times] c^i_b \bm{x}^b \\
    \bm{\omega}^i \times
@@ -190,15 +193,13 @@ $\bm{x}^i  = c^i_b \bm{x}^b$を代入すると
 IRU$\rightarrow$
 Inertial Reference Unit
 $=$ジャイロを使って姿勢角、角速度を知るシステム
-%%% footnoteは数式モード中では使えない。どうしよう。
-%underbraceしました
-\[
+\begin{equation}
 C^i_b\left(t\right)
-\xrightarrow[\underbrace{\bm{\omega}^b \ \text{or} \ \bm{\omega}^i }_{\text{ジャイロから得られる}}]{\dot{C^i_b} = \cdots \text{の式}}
+\xrightarrow[\underexplline{\bm{\omega}^b \ \text{or} \ \bm{\omega}^i}{\text{ジャイロから得られる}}]{\dot{C^i_b} = \cdots \text{の式}}
 C^i_b \left( t + \delta t \right)
 \quad\quad
 \delta t = \SI{10}{ms}, \SI{1}{ms}
-\]
+\end{equation}
 ルンゲクッタ法などを用いて数値積分を行う
 \end{enumerate}
 
@@ -206,31 +207,30 @@ C^i_b \left( t + \delta t \right)
 \subsection{Euler角}
 i-frameからb-frameへの変換を$x, y, z$軸いずれかの軸まわりの3回の回転で達成する際の，3つの回転角で姿勢を表現する。
 
-%%%%後で直す
-\begin{wrapfigure}{l}{20zw}
+\begin{minipage}{0.45\linewidth}
 \begin{tikzpicture}
 \coordinate (O) at (0, 0);
-
-\begin{scope}[-latex]
-\draw (O)--+(-1, 0)node[left]{$x$};
-\draw (O)--+(0.5, 0.8)node[left]{$y$};
-\draw (O)--+(0, -1)node[left]{$z$};
+%plane
+\begin{scope}[thick]
+\draw (0.5, 0.3) to[bend right] (-1, 0) to[bend right=20] (0.9, -0.1) to (0.9, 0.5) to (0.6, 0.5)--cycle;
+\draw (-0.1, 0.4)--(0.3, 1)--(0.6, 1)--(0.4, 0.3);
+\fill [draw, fill=white] (-0.3, 0)--(-0.6, -1)--(-0.3, -1)--(0.2, 0);
 \end{scope}
-
-\draw (0.4, 0.2) to[bend right] (-0.7, 0);
-\draw (-0.3, -0.3)--(0.2, 0.8)--(0.5, 0.8)--(0.3, 0.3);
-\draw (0.4, 0.2)--+(0.2, 0.2)--+(0.3, 0)--+(-0.1, -0.6);
-\draw (-0.7, 0)--(0.8, -0.2);
-\draw (-0.4, -0.3)--(-0.6, -0.7)--(0, -0.7)--(0.2, -0.1);
-
+%axis
+\begin{scope}[-latex, thin, densely dashed]
+\draw (O)--+(-1.5, 0)node[left]{$x$};
+\draw (O)--+(0.7, 1.4)node[left]{$y$};
+\draw (O)--+(0, -1.2)node[right]{$z$};
+\end{scope}
 \end{tikzpicture}
-\end{wrapfigure}
-
-$Z \rightarrow Y \rightarrow Z$ \par
-$\varphi \rightarrow \theta \rightarrow \phi$ \par
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+$Z \rightarrow Y \rightarrow X$ \\ \\
+$\varphi \rightarrow \theta \rightarrow \phi$ \\ \\
 $\num{3 x 2 x 2} = 12\text{通り}$
+\end{minipage}
 
-
+\noindent
 Euler角の微分方程式
 \begin{align}
 \dot{\phi} & = \omega_x + \omega_y \sin\phi \tan\theta + \omega_z \cos\phi \tan\theta \\ 
@@ -238,25 +238,29 @@ Euler角の微分方程式
 \dot{\psi} & = \omega_y \sin\phi \dfrac{1}{\cos\theta} + \omega_z \cos\phi \dfrac{1}{\cos\theta}
 \end{align}
 
-{\color{green}
-$\theta = \ang{90} or \ang{270}$ \par
-\quad $\rightarrow$ 特異点 \par
-旅客機$\rightarrow$OK \par
-戦闘機$\rightarrow$NG \par
+\noindent
+{\color{emph}%
+$\theta = \ang{90} \text{or} \ang{270} \rightarrow$ 特異点\\
+旅客機$\rightarrow$OK \\
+戦闘機$\rightarrow$NG \\
 人工衛星$\rightarrow$場合による
 }
 
 \subsection{Quaternion(四元数,オイラーパラメータ)}
-i-frameからb-frameへの変換は,必ず$\underbrace{{\text{ある軸}}}_{\bm{p}^i=(l, m, n)^T \text{単位ベクトル}}$周りの１回の$\underbrace{\text{回転}}_{\text{回転角}\theta}$で達成できる.
+i-frameからb-frameへの変換は,
+必ず$\underexplline[8pt]{{\text{ある軸}}}{\bm{p}^i=(l, m, n)^T \text{単位ベクトル}}$周りの
+１回の$\underexplline[8pt]{\text{回転}}{\text{回転角}\theta}$で達成できる.
 
 \begin{align}
-|\bm{q}|=
+& |\bm{q}| = 1 \\
+& \bm{q} =
 \begin{bmatrix}
    q_0 \\
-   q_1\\
+   q_1 \\
    q_2 \\
    q_3 
 \end{bmatrix}
+=
 \begin{bmatrix}
        \cos{\frac{\theta}{2}} \\
        l\sin{\frac{\theta}{2}} \\
@@ -265,8 +269,8 @@ i-frameからb-frameへの変換は,必ず$\underbrace{{\text{ある軸}}}_{\bm{
 \end{bmatrix} 
 \end{align}
 
-{\color{red}
-順番に注意,定義色々,$\|i\| =1$
+\textcolor{emph}{%
+順番に注意,定義色々,$\|i\| = 1$
 }
 
 Quaternionの微分方程式
@@ -277,7 +281,8 @@ Quaternionの微分方程式
     -q_1 & -q_2 & -q_3 \\
     q_0 & -q_3 & q_2 \\
     q_3 & q_0 & q_1 \\
-    -q_2 & q_1 & q_0 \\ 
+    q_2%-q_2?
+    & q_1 & q_0 \\
     \end{bmatrix}
     \begin{bmatrix}
     \omega_x \\
@@ -289,9 +294,15 @@ $\bm{q} \rightarrow$DCM
 \begin{equation}
 C_b^i = 
 \begin{bmatrix}
-{q_0}^2 + {q_1}^2 - {q_2}^2 - {q_3}^2 & 2(q_1 q_2 - q_0 q_3) & 2(q_1 q_3 + q_0 q_2) \\
-2(q_1 q_2 - q_0 q_3) & {q_0}^2 + {q_1}^2 - {q_2}^2 - {q_3}^2 & 2(q_2 q_3 + q_0 q_1) \\
-2(q_1 q_3 - q_0 q_2) & 2(q_2 q_3 + q_0 q_1) & {q_0}^2 + {q_1}^2 - {q_2}^2 - {q_3}^2 \\
+{q_0}^2 + {q_1}^2 - {q_2}^2 - {q_3}^2 
+& 2(q_1 q_2 - q_0 q_3)
+& 2(q_1 q_3 + q_0 q_2) \\
+2(q_1 q_2 + q_0 q_3)
+& {q_0}^2 - {q_1}^2 + {q_2}^2 - {q_3}^2 
+& 2(q_2 q_3 - q_0 q_1) \\
+2(q_1 q_3 - q_0 q_2) 
+& 2(q_2 q_3 + q_0 q_1) 
+& {q_0}^2 - {q_1}^2 - {q_2}^2 + {q_3}^2 \\
 \end{bmatrix}
 \end{equation}
 
@@ -300,19 +311,19 @@ C_b^i =
 \begin{table}[H]
 \centering
 \caption{姿勢表現}
-\begin{tabular}{p{5zw}|l|l|l}
+\begin{tabular}{>{\centering}p{5zw}|c|c|c}
  & DCM & オイラー角 & Quaternion \\ \hline
-要素数 & 9   & 3     & 4          \\ \hline
-冗長数 & $6^*$   & 0     & $1(|\bm{q}| = 1)$         \\ \hline
-特異点　& --- & 有（$\theta = \pm\ang{90}$のとき） & --- \\ \hline
-時間更新の計算負荷 & 小～中 & 大 & 　小
+要素数 & 9 & 3 & 4 \\ \hline
+冗長数 & \hspace{4pt}$6^*$ & 0 & $1(|\bm{q}| = 1)$ \\ \hline
+特異点 & --- & 有（$\theta = \pm\ang{90}$のとき） & --- \\ \hline
+時間更新の計算負荷 & 小～中 & 大 & 小
 \end{tabular}
 \end{table}
-                
+
 \begin{align}
-* \;C^i_b = [\bm{a}_1, \bm{a}_2, \bm{a}_3] \\
-\| \bm{a}_i\| = 1(i=1,2,3) \\
-\bm{a}_i \cdot \bm{a}_j = 0 (i \ne j)
+& \hspace{-8pt} {}^* \;C^i_b = [\bm{a}_1, \bm{a}_2, \bm{a}_3] \\
+& \| \bm{a}_i\| = 1(i=1,2,3) \\
+& \bm{a}_i \cdot \bm{a}_j = 0 (i \ne j)
 \end{align}
 
 

@@ -4,10 +4,10 @@
 
 \section{衛星（Rigid Body）のDynamics}
 \begin{center}
-%ここになんか入ってたはず
-$\xrightarrow[Dynamics]{}$
+トルク
+$\xrightarrow[\text{Dynamics}]{}$
 $\underline{\bm{\omega}}$
-$\xrightarrow[Kinematics]{}$
+$\xrightarrow[\text{Kinematics}]{}$
 姿勢
 \end{center}
 
@@ -17,24 +17,27 @@ $\xrightarrow[Kinematics]{}$
 \coordinate (C) at (2, 1);
 \coordinate (R) at (2.2, 2);
 
-\begin{scope}[-latex]
-\draw (O)--+(-2, -2)node[below left]{$X$}node[above left = 1]{$\bm{I}$};
+\begin{scope}[-latex]	%axis
+\draw (O)--+(-1, -1)node[below left]{$X$}node[above = 2]{$\bm{I}$};
 \draw (O)--+(3, 0)node[right]{$Y$}node[below left = 1]{$\bm{J}$};
 \draw (O)--+(0, 3)node[above]{$Z$}node[below left = 1]{$K$};
 \end{scope}
 
-\draw [->] (O)--(C)node[right]{$C$};
-\draw [->] (O)node[above right=0.8cm]{$\bm{R}$}--(R);
-\draw [->] (C)node[above =0.1cm]{$\bm{r}$}--(R);
-\draw (0.6, 0.3) to[bend right] (0.8, -0.4)node[below]{$\bm{R}_e$};
+\begin{scope}[-stealth, thick]	%vecs
+\draw (O)--(C)node[below]{$C$};
+\draw (O)--(R);
+\draw (C)--(R)node[below right]{$\bm{r}$};
+\end{scope}
+\draw (0.6, 0.3) to[bend left] (0.8, -0.4)node[below]{$\bm{R}_e$};
 
-\begin{scope}[->]
-\draw (C)--+(0.5, 0.25)node[right]{$x(\bm{i})$};
-\draw (C)--+(0.3, 0.5)node[right]{$y(\bm{j})$};
-\draw (C)--+(-0.3, 0.7)node[left]{$z(\bm{k})$};
+\begin{scope}[-stealth, emph, thick]	%coloemph vecs
+\draw (C)--+(0.7, 0.35)node[below = 1]{$x(\bm{i})$};
+\draw (C)--+(0.4, 0.6)node[right]{$y(\bm{j})$};
+\draw (C)--+(-0.4, 0.8)node[left]{$z(\bm{k})$};
 \end{scope}
 
-\node at (3, 3) {$P(dm)$};
+\node at ($(O)!0.3!(R) + (-0.2, 0.3)$) {$\bm{R}$};
+\node [above right] at (R) {$\bm{P}(dm)$};
 \end{tikzpicture}
 
 \begin{align}
@@ -59,119 +62,80 @@ $\bm{\dot{x}_{rel}}$は「動座標系から見たx」の変化率\\
 \bm{R}&=
 \bm{R}_c+\bm{r}\\
 \bm{V}&=
-\dot{\bm{R}}_c+\dot{\bm{r}}\\&=
-\bm{V}_c+\bm{V}_{rel}+
-\bm{\omega}\times\bm{r}\\
-\bm{a}&=
-\dot{\bm{V}}_c+\ddot{\bm{V}}_{rel}
-+\dot{\bm{\omega}}\times\bm{r}
-+%ここもなんか入るはず
-\end{align}
-
-\begin{itemize}
-\item 以降,成分表記はb-frameから見たものとする.
-\item dmの位置$\bm{r}$はb¥f%何これ
-\end{itemize}
-
-\begin{tikzpicture}
-\coordinate (O) at (0, 0);
-\coordinate (C) at (2, 1);
-\coordinate (R) at (2.2, 2.5);
-
-\begin{scope}[-latex]
-\draw (O)--+(-2, -2)node[below left]{$X$}node[above left=0.8]{$\bm{I}$};
-\draw (O)--+(3, 0)node[right]{$Y$}node[below]{$\bm{J}$};
-\draw (O)--+(0, 3)node[above]{$Z$}node[below left]{$K$};
-\end{scope}
-
-\draw [->] (O)--(C)node[right]{$C$};
-\draw [->] (O)node[above right=0.8cm]{$R$}--(R);
-\draw (0.6, 0.3) to[bend right] (0.8, -0.4)node[below]{$Re$};
-
-\begin{scope}[->]
-\draw (C)--+(0.5, 0.25)node[right]{$x(\bm{i})$};
-\draw (C)--+(0.3, 0.5)node[right]{$x(\bm{j})$};
-\draw (C)--+(-0.3, 0.7)node[left]{$x(\bm{k})$};
-\end{scope}
-
-\node at (3, 3) {$P(dm)$};
-\end{tikzpicture}
-
-\begin{align}
-XYZ\left(\bm{I},\bm{J},\bm{K}\right)&:
-\text{慣性座標系}\\
-xyz\left(\bm{i},\bm{j},\bm{k}\right)&:
-\text{動座標系}\\
-\text{C}&:
-\text{動座標系の原点}\\
-\text{P}&:
-\text{微小質量dmの位置}
-\end{align}
-基本式
-\begin{align}
-\bm{\dot{x}} = \bm{\dot{x}_{rel}} + \bm{\omega}\times  \bm{x}
-\end{align}
-$\bm{\dot{x}_rel}$は「動座標系から見たx」の変化率\\
-質点dmの位置,速度,加速度は
-\begin{align}
-\bm{R}&=\bm{R}_c+\bm{r}\\
-\bm{V}&=\dot{\bm{R}}_c+\dot{\bm{r}}\\
-&=\bm{V}_c+\bm{V}_{rel}+\bm{\omega}\times
-\bm{r}\\
-\bm{a}&=
-\dot{\bm{V}}_c+\ddot{\bm{V}}_\mathrm{rel}
-+\dot{\bm{\omega}}\times\bm{r}
-+ \bm{\omega}+\times\dot{\bm{r}}\\
+\dot{\bm{R}}_c+\dot{\bm{r}}\\
+&=
+\bm{V}_c+\bm{V}_\mathrm{rel}+
+\bm{\omega}\times\bm{r}\qquad
+(\bm{\omega}\times\bm{R}_c = \bm{0})\\
+%おかしくない？
+\bm{a}
+&=
+\dot{\bm{V}}_c+
+\dot{\bm{V}}_\mathrm{rel}+
+\dot{\bm{\omega}}\times\bm{r}+
+\bm{\omega}\times\dot{\bm{r}}\\
 &=
 \bm{a}_c+
 \left(
-\bm{a}_{rel}
-+\bm{\omega}\times\bm{V}_{rel}
-+\dot{\bm{\omega}}\times
-\bm{V}_{rel}
+\bm{a}_\mathrm{rel}
++\bm{\omega}\times\bm{V}_\mathrm{rel}
 \right)
 +\dot{\bm{\omega}}
 \times \bm{r}
-+\omega\times
++\bm{\omega}\times
 \left(
-\bm{V}_{rel}
+\bm{V}_\mathrm{rel}
 +\bm{\omega}\times\bm{r}
 \right)\\
 &=
 \bm{a}_c+
-\bm{a}_{rel}
-+\underbrace{2\bm{\omega}\times\bm{V}_{rel}}
-_{\text{コリオリ力}}
-+\dot{\bm{\omega}}\times\bm{r}
-+\underbrace{\bm{\omega}\times
-\left( \omega \times \bm{r} \right)}_{\text{遠心力}}
+\bm{a}_{rel}+
+\underbrace{2\bm{\omega}\times\bm{V}_{rel}}
+_{\text{コリオリ力}}+
+\dot{\bm{\omega}}\times\bm{r}+
+\underbrace{\bm{\omega}\times
+\left( \bm{\omega} \times 
+\bm{r} \right)}_{\text{遠心力}}
 \end{align}
 
 
 \begin{itemize}
 \item 以降,成分表記はb-frameから見たものとする.
 \item $dm$の位置$\bm{r}$はb-frameに固定されている
-(剛体)$\rightarrow \bm{V}_\mathrm{rel} = \bm{0}, a_\mathrm{rel} = 0$
+(剛体)$\rightarrow \bm{V}_\mathrm{rel} = \bm{0}, \bm{a_\mathrm{rel}}
+= \bm{0}$
 \end{itemize}
 
 
 \subsection{諸量の表現}
-\begin{itemize}[label = \maru{\theenumi}]
-\item{運動量(Linear Momentum}
+\begin{enumerate}[label = \maru{\theenumi}]
+\item{運動量(Linear Momentum)}
 \begin{align}
-\bm{p} \equiv \int_m(\bm{v})dm 
-= \int_m(\bm{V}_c + \bm{V}_\mathrm{rel} + \bm{\omega} \times \bm{r})dm \\
-= \bm{V}_c \int_m()dm + \omega \times \int_m(\bm{r})dm \\
-= \bm{V}_c (\text{M:全体の質量}) \\
- \text{原点を重心に選ぶと}\int_m(\bm{r})dm = \bm{0}
- \end{align}
- \item 角運動量（Angular Momentum）（C点周りの）
- \begin{equation}
- \bm{H}_c = \int_m \bm{r} \times V dm = \int_m \bm{r} times (\bm{V}_c + \bm{\omega} \times \bm{r}) dm
+\bm{P}
+\equiv \int_m(\bm{v})dm 
+& = \int_m
+(\bm{V}_c +
+\underbrace{\bm{V}_\mathrm{rel}}_{\bm{0}} +
+\bm{\omega} \times \bm{r})dm \\
+& = 
+\bm{V}_c \int_mdm +
+\bm{\omega}\times \underbrace{\int_m\bm{r}dm}_{\bm{0}}\\
+\intertext{原点を重心に選ぶと$\int_m\bm{r}dm = \bm{0}$であるから}
+& = M\bm{V}_c (\text{M:全体の質量}) 
+\end{align}
+
+\item 角運動量（Angular Momentum）（C点周りの）
+\begin{equation}
+ \bm{H}_c 
+ \equiv
+ \int_m \bm{r} \times \bm{V} dm 
+ =\int_m \bm{r} \times (\bm{V}_c + \bm{\omega} \times \bm{r}) dm
  \end{equation}
 ここで，
 \begin{equation}
-\int_m \bm{r} \times \bm{V}_c dm = \int_m \bm{r} dm \times \bm{V}_c = \bm{0}
+\int_m \bm{r} \times \bm{V}_c dm 
+= \int_m \bm{r} dm \times \bm{V}_c 
+= \bm{0}
 \end{equation}
 また，
 $\bm{r} = \begin{pmatrix} x \\ y \\ z \end{pmatrix}$，
@@ -200,23 +164,35 @@ dm
 \int_m (x^2 + y^2) dm = I_{zz}
 \end{align}
 \begin{align}
-\int_m xy dm = |_{xy}, \dots etc
+\int_m xy dm = I_{xy}, \dots \text{etc}
+\qquad\text{慣性乗積}
 \end{align}
-慣性乗積
 \begin{align}
 \rightarrow
 \bm{H}_c^b & =
 \begin{bmatrix}
-I_{xx} \omega_x - I_{xy}\omega_y - I_{xz}\omega_z \\
-I_{yy} \omega_y - I_{xy}\omega_x - I_{yz}\omega_z \\
-I_{zz} \omega_z - I_{xz}\omega_x - I_{yz}\omega_y
+I_{xx} \omega_x 
+- I_{xy}\omega_y
+- I_{xz}\omega_z \\
+I_{yy} \omega_y
+-I_{xy}\omega_x
+- I_{yz}\omega_z \\
+I_{zz} \omega_z 
+- I_{xz}\omega_x 
+- I_{yz}\omega_y
 \end{bmatrix}
 =
+\underbrace
+{
 \begin{bmatrix}
-I_{xx} & -I_{xy} & -I_{xz} \\
--I_{xy} & -I_{yy} & -I_{yz} \\
+I_{xx} &
+\overexpl{-I_{xy}}{\textcolor{emph}{\text{符号に注意}}} &
+-I_{xz} \\
+-I_{xy} & I_{yy} & -I_{yz} \\
 -I_{xz} & -I_{yz} & I_{zz}
 \end{bmatrix}
+}_
+{\text{慣性テンソル}}
 \begin{bmatrix}
 \omega_x \\
 \omega_y \\
@@ -233,40 +209,37 @@ T
 \frac{1}{2}\int_m \bm{V} \cdot \bm{V} dm
 = 
 \frac{1}{2} \int_m
-\left( \bm{V}_c + \bm{\omega} \times \bm{r} \right)
-\left( \bm{V}_c + \bm{\omega} \times \bm{r} \right)\\
+\left( \bm{V}_c + \bm{\omega} \times \bm{r} \right)\cdot
+\left( \bm{V}_c + \bm{\omega} \times \bm{r} \right)dm\\
 & = 
 \frac{1}{2} \int_m V_c^2 dm
 + 2 \cdot \frac{1}{2} \bm{V}_c \cdot
 \int_m
-\underbrace{\bm{\omega} \times \bm{r}}_
-{\bm{\omega}\text{を外に出せる}}dm
+\underexpl[10pt]{\bm{\omega} \times \bm{r}}{\bm{\omega}\text{を外に出せる}} \ dm
++\frac{1}{2}\int_m
+|\bm{\omega}\times\bm{r}|^2dm
 \\
-\end{align}
-\begin{align}
-=\frac{1}{2}MV_c^2
+&=\frac{1}{2}MV_c^2
 + \frac{1}{2}
-\end{align}
-\begin{align}
 \int_m
 \left\{
 \left(
-\omega_{yZ}
--\omega_y
+\omega_{y}z
+-\omega_{z}y
 \right)^2
 +
 \left(
-\omega_{zX}
--\omega_y
+\omega_{z}x
+-\omega_{x}z
 \right)^2
 +
 \left(
-\omega_{yZ}
--\omega_y
+\omega_{x}y
+-\omega_{y}x
 \right)^2
 \right
 \}
-dm
+dm\\
 & = 
 \frac{1}{2} M {V_c}^2 +
 \frac{1}{2}
@@ -278,19 +251,32 @@ I_{zz}{\omega_z}^2 -
 2 \omega_z \omega_x I_{xz} -
 2 \omega_x \omega_y I_{xy}
 \right] \\
-&=\frac{1}{2} M{V_c}^2 + \frac{1}{2}
-[\omega_x \omega_y \omega_z]{\bm{H}_c}^b
+&=
+\underset{\large\rule[0pt]{0pt}{10pt}\text{\textcolor{emph}{並進}}}{\frac{1}{2} M{V_c}^2}
+\underset{\large\rule[0pt]{0pt}{16pt}\textcolor{emph}{\leftrightarrow}}{+}
+\underset{\large\rule[0pt]{0pt}{10pt}\hspace{-20mm}\text{\textcolor{emph}{回転}}}{%
+\frac{1}{2}
+\begin{bmatrix}
+\omega_x & \omega_y & \omega_z
+\end{bmatrix}
+{\bm{H}_c}^b
+}
 \end{align}
-
-\textcolor{green}{並進$\leftrightarrow$回転}
-\end{itemize}
+\end{enumerate}
 
 
 \subsection{Equation of Motion}
 \begin{align}
-\bm{F} = \bm{\dot{P}}(\text{並進の運動量}) = M\bm{\dot{V}}\\
-\bm{M}_c &= \bm{\dot{H}}_c (\text{c点周りの角運動量}) \\
-             &= \bm{\dot{H}}_{c,rel} + \omega \times \bm{\dot{H}}_c\\
+\bm{F} = \bm{\dot{P}}(\dot{\text{並進の運動量}}) 
+         = M\bm{\dot{V}_c}
+\end{align}
+\begin{align}
+ \bm{M}_c &= \bm{\dot{H}}_c
+(\dot{\text{c点周りの角運動量}}) \\
+ &= \underexpl{\bm{\dot{H}}_{c,rel}}{\bm{H}_c^b\text{の時間微分}} +
+ \bm{\omega} \times \bm{H}_c
+ \end{align}
+ \begin{align}
 \rightarrow \bm{M}^b_c = 
 [Iner]
 \begin{bmatrix}
@@ -305,26 +291,55 @@ I_{zz}{\omega_z}^2 -
    {\omega}_z\\
 \end{bmatrix}
 \times
+\left(
 [Iner]
 \begin{bmatrix}
  {\omega}_x\\
    {\omega}_y\\
    {\omega}_z\\
  \end{bmatrix}
+\right)
 \end{align}
 x,y,zを慣性主軸に取ると
 \begin{equation}
 I_{xy} = I_{yz} = I_{zx} = 0
-\end{equation}
-これより
-\begin{equation}
+\qquad\rightarrow\qquad
 [Iner] = 
 \begin{bmatrix}
-  I_xx & 0 & 0 \\
-  0 & I_yy & 0 \\
-  0 & 0 & I_zz 
+  I_{xx} & 0 & 0 \\
+  0 & I_{yy} & 0 \\
+  0 & 0 & I_{zz} 
 \end{bmatrix}
 \end{equation}
+\begin{equation}
+\rightarrow\bm{M}_c^b
+=\begin{bmatrix}
+M_x\\
+M_y\\
+M_z
+\end{bmatrix}
+=\begin{bmatrix}
+I_{xx}\dot{\omega}_x
++(I_{zz}-I_{yy})\overbrace{\omega_y\omega_z}^{\textcolor{emph}{\text{非線形項}}}\\
+I_{yy}\dot{\omega_y}+
+(I_{xx}-I_{zz})\omega_x\omega_z\\
+I_{zz}\dot{\omega_z}+
+(I_{yy}-I_{xx})\omega_x\omega_y
+\end{bmatrix}
+\qquad
+\text{Eulerの式}
+\end{equation}
 
+
+\newpage
+色サンプル \par
+\textcolor{mediumblue}{強調}\par
+\textcolor{midnightblue}{強調}\par
+\textcolor{royalblue}{強調}\par
+\textcolor{limegreen}{強調}\par
+\textcolor{darkgreen}{強調}\par
+\textcolor{forestgreen}{強調}\par
+\textcolor{orangered}{強調}\par
+等々
 
 \end{document}

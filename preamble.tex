@@ -3,10 +3,10 @@
 % titles
 \title{宇宙機制御工学}
 \date{\the\year/\the\month/\the\day}
-\author{Shun Arahata\and Hirotaka Kondo \and Ryosuke Morita}
+\author{Shun Arahata \and Hirotaka Kondo \and Ryosuke Morita}
 
 % packages and libraries
-\usepackage[utf8]{inputenc}				%Japanese fonts
+\usepackage[utf8]{inputenc}				%fonts
 \usepackage[ipaex]{pxchfon}
 \usepackage{pifont}
 \usepackage{mathtools, amssymb, mathrsfs, bbm}	%math
@@ -62,11 +62,18 @@
 \setlength{\lineskiplimit}{6pt}
 \setlength{\lineskip}{6pt}
 
-% change cite form 
+% setting of indent
+\setlength{\parindent}{1zw}
+\setlength{\mathindent}{5zw}
+
+% change cite form
 \renewcommand{\citeform}[1]{[#1]}
 
 % number equations only when they are referred to in the text
 \mathtoolsset{showonlyrefs=true}
+
+% decrement for section
+\setcounter{section}{-1}
 
 % circle numbers
 \def\maru#1{%
@@ -74,3 +81,24 @@
 	\copy0\kern-\wd0 \hbox to\wd0{\hfil{\small#1}\hfil}%
     }
 
+% add explanation to formulas (needs debug)
+\newcommand{\overexpl}[3][2pt]{%
+	\overset{\hspace{-105mm}\rule[-#1]{0pt}{#1}#3\hspace{-105mm}}{\overbrace{#2}}%
+    }
+\newcommand{\underexpl}[3][0pt]{%
+	\underset{\hspace{-105mm}\rule[0pt]{0pt}{#1}#3\hspace{-105mm}}{\underbrace{#2}}%
+    }
+\newcommand{\underexplline}[3][0pt]{%
+	\underset{\hspace{-105mm}\rule[0pt]{0pt}{#1}#3\hspace{-105mm}}{\underline{#2}}%
+    }
+
+% define color of emphasize
+\definecolor{midnightblue}{RGB}{25, 105, 112}
+\definecolor{mediumblue}{RGB}{0, 0, 165}
+\definecolor{royalblue}{RGB}{65, 25, 225}
+\definecolor{limegreen}{HTML}{32CD32}
+\definecolor{darkgreen}{HTML}{006400}
+\definecolor{forestgreen}{HTML}{228B22}
+\definecolor{orangered}{HTML}{FF4500}
+
+\definecolor{emph}{HTML}{FF4500}
