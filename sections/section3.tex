@@ -94,23 +94,46 @@ z
 \end{align}
 これ以降,b-frameで見た成分表記とする.
 \begin{align}
-\int(\bm{r}\time\bm{R}_0)
+\int(\bm{r}\times\bm{R}_0)
 (\bm{r}\cdot\bm{R}_0)dm
-&=R_0^2\int
+&=R_0^2 \int
 \begin{bmatrix}
 y\cos\phi\cos\theta  -z\sin\phi\cos\theta\\
 -z\sin\theta -x\cos\phi\cos\theta\\
 x\sin\phi\cos\theta + y\sin\theta
 \end{bmatrix}
-(-x\sin\theta+y\cos\phi\cos\theta+z\cos\phi\cos\theta)dm\\
-R_0^2
+(-x\sin\theta+
+y\sin\phi\cos\theta+
+z\cos\phi\cos\theta)dm\\
+&=R_0^2\int
+\begin{bmatrix}
+(y^2-z^2)
+\cos^2\theta\cos\phi\sin\phi
++f_1(xy,yz,zx)\\
+(x^2-z^2)\sin\theta\cos\theta\cos\phi
++f_2(xy,yz,zx)\\
+(y^2-x^2)\sin\theta\cos\theta\sin\phi+
+f_3(xy,yz,zx)\\
+\end{bmatrix}dm
+\end{align}
+\begin{align}
+\left\{
+\begin{array}{l}
+y^2-z^2=(x^2+y^2)-(x^2+z^2)\\
+f_1(xy,yz,zx)=f_2(xy,yz,zx)=f_3(xy,yz,zx)=0
+(\because\text{慣性主軸})
+\end{array}
+\right.
 \end{align}
 \begin{align}
 \rightarrow \bm{g}^b = \frac{3\mu_e}{R_0^3}
-\begin{pmatrix}
-(I_{xx}-I_{yy})\cos{\theta}^2 \cos{\phi} \sin{phi}^2 \\
-(I_{zz}- I_{}
-\end{pmatrix}
+\begin{bmatrix}
+(I_{xx}-I_{yy})\cos^2{\theta}
+\cos{\phi} \sin{\phi} \\
+(I_{zz}- I_{xx})\sin\theta\cos\theta\cos
+\phi\\
+(I_{xx}-I_{yy})\sin\theta\cos\theta\sin\phi
+\end{bmatrix}
 \end{align}
 $\theta$と$\phi$が小さいケース
 (=z軸がほぼ地心を向いている時)
@@ -128,7 +151,8 @@ $\theta$と$\phi$が小さいケース
 0
 \end{bmatrix}
 \end{align}
-どういう形がよい？
+どういう形がよい？\\
+%%%%%%%%%%%%%%
 \begin{tikzpicture}%%角度足す
 \coordinate (O) at (0, 0);
 
@@ -141,8 +165,9 @@ $\theta$と$\phi$が小さいケース
 
 \draw (O) circle [radius = 0.3];
 \node [above left = 1] at (O) {$x_0$};
-\end{tikzpicture}
-
+\end{tikzpicture}\\
+%%%%%%%%%%%%%%%%%
+\begin{minipage}{.4\textwidth}
 \begin{tikzpicture}%%	円柱
 \coordinate (O) at (0, 0);
 
@@ -157,14 +182,17 @@ $\theta$と$\phi$が小さいケース
 \draw (0, 1) circle [x radius = 2, y radius = 0.8];
 \draw (0, -1) circle [x radius = 2, y radius = 0.8];
 \end{tikzpicture}
-
-
-\begin{itemize}
-\item $I_{zz}-I_{yy}>0$\\
+%%%%%%%%%%%%%
+\end{minipage}
+ \hfill
+\begin{minipage}{.4\textwidth}
+$I_{zz}-I_{yy}>0$\\
 $\phi$が正の時トルクも正$\rightarrow$
 ずれが拡大$\rightarrow$
 不安定
-
+\end{minipage}
+%%%%%%%%%%%%%%%%
+\begin{minipage}{.4\textwidth}
 \begin{tikzpicture}%%円柱
 \coordinate (O) at (0, 0);
 \begin{scope}[->]
@@ -177,26 +205,28 @@ $\phi$が正の時トルクも正$\rightarrow$
 \draw (0, 0.5) circle [x radius = 1, y radius = 0.4];
 \draw (0, -0.5) circle [x radius = 1, y radius = 0.4];
 \end{tikzpicture}
-
-\item  $I_{zz}-I_{yy}<0$\\
+\end{minipage}
+ \hfill
+\begin{minipage}{.4\textwidth}
+$I_{zz}-I_{yy}<0$\\
 $\phi$が正の時トルクは負$\rightarrow$
 ずれが小さくなる$\rightarrow$
 安定
-\end{itemize}
+\end{minipage}\\
 軌道上への「置き方」が重要\\
 同様に$\theta$についての安定条件
 $=I_{zz}-I_{xx}<0$\\
-\qquad$\rightarrow$
+\qquad\qquad$\rightarrow$
 「$I_{zz}$が最小」が安定のための必要条件\\
 (補足)
 \begin{enumerate}
 \item gravity gradient torqueは外乱であると同時に,受動的な
 姿勢制御に使える($1^\circ\sim2^\circ$)
 \item 安定といっても$\theta,\phi \rightarrow0$
-に収束しない(0周りに振り子運動する=liberation)
+に収束しない(0周りに振り子運動する=libration)
 \end{enumerate}
 $<$姿勢運動(地球指向のため)も考慮に入れたとき$>$\\
-orbital frame 自体が動く(動座標系)\\
+\qquad orbital frame 自体が動く(動座標系)\\
 基準座標系としてorbital frameをとる($X,Y,Z$)$F_0$
 ($F_i\cdots$慣性系)\\
 $\rightarrow$衛星とともにY軸周りに$\omega_0$で
@@ -204,6 +234,15 @@ $\rightarrow$衛星とともにY軸周りに$\omega_0$で
 (X,Y,Z)$\rightarrow$xyz(b-frame)への変換を
 $\underbrace{F_p}_{\mathrm{principle}\quad\mathrm{axis}},
 (\phi,\theta,\psi)$の微小回転で表現する.\\
+\begin{align}
+\left\{
+\begin{array}{ll}
+\phi &= x\text{軸周りの回転}\\
+\theta &= y\text{軸周りの回転}\\
+\psi &=z\text{軸周りの回転}
+\end{array}
+\right.
+\end{align}
 やりたいこと
 \begin{equation}
 \text{Eulerの式}
@@ -215,15 +254,21 @@ I(\dot{\bm{\omega}}^p)+
 \text{を書き下したい}
 \end{equation}
 $\bm{\omega}$ : $F_p$の$F_i$に対する角速度
+\begin{equation}
+\bm{\omega}
+= \underexplline{\bm{\omega}_0}{i \rightarrow O} + \underexplline{\bm{\omega}_\alpha}{O \rightarrow p}\\
+\end{equation}
 \begin{align}
-= \underexplline{\bm{\omega}_0}{i \rightarrow O} + \underexplline{\bm{\omega}_\alpha}{O \rightarrow p}, 
-&
-{\bm{\omega}_o}^{i \rightarrow O} =
+{\bm{\omega}_o}
+^{\overbrace{i or O}
+^{\text{最終的にpで表したいのでDCMが必要}}}&=
 \begin{bmatrix}
-0 \\ -\omega_C \\ 0
+0 \\ 
+-\omega_C
+\\ 0
 \end{bmatrix}
 \left( \omega_C = \sqrt{\frac{\mu}{R^3}} \right) \\
- & {\bm{\omega}_\alpha}^{p} = 
+ {\bm{\omega}_\alpha}^{p} &= 
 \begin{bmatrix}
 \dot{\phi} \\ \dot{\theta} \\ \dot{\psi}
 \end{bmatrix}
@@ -233,7 +278,7 @@ $F_0$から$F_p$へのDCMは近似的に，
 C_0^p = 
 \begin{bmatrix}
 1 & \psi & -\theta \\
-\psi & 1 & \phi \\
+-\psi & 1 & \phi \\
 \theta & -\phi & 1
 \end{bmatrix}
 \qquad \qty(\theta, \ \phi, \ \psi \text{が十分小さい})
@@ -242,31 +287,48 @@ C_0^p =
 \rightarrow 
 \bm{\omega}^p & =
 C_0^p \bm{\omega}_o^o + 
-\bm{\omega}_o^p\\
+\bm{\omega}_o^\alpha\\
 & =
 C_0^p 
 \begin{bmatrix}
 0 \\
--\omega_C \\
+-\omega_c \\
 0 
 \end{bmatrix} + 
 \begin{bmatrix} 
 \dot{\phi} \\
 \dot{\theta} \\ 
 \dot{\psi} \\
-\end{bmatrix}
+\end{bmatrix}\\
 & = 
 \begin{bmatrix}
-\dot{\phi} - \omega_C \psi \\
-\dot{\theta} - \omega_C \\
-\dot{\psi} + \omega_C \phi
+\dot{\phi} - \omega_c \psi \\
+\dot{\theta} - \omega_c \\
+\dot{\psi} + \omega_c \phi
+\end{bmatrix}\qquad
+\left(=
+\begin{bmatrix}
+\omega_x\\
+\omega_y\\
+\omega_z
 \end{bmatrix}
+\right)
 \end{align}
-ここで，2行目$\rightarrow$3行目でEulerの式
+Eulerの式に代入すると
 \begin{align}
-I_{xx} \dot{\omega_x} + (I_{zz} - I_{yy})\omega_y \omega_z = 3 {\omega_C}^2 (I_{zz} - I_{yz})\phi \\
-I_{yy} \dot{\omega_y} + (I_{xx} - I_{zz})\omega_x \omega_z = 3{\omega_C}^2 (I_{zz} - I_{xx}) \theta \\
-I_{zz} \dot{\omega_z} + (I_{yy} - I_{zz}) \omega_y \omega_z = 0
+\left\{
+\begin{array}{ll}
+I_{xx} \dot{\omega_x} 
++ (I_{zz} - I_{yy})\omega_y \omega_z 
+&= 3 {\omega_c}^2 (I_{zz} - I_{yz})\phi \\
+I_{yy} \dot{\omega_y} 
++ (I_{xx} - I_{zz})\omega_x \omega_z 
+&= 3{\omega_c}^2 (I_{zz} - I_{xx}) \theta \\
+I_{zz} \dot{\omega_z} 
++ (I_{yy} - I_{zz}) \omega_y \omega_z 
+&= 0
+\end{array}
+\right.
 \end{align}
 簡略化のために
 \begin{equation}
@@ -277,27 +339,32 @@ I_{zz}\equiv I_3\quad
 \end{equation}
 (Eulerの式の一つ目)
 \begin{align}
-I_1\ddot{\phi}-
+&I_1\ddot{\phi}-
 I_1\omega_c\dot{\psi}+
 (I_3-I_2)(-\omega_c+\dot{\theta})
 (\omega_c\phi+\dot{\psi})\\
-=I_1\ddot{\phi}-(I_1+I_3-I_2)
+&=I_1\ddot{\phi}-(I_1+I_3-I_2)
 \omega_c\dot{\psi}+
 (I_2-I_3)\omega_c-2\phi+
-\mathcal{O}(\epsilon^2)=
-3\omega_c^2(I_3-I_2)\phi
+\mathcal{O}(\epsilon^2)\\
+&=3\omega_c^2(I_3-I_2)\phi
 \end{align}
-外乱がgravity gradientのみの時に
+このようにして外乱がgravity gradientのみの時に
 \begin{align}
-I_1\ddot{\theta}-(I_1+I_3-I_2)\omega_c\dot{\phi}+
-4(I_2-I_3)\omega_c-2\phi&
-=0 \label{eq:1}\\
-I_2\ddot{\theta}+3(I_1-I_3)\omega_c^2\theta
-&=0 \label{eq:2}\\
-I_3\ddot{psi}
+\begin{cases}
+I_1\ddot{\theta}
+-(I_1+I_3-I_2)\omega_c\dot{\phi}
++4(I_2-I_3)\omega_c
+-2\phi
+&=0 \qquad(1)\\
+I_2\ddot{\theta}
++3(I_1-I_3)\omega_c^2\theta
+&=0 \qquad(2)\\
+I_3\ddot{\psi}
 +(I_1+I_3-I_2)\omega_c\dot{\psi}
 +(I_2-I_1)\omega_c^2\psi
-&=0\label{eq:3}
+&=0\qquad(3)
+\end{cases}
 \end{align}
 定性的に
 \begin{enumerate}
@@ -305,46 +372,49 @@ I_3\ddot{psi}
 $I_1 > I_3$が安定のための必要十分条件
 \item x,z軸は$\omega_c$を介してカップリングしている.
 (1),(3)より\\
-$
-A = 
-\begin{pmatrix}
+\begin{equation}
+A \equiv
+\begin{bmatrix}
 I_1 & 0\\
 0 & I_3 \\
-\end{pmatrix}
-B = 
-\begin{pmatrix}
+\end{bmatrix}
+\qquad
+B \equiv
+\begin{bmatrix}
 0 & -1\\
 1 & 0\\
-\end{pmatrix}
-$
-$(I_1 + I_3 - I_2) \omega_c$
-$
-C = 
-\begin{pmatrix}
+\end{bmatrix}
+(I_1 + I_3 - I_2) \omega_c
+\qquad
+C \equiv
+\begin{bmatrix}
 4(I_2- I_3) & 0\\
 0 & I_2 - I_1\\
-\end{pmatrix}
-$
+\end{bmatrix}
+\omega_c
+\end{equation}
 \begin{equation}
-\bm{q} = 
-\begin{pmatrix}
+\bm{q} \equiv
+\begin{bmatrix}
 \phi \\
 \psi \\
-\end{pmatrix}
+\end{bmatrix}\qquad
+\text{とすると}
 \end{equation}
 \begin{equation}
 A \ddot{\bm{q}} + B \dot{\bm{q}} + C \bm{q} = \bm{0} 
 \end{equation}
-安定条件は?
 \end{enumerate}
-\underline{十分条件} Cがpositive definite(正定)であること
-$(\forall x, \bm{x}^T C \bm{x} > 0)$ \\
-$\therefore I_2 - I_3 >0\wedge_2 - I_1 > 0$\\
+上式の安定条件は?\\
+\quad\underline{十分条件} Cがpositive definite(正定)であること
+$(\forall \bm{x}, \bm{x}^T C \bm{x} > 0)$ \\
+$\therefore I_2 - I_3 >0\wedge I_2 - I_1 > 0$\\
 $\rightarrow$ 1,2から安定のための十分条件は
 \begin{equation}
 \overbrace{I_2}^{\text{ピッチ}} 
 >
-\overbrace{I_1}^{\text{ろー}} > I_3
+\overbrace{I_1}^{\text{ロール}} > 
+\overbrace{I_3}^{\text{ヨー}}\qquad
 (\omega_c \text{を考えなければ}I_2 > I_3 , I_1 > I_3)
 \end{equation}
 $<$補足$>$もし厳密な必要十分条件を出すなら
@@ -358,10 +428,10 @@ k_3=
 \begin{equation}
 s^4+
 (1+3k_1+k_1k_3)\omega_c^2s^2+
-4k_1k_3\omega{c}^4=0
+4k_1k_3\omega{c}^4=0\qquad
 \text{(特性方程式)}
 \end{equation}
-4つの根が　左半面にある条件
+4つの根が左半面にある条件
 \begin{itemize}
 \item $1+3k_1+k_1k_3>0$
 \item $k_1k_3>0$
