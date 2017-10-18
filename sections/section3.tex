@@ -1,17 +1,15 @@
 \documentclass[class=article, crop=false, preview=false, dvipdfmx, a4paper]{standalone}
 \input{../preamble}
 \begin{document}
-
 \section{姿勢運動にあたる外乱}
 \subsection{Gravity Gradient Torque}
-\qquad\qquad --- 地球中心と衛星各部の距離が異なることに起因
-
+\qquad\qquad --- 地球中心と衛星各部の距離が異なることに起因\\
 \begin{tikzpicture}%ベクトル図
 \coordinate (O) at (0, 0);
 
 \begin{scope}[->]
 \draw (O)--(-2, 2)node[above]{$dm$}--(-5, -4);
-\draw (O)--(-5, -4)node[below left]{地心};
+\draw (O)--(-5, -4)node[below left]{地球中心};
 \end{scope}
 
 \begin{scope}[-latex, thick, red]
@@ -31,10 +29,10 @@
 \node at (-4, 0) {$\bm{R}$};
 \node at (-2, -2) {$\bm{R_0}$};
 \node at (-1, 1.3) {$\bm{r}$};
-\end{tikzpicture}
-
+\end{tikzpicture}\\
 \begin{tikzpicture}%孤
 \coordinate (O) at (0, 0);
+
 
 
 \begin{scope}[-latex]
@@ -45,13 +43,11 @@
 
 \draw [->] (O)--(-3, 3)node[above]{地球};
 \draw [->] (-3, -1) arc [start angle = -90, end angle = -20, radius = 4.75];
-\end{tikzpicture}
-
-
+\end{tikzpicture}\\
 \textcolor{green}{$x_0, y_0, z_0$ : orbital frame}\\
-\textcolor{red}{$x, y, z$ : body frame}
-
-dmに働く力$d\bm{F}$　は,
+\textcolor{red}{$x, y, z$ : body frame}\\
+$\bm{r}+\bm{R}=\bm{R_0}$\\
+dmに働く力$d\bm{F}$は,
 \begin{equation}
 d\bm{F} = 
 \frac{\mu_e \bm{R} dm}{\|\bm{R}\| ^3} =
@@ -60,22 +56,22 @@ d\bm{F} =
 $\bm{r}\ll \bm{R_0}$より
 \begin{equation}
 d\bm{F} = \frac{\mu_e(\bm{R_0} -\bm{r})}{R_0^3}
-\bigl[ 1 + 3\frac{\bm{r} \cdot \bm{R_0}}{R_0^2} + \mathrm{0}(\frac{r^2}{R_0^2}) \bigr]
+\bigl[ 1 + 3\frac{\bm{r} \cdot \bm{R_0}}{R_0^2} + \underbrace{\mathrm{0}(\frac{r^2}{R_0^2})}_{0} \bigr]
 \end{equation}
 C周りのトルク
 \begin{align}
-\bm{g} =
-\int_m \bm{r} \times d\bm{f} 
-&=\frac{\mu_e}{R_0^3} \int \bm{r}\times (\bm{R_0} - \bm{r})dm\\
-&+\frac{3\mu_e}{R_0^5} \int (\bm{r}\times \bm{R_0}) 
+\bm{g} &=
+\int_m \bm{r} \times d\bm{F}\\ 
+&=\frac{\mu_e}{R_0^3} 
+\underbrace{\int \bm{r}\times
+(\bm{R}_0 - \bm{r})dm}_{\bm{0}}
++\frac{3\mu_e}{R_0^5} \int \bm{r}\times (\bm{R}_0-\bm{r})
 (\bm{r} \cdot \bm{R_0})dm\\
-&= \frac{3\mu_e}{R_0^5} \int (\bm{r} \times \bm{R_0}) ( \bm{r} \cdot \bm{R_0} )dm
-\end{align}
-\begin{align}
-\frac{\mu_e}{R_0^3} \int \bm{r}\times (\bm{R_0} - \bm{r})dm = 0\\
-\because \bm {r} \times \bm{r} = 0\\
-\int \bm{r} dm = \bm{0}
-\end{align}
+&(\because \bm{r}\times\bm{r}=\bm{0}
+,\int \bm{r}dm=\bm{0})
+\\
+&= \frac{3\mu_e}{R_0^5} \int (\bm{r} \times \bm{R}_0) ( \bm{r} \cdot \bm{R_0} )dm
+\end{align}\\
 基準座標系として$x_0$，$y_0$，$z_0$は$z_0$が$\bm{R_0}$
 方向を向くようにとる.\\
 $x_0$，$y_0$，$z_0$から$xyz$（body frame）への変換を，
@@ -97,7 +93,18 @@ z
 \end{bmatrix}
 \end{align}
 これ以降,b-frameで見た成分表記とする.
-
+\begin{align}
+\int(\bm{r}\time\bm{R}_0)
+(\bm{r}\cdot\bm{R}_0)dm
+&=R_0^2\int
+\begin{bmatrix}
+y\cos\phi\cos\theta  -z\sin\phi\cos\theta\\
+-z\sin\theta -x\cos\phi\cos\theta\\
+x\sin\phi\cos\theta + y\sin\theta
+\end{bmatrix}
+(-x\sin\theta+y\cos\phi\cos\theta+z\cos\phi\cos\theta)dm\\
+R_0^2
+\end{align}
 \begin{align}
 \rightarrow \bm{g}^b = \frac{3\mu_e}{R_0^3}
 \begin{pmatrix}
@@ -110,13 +117,6 @@ $\theta$と$\phi$が小さいケース
 \begin{align}
 \frac{\mu_e}{R_0^3}&=\bm{0}
 \end{align}
-
-
-
-
-
-
-
 $\theta$と$\phi$が小さいケース
 （$= z$軸がほぼ地心を向いているとき）
 \begin{align}
@@ -214,9 +214,6 @@ I(\dot{\bm{\omega}}^p)+
 \qquad
 \text{を書き下したい}
 \end{equation}
-
-
-
 $\bm{\omega}$ : $F_p$の$F_i$に対する角速度
 \begin{align}
 = \underexplline{\bm{\omega}_0}{i \rightarrow O} + \underexplline{\bm{\omega}_\alpha}{O \rightarrow p}, 
@@ -242,8 +239,22 @@ C_0^p =
 \qquad \qty(\theta, \ \phi, \ \psi \text{が十分小さい})
 \end{equation}
 \begin{align}
-\rightarrow \bm{\omega}^p & = C_0^p \bm{\omega}_0^o + \bm{\omega}_o^p \\
-& = C_o^p \begin{bmatrix} 0 \\ -\omega_C \\ 0 \end{bmatrix} + \begin{bmatrix} \dot{\phi} \\ \dot{\theta} \\ \dot{\psi} \\
+\rightarrow 
+\bm{\omega}^p & =
+C_0^p \bm{\omega}_o^o + 
+\bm{\omega}_o^p\\
+& =
+C_0^p 
+\begin{bmatrix}
+0 \\
+-\omega_C \\
+0 
+\end{bmatrix} + 
+\begin{bmatrix} 
+\dot{\phi} \\
+\dot{\theta} \\ 
+\dot{\psi} \\
+\end{bmatrix}
 & = 
 \begin{bmatrix}
 \dot{\phi} - \omega_C \psi \\
@@ -269,17 +280,16 @@ I_{zz}\equiv I_3\quad
 I_1\ddot{\phi}-
 I_1\omega_c\dot{\psi}+
 (I_3-I_2)(-\omega_c+\dot{\theta})
-(\oemga_c\phi+\dot{\psi})\\
+(\omega_c\phi+\dot{\psi})\\
 =I_1\ddot{\phi}-(I_1+I_3-I_2)
 \omega_c\dot{\psi}+
 (I_2-I_3)\omega_c-2\phi+
 \mathcal{O}(\epsilon^2)=
-3\oemga_c^2(I_3-I_2)\phi
+3\omega_c^2(I_3-I_2)\phi
 \end{align}
 外乱がgravity gradientのみの時に
 \begin{align}
-\left{
-I_1\ddot{\theta}-(I_1+I_3-I_2)\omega_c\dot{\pho}+
+I_1\ddot{\theta}-(I_1+I_3-I_2)\omega_c\dot{\phi}+
 4(I_2-I_3)\omega_c-2\phi&
 =0 \label{eq:1}\\
 I_2\ddot{\theta}+3(I_1-I_3)\omega_c^2\theta
@@ -288,28 +298,33 @@ I_3\ddot{psi}
 +(I_1+I_3-I_2)\omega_c\dot{\psi}
 +(I_2-I_1)\omega_c^2\psi
 &=0\label{eq:3}
-\right
 \end{align}
 定性的に
 \begin{enumerate}
-\item y軸まわりは独立している.$I_1 > I_3$が安定のための必要十分条件
+\item y軸まわりは独立している.
+$I_1 > I_3$が安定のための必要十分条件
 \item x,z軸は$\omega_c$を介してカップリングしている.
 (1),(3)より\\
+$
 A = 
 \begin{pmatrix}
 I_1 & 0\\
 0 & I_3 \\
 \end{pmatrix}
-B = \begin{pmatrix}
+B = 
+\begin{pmatrix}
 0 & -1\\
 1 & 0\\
 \end{pmatrix}
+$
 $(I_1 + I_3 - I_2) \omega_c$
+$
 C = 
 \begin{pmatrix}
 4(I_2- I_3) & 0\\
 0 & I_2 - I_1\\
 \end{pmatrix}
+$
 \begin{equation}
 \bm{q} = 
 \begin{pmatrix}
@@ -322,22 +337,23 @@ A \ddot{\bm{q}} + B \dot{\bm{q}} + C \bm{q} = \bm{0}
 \end{equation}
 安定条件は?
 \end{enumerate}
-\undeline{十分条件} Cがpositive definite(正定)であること
+\underline{十分条件} Cがpositive definite(正定)であること
 $(\forall x, \bm{x}^T C \bm{x} > 0)$ \\
-\therefore $I_2 - I_3 >0$かつ$I_2 - I_1 > 0$\\
-\rightarrow 1,2から安定のための十分条件は
+$\therefore I_2 - I_3 >0\wedge_2 - I_1 > 0$\\
+$\rightarrow$ 1,2から安定のための十分条件は
 \begin{equation}
 \overbrace{I_2}^{\text{ピッチ}} 
 >
 \overbrace{I_1}^{\text{ろー}} > I_3
-(\text{\omega_c を考えなければ}I_2 > I_3 , I_1 > I_3)
+(\omega_c \text{を考えなければ}I_2 > I_3 , I_1 > I_3)
+\end{equation}
 $<$補足$>$もし厳密な必要十分条件を出すなら
 \begin{equation}
 k_1=
 \frac{I_2-I_3}{I_1},
 k_3=
-\frac{I_2-I_1}{I_3
-}\qquad\text{で運動方程式を書き換えると}
+\frac{I_2-I_1}{I_3}
+\qquad\text{で運動方程式を書き換えると}
 \end{equation}
 \begin{equation}
 s^4+
