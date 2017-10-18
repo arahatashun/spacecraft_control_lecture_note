@@ -6,6 +6,110 @@
 \subsection{Gravity Gradient Torque}
 \qquad\qquad --- 地球中心と衛星各部の距離が異なることに起因
 
+\begin{tikzpicture}%ベクトル図
+\coordinate (O) at (0, 0);
+
+\begin{scope}[->]
+\draw (O)--(-2, 2)node[above]{$dm$}--(-5, -4);
+\draw (O)--(-5, -4)node[below left]{地心};
+\end{scope}
+
+\begin{scope}[-latex, thick, red]
+\draw (O)--(1, 1)node[right]{$x$};
+\draw (O)--(0.5, -1)node[right]{$y$};
+\draw (O)--(-1.5, 0)node[left]{$z$};
+\end{scope}
+
+\begin{scope}[-latex, thick, green]
+\draw (O)--(0.2, 1.5)node[right]{$x_0$（速度方向の円軌道）};
+\draw (O)--(1, -1)node[right]{$y_0$};
+\draw (O)--(-1, -1)node[below]{$z_0$（地心方向）};
+\end{scope}
+
+\draw (O) to[bend left=20] (2, 0)node[right]{衛星中心C};
+
+\node at (-4, 0) {$\bm{R}$};
+\node at (-2, -2) {$\bm{R_0}$};
+\node at (-1, 1.3) {$\bm{r}$};
+\end{tikzpicture}
+
+\begin{tikzpicture}%孤
+\coordinate (O) at (0, 0);
+
+
+\begin{scope}[-latex]
+\draw (O)--(1, 1)node[right]{$x_0$};
+\draw (O)--(0, -1)node[below]{$y_0$（面外）};
+\draw (O)--(-1, 1)node[right]{$z_0$};
+\end{scope}
+
+\draw [->] (O)--(-3, 3)node[above]{地球};
+\draw [->] (-3, -1) arc [start angle = -90, end angle = -20, radius = 4.75];
+\end{tikzpicture}
+
+
+\textcolor{green}{$x_0, y_0, z_0$ : orbital frame}\\
+\textcolor{red}{$x, y, z$ : body frame}
+
+dmに働く力$d\bm{F}$　は,
+\begin{equation}
+d\bm{F} = 
+\frac{\mu_e \bm{R} dm}{\|\bm{R}\| ^3} =
+\mu_e \frac{\bm{R_0} - \bm{r}}{\| \bm{R_0} - \bm{r} \| ^3} dm
+\end{equation}
+$\bm{r}\ll \bm{R_0}$より
+\begin{equation}
+d\bm{F} = \frac{\mu_e(\bm{R_0} -\bm{r})}{R_0^3}
+\bigl[ 1 + 3\frac{\bm{r} \cdot \bm{R_0}}{R_0^2} + \mathrm{0}(\frac{r^2}{R_0^2}) \bigr]
+\end{equation}
+C周りのトルク
+\begin{align}
+\bm{g} =
+\int_m \bm{r} \times d\bm{f} 
+&=\frac{\mu_e}{R_0^3} \int \bm{r}\times (\bm{R_0} - \bm{r})dm\\
+&+\frac{3\mu_e}{R_0^5} \int (\bm{r}\times \bm{R_0}) 
+(\bm{r} \cdot \bm{R_0})dm\\
+&= \frac{3\mu_e}{R_0^5} \int (\bm{r} \times \bm{R_0}) ( \bm{r} \cdot \bm{R_0} )dm
+\end{align}
+\begin{align}
+\frac{\mu_e}{R_0^3} \int \bm{r}\times (\bm{R_0} - \bm{r})dm = 0\\
+\because \bm {r} \times \bm{r} = 0\\
+\int \bm{r} dm = \bm{0}
+\end{align}
+基準座標系として$x_0$，$y_0$，$z_0$は$z_0$が$\bm{R_0}$
+方向を向くようにとる.\\
+$x_0$，$y_0$，$z_0$から$xyz$（body frame）への変換を，
+$z$軸周りに$\psi$，
+$y$軸周りに$\theta$，
+$x$軸周りに$\phi$の回転で表現する.
+\begin{align}
+\bm{R_0}^b=R_o
+\begin{bmatrix}
+-\sin\theta\\
+\sin\phi\cos\theta\\
+\cos\phi\cos\theta
+\end{bmatrix},
+\bm{r}^b=
+\begin{bmatrix}
+x\\
+y\\
+z
+\end{bmatrix}
+\end{align}
+これ以降,b-frameで見た成分表記とする.
+
+\begin{align}
+\rightarrow \bm{g}^b = \frac{3\mu_e}{R_0^3}
+\begin{pmatrix}
+(I_{xx}-I_{yy})\cos{\theta}^2 \cos{\phi} \sin{phi}^2 \\
+(I_{zz}- I_{}
+\end{pmatrix}
+\end{align}
+$\theta$と$\phi$が小さいケース
+(=z軸がほぼ地心を向いている時)
+\begin{align}
+\frac{\mu_e}{R_0^3}&=\bm{0}
+\end{align}
 
 
 
@@ -13,5 +117,241 @@
 
 
 
+$\theta$と$\phi$が小さいケース
+（$= z$軸がほぼ地心を向いているとき）
+\begin{align}
+\frac{\mu_\mathrm{e}}{{R_0}^3} & = {\omega_0}^2 \qquad (\omega_0 \text{: 軌道角速度}) \\
+\bm{g}^\mathrm{b} & \fallingdotseq 3 {\omega_0}^2
+\begin{bmatrix}
+(I_{zz} - I_{yy}) \phi \\
+(I_{zz} - I_{xx}) \theta \\
+0
+\end{bmatrix}
+\end{align}
+どういう形がよい？
+\begin{tikzpicture}%%角度足す
+\coordinate (O) at (0, 0);
 
+\begin{scope}[-latex]
+\draw (O)--(-1, -2)node[below]{$z$};
+\draw (O)--(0, -2.2)node[below]{$z_0$（地心）};
+\draw (O)--(2, 0)node[right]{$y_0$};
+\draw (O)--(2, -0.5)node[right]{$y$};
+\end{scope}
+
+\draw (O) circle [radius = 0.3];
+\node [above left = 1] at (O) {$x_0$};
+\end{tikzpicture}
+
+\begin{tikzpicture}%%	円柱
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex, thick]
+\draw (O)--(2, -2)node[below right]{$x$};
+\draw (O)--(2.4, 2)node[above right]{$y$};
+\draw (O)--(0, 3)node[above]{$z$};
+\end{scope}
+
+\draw (-2, 1)--(-2, -1);
+\draw (2, 1)--(2, -1);
+\draw (0, 1) circle [x radius = 2, y radius = 0.8];
+\draw (0, -1) circle [x radius = 2, y radius = 0.8];
+\end{tikzpicture}
+
+
+\begin{itemize}
+\item $I_{zz}-I_{yy}>0$\\
+$\phi$が正の時トルクも正$\rightarrow$
+ずれが拡大$\rightarrow$
+不安定
+
+\begin{tikzpicture}%%円柱
+\coordinate (O) at (0, 0);
+\begin{scope}[->]
+\draw(O)--(0, 2);
+\draw(O)--(0, -2);
+\end{scope}
+
+\draw (1, 0.5)--(1, -0.5);
+\draw (-1, 0.5)--(-1, -0.5);
+\draw (0, 0.5) circle [x radius = 1, y radius = 0.4];
+\draw (0, -0.5) circle [x radius = 1, y radius = 0.4];
+\end{tikzpicture}
+
+\item  $I_{zz}-I_{yy}<0$\\
+$\phi$が正の時トルクは負$\rightarrow$
+ずれが小さくなる$\rightarrow$
+安定
+\end{itemize}
+軌道上への「置き方」が重要\\
+同様に$\theta$についての安定条件
+$=I_{zz}-I_{xx}<0$\\
+\qquad$\rightarrow$
+「$I_{zz}$が最小」が安定のための必要条件\\
+(補足)
+\begin{enumerate}
+\item gravity gradient torqueは外乱であると同時に,受動的な
+姿勢制御に使える($1^\circ\sim2^\circ$)
+\item 安定といっても$\theta,\phi \rightarrow0$
+に収束しない(0周りに振り子運動する=liberation)
+\end{enumerate}
+$<$姿勢運動(地球指向のため)も考慮に入れたとき$>$\\
+orbital frame 自体が動く(動座標系)\\
+基準座標系としてorbital frameをとる($X,Y,Z$)$F_0$
+($F_i\cdots$慣性系)\\
+$\rightarrow$衛星とともにY軸周りに$\omega_0$で
+回転\\
+(X,Y,Z)$\rightarrow$xyz(b-frame)への変換を
+$\underbrace{F_p}_{\mathrm{principle}\quad\mathrm{axis}},
+(\phi,\theta,\psi)$の微小回転で表現する.\\
+やりたいこと
+\begin{equation}
+\text{Eulerの式}
+\bm{M}^p=
+I(\dot{\bm{\omega}}^p)+
+\bm{\omega}^p\times
+(I\bm{\omega}^p)
+\qquad
+\text{を書き下したい}
+\end{equation}
+
+
+
+$\bm{\omega}$ : $F_p$の$F_i$に対する角速度
+\begin{align}
+= \underexplline{\bm{\omega}_0}{i \rightarrow O} + \underexplline{\bm{\omega}_\alpha}{O \rightarrow p}, 
+&
+{\bm{\omega}_o}^{i \rightarrow O} =
+\begin{bmatrix}
+0 \\ -\omega_C \\ 0
+\end{bmatrix}
+\left( \omega_C = \sqrt{\frac{\mu}{R^3}} \right) \\
+ & {\bm{\omega}_\alpha}^{p} = 
+\begin{bmatrix}
+\dot{\phi} \\ \dot{\theta} \\ \dot{\psi}
+\end{bmatrix}
+\end{align}
+$F_0$から$F_p$へのDCMは近似的に，
+\begin{equation}
+C_0^p = 
+\begin{bmatrix}
+1 & \psi & -\theta \\
+\psi & 1 & \phi \\
+\theta & -\phi & 1
+\end{bmatrix}
+\qquad \qty(\theta, \ \phi, \ \psi \text{が十分小さい})
+\end{equation}
+\begin{align}
+\rightarrow \bm{\omega}^p & = C_0^p \bm{\omega}_0^o + \bm{\omega}_o^p \\
+& = C_o^p \begin{bmatrix} 0 \\ -\omega_C \\ 0 \end{bmatrix} + \begin{bmatrix} \dot{\phi} \\ \dot{\theta} \\ \dot{\psi} \\
+& = 
+\begin{bmatrix}
+\dot{\phi} - \omega_C \psi \\
+\dot{\theta} - \omega_C \\
+\dot{\psi} + \omega_C \phi
+\end{bmatrix}
+\end{align}
+ここで，2行目$\rightarrow$3行目でEulerの式
+\begin{align}
+I_{xx} \dot{\omega_x} + (I_{zz} - I_{yy})\omega_y \omega_z = 3 {\omega_C}^2 (I_{zz} - I_{yz})\phi \\
+I_{yy} \dot{\omega_y} + (I_{xx} - I_{zz})\omega_x \omega_z = 3{\omega_C}^2 (I_{zz} - I_{xx}) \theta \\
+I_{zz} \dot{\omega_z} + (I_{yy} - I_{zz}) \omega_y \omega_z = 0
+\end{align}
+簡略化のために
+\begin{equation}
+I_{xx}\equiv I_1,
+I_{yy}\equiv I_2,
+I_{zz}\equiv I_3\quad
+\text{とする.}
+\end{equation}
+(Eulerの式の一つ目)
+\begin{align}
+I_1\ddot{\phi}-
+I_1\omega_c\dot{\psi}+
+(I_3-I_2)(-\omega_c+\dot{\theta})
+(\oemga_c\phi+\dot{\psi})\\
+=I_1\ddot{\phi}-(I_1+I_3-I_2)
+\omega_c\dot{\psi}+
+(I_2-I_3)\omega_c-2\phi+
+\mathcal{O}(\epsilon^2)=
+3\oemga_c^2(I_3-I_2)\phi
+\end{align}
+外乱がgravity gradientのみの時に
+\begin{align}
+\left{
+I_1\ddot{\theta}-(I_1+I_3-I_2)\omega_c\dot{\pho}+
+4(I_2-I_3)\omega_c-2\phi&
+=0 \label{eq:1}\\
+I_2\ddot{\theta}+3(I_1-I_3)\omega_c^2\theta
+&=0 \label{eq:2}\\
+I_3\ddot{psi}
++(I_1+I_3-I_2)\omega_c\dot{\psi}
++(I_2-I_1)\omega_c^2\psi
+&=0\label{eq:3}
+\right
+\end{align}
+定性的に
+\begin{enumerate}
+\item y軸まわりは独立している.$I_1 > I_3$が安定のための必要十分条件
+\item x,z軸は$\omega_c$を介してカップリングしている.
+(1),(3)より\\
+A = 
+\begin{pmatrix}
+I_1 & 0\\
+0 & I_3 \\
+\end{pmatrix}
+B = \begin{pmatrix}
+0 & -1\\
+1 & 0\\
+\end{pmatrix}
+$(I_1 + I_3 - I_2) \omega_c$
+C = 
+\begin{pmatrix}
+4(I_2- I_3) & 0\\
+0 & I_2 - I_1\\
+\end{pmatrix}
+\begin{equation}
+\bm{q} = 
+\begin{pmatrix}
+\phi \\
+\psi \\
+\end{pmatrix}
+\end{equation}
+\begin{equation}
+A \ddot{\bm{q}} + B \dot{\bm{q}} + C \bm{q} = \bm{0} 
+\end{equation}
+安定条件は?
+\end{enumerate}
+\undeline{十分条件} Cがpositive definite(正定)であること
+$(\forall x, \bm{x}^T C \bm{x} > 0)$ \\
+\therefore $I_2 - I_3 >0$かつ$I_2 - I_1 > 0$\\
+\rightarrow 1,2から安定のための十分条件は
+\begin{equation}
+\overbrace{I_2}^{\text{ピッチ}} 
+>
+\overbrace{I_1}^{\text{ろー}} > I_3
+(\text{\omega_c を考えなければ}I_2 > I_3 , I_1 > I_3)
+$<$補足$>$もし厳密な必要十分条件を出すなら
+\begin{equation}
+k_1=
+\frac{I_2-I_3}{I_1},
+k_3=
+\frac{I_2-I_1}{I_3
+}\qquad\text{で運動方程式を書き換えると}
+\end{equation}
+\begin{equation}
+s^4+
+(1+3k_1+k_1k_3)\omega_c^2s^2+
+4k_1k_3\omega{c}^4=0
+\text{(特性方程式)}
+\end{equation}
+4つの根が　左半面にある条件
+\begin{itemize}
+\item $1+3k_1+k_1k_3>0$
+\item $k_1k_3>0$
+\item $
+(1+3k_1+k_1k_3)^2-
+16k_1k_3>0
+$
+\end{itemize}
 \end{document}
