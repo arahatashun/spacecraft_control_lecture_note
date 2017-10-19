@@ -1,4 +1,4 @@
-\documentclass[class=article, crop=false, preview=false, dvipdfmx, a4paper]{standalone}
+\documentclass[class=article, crop=false, dvipdfmx, fleqn]{standalone}
 \input{../preamble}
 \begin{document}
 
@@ -28,7 +28,7 @@ $\xrightarrow[\text{Kinematics}]{}$
 \draw (O)--(R);
 \draw (C)--(R)node[below right]{$\bm{r}$};
 \end{scope}
-\draw (0.6, 0.3) to[bend left] (0.8, -0.4)node[below]{$\bm{R}_e$};
+\draw (0.6, 0.3) to[bend left] (0.8, -0.4)node[below]{$\bm{R}_c$};
 
 \begin{scope}[-stealth, emph, thick]	%coloemph vecs
 \draw (C)--+(0.7, 0.35)node[below = 1]{$x(\bm{i})$};
@@ -66,7 +66,7 @@ $\bm{\dot{x}_{rel}}$は「動座標系から見たx」の変化率\\
 &=
 \bm{V}_c+\bm{V}_\mathrm{rel}+
 \bm{\omega}\times\bm{r}\qquad
-(\bm{\omega}\times\bm{R}_c = \bm{0})\\
+%(\bm{\omega}\times\bm{R}_c = \bm{0})\\
 %おかしくない？
 \bm{a}
 &=
