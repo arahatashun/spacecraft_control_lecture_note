@@ -665,16 +665,50 @@ geomagnetic equational planeから測ったlatitude
 
 
 
-\begin{equaion}
-\rightarrow \bm{B}^m = - \nabra \phi_m
+\begin{equation}
+\rightarrow \bm{B}^m = - nabra \phi_m
 = - \frac{\mu_m}{R^3}
 \begin{bmatrix}
-3 \sin\lambda_m \cos\lambda_m \cos\eta_n \\
-3 \sin\lambda_m \cos\lambda_m \cos\eta_n \\
+3 \sin\lambda_m \cos\lambda_m \cos\eta_{\overexpl{n}{経度}} \\
+3 \sin\lambda_m \cos\lambda_m \sin\eta_n \\
 3 \sin^2\lambda_m - 1
 \end{bmatrix}
-\end{eqaution}
+\end{equation}
+衛星に働くトルクを推定するには，
+\begin{equation}
+\bm{q}_m^b = \bm{m}_m^b \times 
+\qty(%
+\underexpl{C_m^b}{\underexplline{C_i^b}{$\uparrow$姿勢データ} \underexplline{C_m^i}{Const.}} 
+\underexplline{B^m}{\text{データベース（IGRF）}})
+\end{equation}
+$\bm{m}_m^b$をどうやって推定するか？
+\begin{enumerate}[label = \maru{\theenumi}]
+\item 地上で計測（磁気シールド室）\\
+	\quad 様々な動作モードでの計測が必要
+\item 軌道上で推定する：カルマンフィルターなど$\rightarrow$ $-m_m^b$の磁気モーメントでキャンセルすることもある
+\end{enumerate}
 
 
 
+\subsection{その他外乱トルク}
+\begin{enumerate}[label = \maru{\theenumi}]
+\item 粒子との衝突 meteoroid debris(\~{}8km/s, Jspocが監視してデータベース化)
+\item Thermoelastc deformation
+\begin{align}
+\begin{cases}
+\text{CGの位置
+\text{慣性モーメントの変化}}
+\end{cases}
+\end{align}
+夜から昼に出た瞬間に温度差大"heat shock" サーマル
+スナップ
+\item 非環境的トルク
+(内部トルクは角運動量を変えない)
+\begin{itemize}
+\item flexibility
+\item crew motion (ISS)
+\item fuel sloshing
+\item Rwじょう乱
+\end{itemize}
+\end{enumerate}
 \end{document}
