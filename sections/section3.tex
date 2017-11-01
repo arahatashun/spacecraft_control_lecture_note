@@ -559,7 +559,18 @@ $\beta$:軌道面と太陽方向のなす角
 \end{equation}
 これをXYZ軸で表すと
 \begin{align}
-\bm{J}_0=\bm{}
+\bm{J}_0=\bm{J},\bm{K}_0=\bm{K}\cos\alpha
++\bm{I}\sin\alpha\\
+\therefore \bm{s}=\sin\beta\bm{J}+
+\cos\beta\cos\alpha\bm{K}+
+\cos\beta\sin\alpha\bm{I}\\
+\therefore
+\bm{s}^0=
+\begin{bmatrix}
+\cos\beta\sin\alpha\\
+\sin\beta\\
+\cos\beta\cos\alpha
+\end{bmatrix}
 \end{align}
 
 ・太陽電池パドルの法線方向$\bm{n}$は？
@@ -573,17 +584,96 @@ $\rightarrow$軸触りのジンバルによって$-z_0$方向に指向し続け�
 \begin{align}
 \bm{M}_i & = PA \underexpl{\cos\beta}{(\bm{n}\cdot\bm{s})} \begin{bmatrix} x \\ y \\ z \end{bmatrix} \times
 \begin{bmatrix}
-(1-\rho_s)\sin\alpha\cos\beta 
+(1-\rho_s)\sin\alpha\cos\beta + 2\qty(\cos\beta \rho_s + \frac{1}{3} \rho_d)\sin\alpha \\
+(1-\rho_s) \sin\beta
+(1-\rho_s)\cos\alpha \cos\beta + \qty(\cos\beta \rho_s \frac{1}{3} \rho_d) \cos\alpha
 \end{bmatrix}
 \end{align}
+ここで，
+\begin{equation}
+\left\{ \begin{array}{l}
+K_1 = (1-\rho_s) \cos\beta + 2\qty(\cos\beta \rho_s \frac{1}{3} \rho_d) \\
+K_ = (1-\rho_s) \sin\beta
+\end{array} \right.
+\end{equation}
+を導入する（$\beta$は季節変動するが，定数と見る）。
+\begin{align}
+\therefore
+\bm{M}_a=PA\cos\beta\begin{bmatrix}
+x\\
+y\\
+z\\
+\end{bmatrix}
+\times\begin{bmatrix}
+K_1\cos\beta\\
+K_2\\
+K_1\cos\alpha\\
+\end{bmatrix}
+=
+PA\cos\beta\begin{bmatrix}
+yK_1\cos\alpha-\underline{zK_2}\\
+zK_1\sin\alpha-xK_1\cos\alpha\\
+\underline{xK_2}-yK_1\sin\alpha
+\end{bmatrix}
+\end{align}
+定性的に見ると
+\begin{itemize}
+\item $\cos\alpha,\sin\alpha\rightarrow$
+一周で積分すると0
+\item $zK_2,xK_2\rightarrow$角運動量が蓄積される
+\end{itemize}
+よって
+\begin{enumerate}
+\item $K_2=0$にするには,$\rho_s=1\rightarrow $NG(発電できない)
+\item $x=z=0$にするには対称なパドルにすれば良い(+Y片翼でもいい)
+\end{enumerate}
+
+\begin{align}
+P & = \SI{4.6e-6}{N/m^2} \quad \text{at \SI{1}{AU}} \\
+	& = \SI{3e-5}{N\m^2} \quad \text{at Mercury} \\
+    & = \SI{3e-9}{N/m^2} \quad \text{at Pluto}
+\end{align}
+地球表面での太陽光の反射 ～34\% （モデル作りにくい，大気の揺らぎなどの影響を受ける）
+\[ \SI{2e-6}{N/m^2} \quad \text{(LEO)} \]
+\[ \SI{3e-8}{N/m^2} \quad \text{(GEO)} \]
+惑星自身のradiation（\underline{赤外}輻射）\\
+$\quad $地球：アルバドの$\frac{1}{3}$程度，木星などはradiationが大きい（反射と比較して大きい）
+\subsection{Magnetic Torque}
+\begin{align}
+\bm{g}_m&=\bm{m}_m\times\bm{B}\\
+\bm{m}_n&:\textrm{magnetic moment of space craft}
+\begin{cases}
+\text{永久磁石}\\
+\text{回路(電流ループ)}\\
+\text{磁化した金属}
+\end{cases}\\
+\bm{B}&:\textrm{external geomangetic flux density}
+\end{align}
+地磁気のダイポールモーメント(ポテンシャル場)
+\begin{equation}
+\phi_m=-\frac{\mu_m}{R^2}\sin\lambda_m
+\end{equation}
+\begin{itemize}
+\item $\mu_m$:
+$1\times10^7$Wb$\cdot$m
+\item  R:
+地球中心からの距離
+\item $\lambda_m$:
+geomagnetic equational planeから測ったlatitude
+\end{itemize}
 
 
 
 
-
-
-
-
+\begin{equaion}
+\rightarrow \bm{B}^m = - \nabra \phi_m
+= - \frac{\mu_m}{R^3}
+\begin{bmatrix}
+3 \sin\lambda_m \cos\lambda_m \cos\eta_n \\
+3 \sin\lambda_m \cos\lambda_m \cos\eta_n \\
+3 \sin^2\lambda_m - 1
+\end{bmatrix}
+\end{eqaution}
 
 
 
