@@ -2,14 +2,292 @@
 \input{../preamble}
 \begin{document}
 
-\section{}
+\section{Attitude Stabilization}
+\renewcommand{\labelitemi}{---}
+\begin{itemize}
+\item 無制御（CubeSatなど）
+\item 受動制御
+	\begin{itemize}
+    \item G.G.安定
+    \item 磁気安定，沿磁力線制御
+    \item スピン安定
+    	\begin{itemize}
+        \item Single Spin
+        \item Double Spin
+        \end{itemize}
+    \end{itemize}
+\item 能動制御
+	\begin{itemize}
+    \item Bias momentum
+    \item zero momentum
+    \end{itemize}
+\end{itemize}
+\renewcommand{\labelitemi}{\textbullet}
 
 
+\subsection{Single Spin Stabilization}
+
+\begin{wrapfigure}{l}{20zw}
+\begin{tikzpicture}[scale=0.6]
+\coordinate (O) at (0, 0);
+
+\draw (0, 2) circle [x radius = 3, y radius = 1];
+\draw (-3, -2) arc [start angle = 180, end angle = 360, x radius = 3, y radius = 1];
+\draw (3, 2)--+(0, -4);
+\draw (-3, 2)--+(0, -4);
+\begin{scope}[-latex]
+\draw (O)--+(4, 0)node[right]{$x$};
+\draw (O)--+(0, 4)node[right]{$y$};
+\draw (O)--+(-3, -3)node[below left]{$z$};
+\end{scope}
+
+\draw [densely dashed] (O)--+(0, -4);
+\end{tikzpicture}
+\end{wrapfigure}
+
+yをスピン軸,Principal axisをbody frameとする.\\
+外乱トルクがない時
+\begin{align}
+I_{xx}\dot{\omega_x}&=(I_{yy}-I_{zz})w_yw_z\\
+I_{yy}\dot{\omega_y}&=(I_{zz}-I_{xx})w_zw_x\\
+I_{zz}\dot{\omega_z}&=(I_{xx}-I_{yy})w_xw_z
+\end{align}
+今,$\omega_y=\omega_s(\mbox{目標)}+\epsilon(\mbox{擾乱})\qquad |\epsilon|\ll1$\\
+$|\omega_x| ,|\omega_z| \ll 1$と仮定する.
+
+\begin{align}
+I_{xx}\dot{\omega_x}=(I_{yy}-I_{zz})\omega_s\omega_z\\
+I_{yy}\dot{\epsilon}=0\\
+I_{zz}\dot{\omega_z}=
+(I_{xx}-I_{yy})\omega_s
+\end{align}
+以上の線形の運動方程式になる.
 
 
+\noindent
+\underline{Dynamics解析}
+\begin{enumerate}[label=\theenumi)]
+\item $y$軸 \qquad $\varepsilon = \mathrm{Const.}$
+\item $x, z$軸 \quad Conplug $\rightarrow$ 
+	\begin{align}
+    I_{xx} \ddot{\omega_x} & = (I_{yy} - I_{zz})\omega_s \dot{\omega_z} \\
+    		&= \frac{(I_{yy}-I_{zz})(I_{xx}-I_{yy})}{I_{zz}} {\omega_s}^2 \omega_x
+    \end{align}
+    ここで
+    \[ a = \frac{(I_{yy}-I_{zz})(I_{xx}-I_{yy})}{I_{zz}} {\omega_s}^2 \]
+    とおくと，
+    \[ \ddot{\omega_x} + a\omega_x = 0 \]
+    \[ \ddot{\omega_z} + a\omega_z = 0 \]
+\end{enumerate}
+安定(発散でない)のための必要条件は
+\begin{equation}
+a>0\Leftrightarrow I_{yy}>I_{xx},I_{zz}\quad or \quad I_{yy}
+< I_{xx}, I_{zz}
+\end{equation}
+つまりy軸が慣性モーメントの最大軸か最小軸の時.
+
+\begin{minipage}{0.3\linewidth}
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+\draw (0, 1) circle [x radius = 3, y radius = 0.8];
+\draw (-3, -1) arc [start angle = 180, end angle = 360, x radius = 3, y radius = 0.8];
+\draw (3, 1)--+(0, -2);
+\draw (-3, 1)--+(0, -2);
+\draw [densely dashed] (0, 3)--(0, -2)node[below]{慣性モーメント最大軸};
+\draw [->] (0, 3.5)--(0, 3);
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\draw (0, 2.5) circle [x radius = 1, y radius = 0.5];
+\draw (-1, -2.5) arc [start angle = 180, end angle = 360, x radius = 1, y radius = 0.5];
+\draw (1, 2.5)--+(0, -5);
+\draw (-1, 2.5)--+(0, -5);
+
+\draw [densely dashed] (0, 3)--(0, -3.5)node[below]{慣性モーメント最小軸};
+\draw [->] (0, 3.5)--(0, 3);
+\end{tikzpicture}
+\end{minipage}
 
 
+\begin{equation}
+if\quad a<0 \Rightarrow
+\omega_x=
+A\exp(\sqrt[]{-a}t)\rightarrow\infty
+\end{equation}
+xとzの連成振動\\
+簡単のために$I_{xx} = I_{yy}=I_T,I_{yy}I_S$とおく.\\
+\begin{align}
+\omega_x&=A\sin(\lambda t-\phi)\\
+\omega_z&=A\frac{|I_S-I_T|}{I_S-I_T}
+\cos(\lambda t-\phi)\\
+\lambda&=\sqrt[]{a}=\frac{|I_S-I_T|}{I_T}\omega_s\\
+A,\phi&:\text{積分定数}
+\end{align}
+$\omega_x,\omega_z$は$90^\circ$位相ずれで振動.$\sqrt[]{\omega_x^2+\omega_z^2}=A=\mathrm{const}$の円運動\\
+
+（body系で見た場合）
+
+\begin{minipage}{0.45\linewidth}
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (0, -2.5)--(0, 2.5)node[right]{$x_b$};
+\draw (-2.5, 0)--(2.5, 0)node[right]{$z_b$};
+\end{scope}
+\draw (O)node[above left = 2mm]{$y_b$} circle [radius = 0.3];
+
+\draw (O) circle [radius = 2];
+\draw [->] (120:2)--(122:2);
+\draw (60:2) to[bend left = 10] (2.4, 2)node[right]{$\bm{\omega}_b$の軌跡$(I_s > I_T)$};
+
+\begin{scope}[green]
+\draw (O) circle [radius = 1.5];
+\draw [->] (40:1.5)--(39:1.5);
+\draw (30:1.5) to[bend left = 10] (2.7, 1)node[right]{$\bm{\omega}_b \ (I_s < I_T)$};
+\end{scope}
+\end{tikzpicture}
+\end{minipage}
+\hspace{3zw}
+\begin{minipage}{0.45\linewidth}
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+\begin{scope}[-latex]
+\draw (O)--(2, 0)node[right]{$x_b$};
+\draw (O)--(0, 2.5)node[left]{$y_b$};
+\draw (O)--(-2, -2)node[below left]{$z_b$};
+\end{scope}
+
+\draw (0, 1.5) circle [x radius = 1.5, y radius = 0.5];
+
+\draw (O) to[bend left]node[left]{$\omega_y$} (0, 1.5);
+\draw [->] (O)--(1.5, 1.5)node[below right]{$\bm{\omega}^b$};
+\draw [->] (0.3, 2)--+(-0.01, 0);
+\draw (0.5, 1.95) to[bend left=10] (1.5, 2.5)node[right]{$I_s > I_T$のとき};
+\end{tikzpicture}
+\end{minipage}
 
 
+(外からみると)
 
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\begin{scope}[->]
+\draw (O)--(2, 1)node[below right]{$I_T \omega_T = \mathrm{Const.}$};
+\draw (O)--(-2, 4)node[left]{$I_s \omega_s = \mathrm{Const.}$};
+\draw (O)--(0, 5)node[above right]{$\bm{H}$（一定ベクトルat慣性系）};
+\draw [red] (O)--(1, 4)node[right]{$\bm{\omega} (I_s > I_T)$};
+\draw [green] (O)--(-1, 3.5)node[above]{$\bm{\omega} (I_s < I_T)$};
+\end{scope}
+
+\begin{scope}[densely dashed]
+\draw (-2, 4)--(0, 5)--(2, 1);
+\draw (2, 1)--(2.5, 1.25)node[above right]{$y$に垂直な方向};
+\draw (-2, 4)--(-2.5, 5)node[above left]{スピン軸（$y$）};
+\end{scope}
+
+\draw (0, 1) arc [start angle = 90, end angle = 116, radius = 1];
+\node at (103:1.2) {$\theta=\textrm{Const}$};
+\end{tikzpicture}
+
+\begin{itemize}
+\item $\bm{H}$とスピン軸の貼る平面内いつも
+$\bm{\omega}$がある.
+\item 衛星は$\bm{\omega}$を中心に回る.
+\end{itemize}
+慣性系においてy(スピン軸)は$\bm{H}$の軸周りに回転する.これ``Nutation運動''と呼ぶ.
+\begin{enumerate}
+\item $I_S<I_T$のとき\\
+space coneに外接してbody coneが回転.
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\begin{scope}[->]
+\draw (O)--(0, 4)node[right]{$\bm{H}$(fix)};
+\draw (O)--(-1.5, 4.5)node[above]{$\bm{\omega}$};
+\draw [green] (O)--(0, 2);
+\draw [green] (O)--(-1, 1);
+\end{scope}
+
+\begin{scope}[densely dashed]
+\draw (O)--(-3, 3)node[above left]{$y$軸};
+\end{scope}
+
+\draw (0, 3) circle [x radius = 1, y radius = 0.3];
+\draw (O)--(1, 3)node[right]{space cone};
+
+\draw [rotate = 45] (0, 2.83) circle [x radius = 1.41421356, y radius = 0.3];
+\draw (O)--(-3, 1)node[left]{bpdy cone};
+
+\begin{scope}[green]
+\draw (0, 1) to[bend left] (1.5, 1)node[right]{$\frac{H}{I_T}$};
+\draw (-0.5, 0.5) to[bend right] (-1, -0.3)node[below]{$\qty(1 - \frac{I_s}{I_T})\omega_s$};
+\end{scope}
+\end{tikzpicture}
+
+\item $I_S>I_T$のとき\\
+space coneに内接しながらbody coneが回転.
+\end{enumerate}
+いずれの場合も回転速度は$\frac{H}{I_T}$\\
+\noindent$<$dissipation(エネルギー散逸)\footnote{スロッシング,摩擦,SAP}がある場合$>$
+$\theta$が一定にならない.
+\begin{align}
+T&=\frac{1}{2}(I_T{\omega_T}^2+I_S{\omega_S}^2)
+\qquad \text{減少する}
+\label{T}\\
+H^2&=
+{I_T}^2+{\omega_T}^2+{I_S}^2+{\omega_S}^2\qquad
+\text{外力が働らかなければ一定}
+\label{H}\\
+\sin\theta&=\frac{I_T \omega_T}{H}\rightarrow
+\sin^2\theta=\frac{{I_T}^2{\omega_T}^2}
+{H^2}=\frac{I_T}{(I_S-I_T)H^2}(2I_ST-H)
+\end{align}
+時間微分すると\\
+\begin{align}
+2\sin\theta\cos\theta\dot{\theta}&=
+\frac{I_T}{(I_S-I_T)H^2}2I_S\dot{Y}\\
+\therefore\qquad \dot{\theta}&=
+\frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}\\
+&=\frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}
+\end{align}
+エネルギー散逸があるので$\dot{T}<0$
+よって$I_S>I_T$である必要がある.つまり
+スピン軸周りのIが最大(平らな円筒形)
+1958年 エクスプローラ1号
+・定性的な解釈\\
+$T=\frac{H^2}{2I_{SS}}$\qquad$I_{SS}$:各瞬間ごとのスピン軸周りの慣性モーメント\\
+($\because T=\frac{1}{2}I_{SS}\omega_{ss}^2$)\\
+H:一定,Tが減る.\\
+\qquad Tはどこまで小さくできるか?\\
+$\rightarrow$ $I_{SS}$が最大となるとT最小\\
+$\rightarrow$ 最後はI最大の軸周りの回転に落ち着く\\
+$I_S>I_T$が成り立つ時,$|\dot{T}|$を大きくすれば$|\theta|$は0に戻りやすい.
+$\rightarrow$エネルギー散逸を起こしてやればいい.
+\begin{enumerate}
+\item Nutation damper
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+\draw (O) circle [x radius = 2, y radius = 1];
+\draw (O) circle [x radius = 1.8, y radius = 0.8];
+\node [right] at (2, 1) {円管の中に粘性が大きい流体};
+\end{tikzpicture}
+
+\item Activeな姿勢制御をする
+\begin{itemize}
+\item スラスタ(Active Nutation Control)
+\item MTQ(磁気トルカー)
+\end{itemize}
+\end{enumerate}
+\subsection{Dual Spin Stabilization}
+\begin{itemize}
+\item 非回転: platform---スピン軸周り$I_{SP}$
+\item 回転 : rotar---スピン軸周り$I_{SR}$
+\end{itemize}
+全体のスピン軸に垂直な軸周り$I_T$
 \end{document}
