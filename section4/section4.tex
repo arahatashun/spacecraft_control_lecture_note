@@ -1,0 +1,220 @@
+\documentclass[class=article, crop=false, dvipdfmx]{standalone}
+\input{../preamble}
+\begin{document}
+
+\section{Attitude Stabilization}
+\renewcommand{\labelitemi}{---}
+\begin{itemize}
+\item 無制御（CubeSatなど）
+\item 受動制御
+	\begin{itemize}
+    \item G.G.安定
+    \item 磁気安定，沿磁力線制御
+    \item スピン安定
+    	\begin{itemize}
+        \item Single Spin
+        \item Double Spin
+        \end{itemize}
+    \end{itemize}
+\item 能動制御
+	\begin{itemize}
+    \item Bias momentum
+    \item zero momentum
+    \end{itemize}
+\end{itemize}
+\renewcommand{\labelitemi}{\textbullet}
+
+
+\subsection{Single Spin Stabilization}
+
+\begin{wrapfigure}{l}{20zw}
+\input{fig_column_with_axis}
+\end{wrapfigure}
+
+$y$をスピン軸，
+Principal axisをbody frameとする。\\
+外乱トルクがないとき
+\begin{align}
+I_{xx}\dot{\omega_x}&=(I_{yy}-I_{zz})w_yw_z\\
+I_{yy}\dot{\omega_y}&=(I_{zz}-I_{xx})w_zw_x\\
+I_{zz}\dot{\omega_z}&=(I_{xx}-I_{yy})w_xw_z
+\end{align}
+今，$\omega_y=\omega_s(\mbox{目標)}+\epsilon(\mbox{擾乱})\qquad |\epsilon| \ll 1$\\
+$|\omega_x|，|\omega_z| \ll 1$と仮定する。
+
+\begin{align}
+I_{xx}\dot{\omega_x} &= (I_{yy}-I_{zz})\omega_s\omega_z\\
+I_{yy}\dot{\epsilon} &= 0 \\
+I_{zz}\dot{\omega_z} &= (I_{xx}-I_{yy})\omega_s
+\end{align}
+以上の線形の運動方程式になる.
+
+
+\noindent
+\underline{Dynamics解析}
+\begin{enumerate}[label=\theenumi)]
+\item $y$軸 \qquad $\varepsilon = \mathrm{Const.}$
+\item $x, z$軸 \quad Conplug $\rightarrow$ 
+	\begin{align}
+    I_{xx} \ddot{\omega_x} & = (I_{yy} - I_{zz})\omega_s \dot{\omega_z} \\
+    		&= \frac{(I_{yy}-I_{zz})(I_{xx}-I_{yy})}{I_{zz}} {\omega_s}^2 \omega_x
+    \end{align}
+    ここで
+    \[ a = \frac{(I_{yy}-I_{zz})(I_{xx}-I_{yy})}{I_{zz}} {\omega_s}^2 \]
+    とおくと，
+    \[ \ddot{\omega_x} + a\omega_x = 0 \]
+    \[ \ddot{\omega_z} + a\omega_z = 0 \]
+\end{enumerate}
+安定(発散でない)のための必要条件は
+\begin{equation}
+a>0\Leftrightarrow I_{yy}>I_{xx},I_{zz}\quad or \quad I_{yy}
+< I_{xx}, I_{zz}
+\end{equation}
+つまりy軸が慣性モーメントの最大軸か最小軸のとき。
+
+\begin{minipage}{0.45\linewidth}
+\input{fig_large_inertial_moment_column}
+\end{minipage}
+\begin{minipage}{0.3\linewidth}
+\input{fig_small_inertial_moment_column}
+\end{minipage}
+
+
+\begin{equation}
+if\quad a<0 \Rightarrow
+\omega_x=
+A\exp(\sqrt[]{-a}t)\rightarrow\infty
+\end{equation}
+$x$と$z$の連成振動\\
+簡単のために$I_{xx} = I_{yy}=I_T,I_{yy}I_S$とおく.\\
+\begin{align}
+\omega_x&=A\sin(\lambda t-\phi)\\
+\omega_z&=A\frac{|I_S-I_T|}{I_S-I_T}
+\cos(\lambda t-\phi)\\
+\lambda&=\sqrt[]{a}=\frac{|I_S-I_T|}{I_T}\omega_s\\
+A,\phi&:\text{積分定数}
+\end{align}
+$\omega_x,\omega_z$は$90^\circ$位相ずれで振動.$\sqrt[]{\omega_x^2+\omega_z^2}=A=\mathrm{Const.}$の円運動\\
+
+
+\noindent
+（body系で見た場合）\\
+\begin{center}
+\begin{minipage}{0.45\linewidth}
+\input{fig_omega_from_body_from_above}
+\end{minipage}
+\hspace{3zw}
+\begin{minipage}{0.45\linewidth}
+\input{fig_omega_from_body_from_side}
+\end{minipage}
+\end{center}
+\vspace{\baselineskip}
+
+\noindent
+(外からみると)\\
+\begin{center}
+\input{fig_omega_from_outside}
+\end{center}
+
+\begin{itemize}
+\item $\bm{H}$とスピン軸の貼る平面内いつも
+$\bm{\omega}$がある。
+\item 衛星は$\bm{\omega}$を中心に回る。
+\end{itemize}
+慣性系においてy(スピン軸)は$\bm{H}$の軸周りに回転する。
+これを``Nutation運動''と呼ぶ。
+
+\begin{minipage}{0.45\linewidth}
+(1)$I_S<I_T$のとき
+
+\input{fig_corns_touching_outside}
+\vspace{6mm}
+
+space coneに外接してbody coneが回転。
+\end{minipage}
+\hfill
+\begin{minipage}{0.45\linewidth}
+(2)$I_S>I_T$のとき
+
+\input{fig_corns_touching_inside}
+
+space coneに内接しながらbody coneが回転。
+\end{minipage}
+\vspace{\baselineskip}
+
+いずれの場合も回転速度は$\frac{H}{I_T}$
+\\
+
+\noindent
+$<$dissipation(エネルギー散逸)\footnote{スロッシング,摩擦,SAP}がある場合$>$\\
+$\theta$が一定にならない.
+\begin{align}
+T&=\frac{1}{2}(I_T{\omega_T}^2+I_S{\omega_S}^2)
+\qquad \text{減少する}
+\label{T}\\
+H^2&=
+{I_T}^2+{\omega_T}^2+{I_S}^2+{\omega_S}^2\qquad
+\text{外力が働らかなければ一定}
+\label{H}\\
+\sin\theta&=\frac{I_T \omega_T}{H}\rightarrow
+\sin^2\theta=\frac{{I_T}^2{\omega_T}^2}
+{H^2}=\frac{I_T}{(I_S-I_T)H^2}(2I_ST-H)
+\end{align}
+時間微分すると
+\begin{align}
+2\sin\theta \cos\theta \cdot \dot{\theta}&=
+\frac{I_T}{(I_S-I_T)H^2}2I_S\dot{Y}\\
+\therefore\qquad \dot{\theta}&=
+\frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}\\
+&=\frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}
+\end{align}
+エネルギー散逸があるので$\dot{T}<0$\\
+よって$I_S>I_T$である必要がある。
+つまりスピン軸周りの$I$が最大(平らな円筒形)
+
+\begin{center}
+\input{fig_rounding_column}
+\end{center}
+
+
+\noindent
+・定性的な解釈\\
+\[ T=\frac{H^2}{2I_{SS}} \qquad I_{SS}\text{:各瞬間ごとのスピン軸周りの慣性モーメント} \]
+($\because T=\frac{1}{2}I_{SS}\omega_{ss}^2$)\\
+$H$:一定，$T$が減る。\\
+\qquad $T$はどこまで小さくできるか?\\
+$\rightarrow$ $I_{SS}$が最大となると$T$最小\\
+$\rightarrow$ 最後は$I$最大の軸周りの回転に落ち着く\\
+$I_S>I_T$が成り立つとき，$|\dot{T}|$を大きくすれば$|\theta|$は0に戻りやすい。
+$\rightarrow$エネルギー散逸を起こしてやればいい。
+\begin{enumerate}
+\item Nutation damper
+\begin{center}
+\input{fig_circular_tube}
+\end{center}
+
+\item Activeな姿勢制御をする
+\begin{itemize}
+\item スラスタ(Active Nutation Control)
+\item MTQ(磁気トルカー)
+\end{itemize}
+\end{enumerate}
+
+
+
+\subsection{Dual Spin Stabilization}
+\begin{itemize}
+\item 非回転: platform---スピン軸周り$I_{SP}$
+\item 回転 : rotar---スピン軸周り$I_{SR}$
+\end{itemize}
+
+全体のスピン軸に垂直な軸周り$I_T$
+
+\input{fig_dual_spin}
+
+
+
+
+
+
+\end{document}

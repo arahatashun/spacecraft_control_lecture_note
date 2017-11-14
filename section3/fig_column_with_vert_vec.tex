@@ -1,0 +1,16 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\begin{scope}[->]
+\draw(0, 0.5)--(0, 2);
+\draw(0, -0.5)--(0, -2);
+\end{scope}
+
+\draw (1, 0.5)--(1, -0.5);
+\draw (-1, 0.5)--(-1, -0.5);
+\draw (0, 0.5) circle [x radius = 1, y radius = 0.4];
+\draw (-1, -0.5) arc [start angle = 180, end angle = 360, x radius = 1, y radius = 0.4];
+\draw [densely dashed] (-1, -0.5) arc [start angle = 180, end angle = 0, x radius = 1, y radius = 0.4];
+
+\end{tikzpicture}

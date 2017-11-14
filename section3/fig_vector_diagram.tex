@@ -1,0 +1,29 @@
+%ベクトル図
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\begin{scope}[->]
+\draw (O)--(-2, 2)node[above]{$dm$}--(-5, -4);
+\draw (O)--(-5, -4)node[below left]{地球中心};
+\end{scope}
+
+\begin{scope}[-latex, thick, red]
+\draw (O)--(1, 1)node[right]{$x$};
+\draw (O)--(0.5, -1)node[right]{$y$};
+\draw (O)--(-1.5, 0)node[left]{$z$};
+\end{scope}
+
+\begin{scope}[-latex, thick, darkgreen]
+\draw (O)--(0.2, 1.5)node[right]{$x_0$（速度方向 at 円軌道）};
+\draw (O)--(1, -1)node[right]{$y_0$};
+\draw (O)--(-1, -0.8)node[below]{$z_0$（地心方向）};
+\end{scope}
+
+\draw (O) to[bend left=20] (2, 0)node[right]{衛星中心C};
+
+\node at (-4, 0) {$\bm{R}$};
+\node at (-2, -2) {$\bm{R_0}$};
+\node at (-1, 1.3) {$\bm{r}$};
+
+\end{tikzpicture}

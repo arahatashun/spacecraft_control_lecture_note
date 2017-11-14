@@ -1,0 +1,20 @@
+%airplane
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+%plane
+\begin{scope}[thick]
+\draw (0.5, 0.3) to[bend right] (-1, 0) to[bend right=20] (0.9, -0.1) to (0.9, 0.5) to (0.6, 0.5)--cycle;
+\draw (-0.1, 0.4)--(0.3, 1)--(0.6, 1)--(0.4, 0.3);
+\fill [draw, fill=white] (-0.3, 0)--(-0.6, -1)--(-0.3, -1)--(0.2, 0);
+\end{scope}
+
+%axis
+\begin{scope}[-latex, thin, densely dashed]
+\draw (O)--+(-1.5, 0)node[left]{$x$};
+\draw (O)--+(0.7, 1.4)node[left]{$y$};
+\draw (O)--+(0, -1.2)node[right]{$z$};
+\end{scope}
+
+\end{tikzpicture}

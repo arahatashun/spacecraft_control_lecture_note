@@ -1,0 +1,18 @@
+
+\begin{tikzpicture}[scale=0.6]
+\coordinate (O) at (0, 0);
+
+\draw (0, 2) circle [x radius = 3, y radius = 1];
+\draw (-3, -2) arc [start angle = 180, end angle = 360, x radius = 3, y radius = 1];
+\draw (3, 2)--+(0, -4);
+\draw (-3, 2)--+(0, -4);
+
+\begin{scope}[-latex]
+\draw (O)--+(4, 0)node[right]{$x$};
+\draw (O)--+(0, 4)node[right]{$y$};
+\draw (O)--+(-3, -3)node[below left]{$z$};
+\end{scope}
+
+\draw [densely dashed] (O)--+(0, -4);
+
+\end{tikzpicture}

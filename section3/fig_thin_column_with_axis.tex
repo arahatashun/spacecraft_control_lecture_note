@@ -1,0 +1,16 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\draw (0.8, 1)--(0.8, -1);
+\draw (-0.8, 1)--(-0.8, -1);
+\draw (0, 1) circle [x radius = 0.8, y radius = 0.3];
+\draw (-0.8, -1) arc [start angle = 180, end angle = 360, x radius = 0.8, y radius = 0.3];
+
+\begin{scope}[-latex]
+\draw (O)--(1.5, -0.5)node[below]{$x$};
+\draw (O)--(1.5, 1)node[right]{$y$};
+\draw (O)--(0, -1.8)node[below left]{$z$}node[below right]{地心};
+\end{scope}
+
+\end{tikzpicture}

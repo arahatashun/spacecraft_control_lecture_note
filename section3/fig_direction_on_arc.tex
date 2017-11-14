@@ -1,0 +1,15 @@
+%孤
+
+\begin{tikzpicture}[scale = 0.8]
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (O)--(1, 1)node[right]{$x_0$};
+\draw (O)--(0, -1)node[below]{$y_0$（面外）};
+\draw (O)--(-1, 1)node[right]{$z_0$};
+\end{scope}
+
+\draw [->] (O)--(-3, 3)node[above]{地球};
+\draw [->] (-3, -1) arc [start angle = -90, end angle = -20, radius = 4.75];
+
+\end{tikzpicture}

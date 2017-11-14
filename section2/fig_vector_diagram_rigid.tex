@@ -1,0 +1,30 @@
+
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+\coordinate (C) at (2, 1);
+\coordinate (R) at (2.2, 2);
+
+\begin{scope}[-latex]	%axis
+\draw (O)--+(-1, -1)node[below left]{$X$}node[above = 2]{$\bm{I}$};
+\draw (O)--+(3, 0)node[right]{$Y$}node[below left = 1]{$\bm{J}$};
+\draw (O)--+(0, 3)node[above]{$Z$}node[below left = 1]{$K$};
+\end{scope}
+
+\begin{scope}[-stealth, thick]	%vecs
+\draw (O)--(C)node[below]{$C$};
+\draw (O)--(R);
+\draw (C)--(R)node[below right]{$\bm{r}$};
+\end{scope}
+\draw (0.6, 0.3) to[bend left] (0.8, -0.4)node[below]{$\bm{R}_c$};
+
+\begin{scope}[-stealth, emph, thick]	%coloemph vecs
+\draw (C)--+(0.7, 0.35)node[below = 1]{$x(\bm{i})$};
+\draw (C)--+(0.4, 0.6)node[right]{$y(\bm{j})$};
+\draw (C)--+(-0.4, 0.8)node[left]{$z(\bm{k})$};
+\end{scope}
+
+\node at ($(O)!0.3!(R) + (-0.2, 0.3)$) {$\bm{R}$};
+\node [above right] at (R) {$\bm{P}(dm)$};
+
+\end{tikzpicture}

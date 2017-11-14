@@ -1,0 +1,27 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\draw (O) circle [radius = 2cm];
+\draw (0, 2)--+(0, 0.3);
+\draw (0, -2)--+(0, -0.3);
+\draw (-2, 0) arc [start angle = 180, end angle = 360, x radius = 2cm, y radius = 0.8cm];
+\draw (1.8, -0.3) to[bend right=20] (2.2, -0.8)node[right]{赤道};
+
+\begin{scope}[darkgreen]
+\draw [rotate = 30] (O) circle [x radius = 2cm, y radius = 0.8cm];
+\draw (1.7, 0.6) to[bend right=20] (2.2, 0.8)node[right]{磁気の赤道};
+\end{scope}
+
+\begin{scope}[red]
+\draw [-latex, rotate=30] (O)--(-2.4, 0)node[below]{$X$};
+\draw [-latex, rotate=30] (O)--(0, 2.4)node[above left]{$Z$};
+\draw (-1.1, 1.9) to[bend left=20] (1.8, 2)node[right]{磁北極（\ang{78.5}N, \ang{69}W）};
+\end{scope}
+
+\draw (O)--(-2, 0);
+\draw (-0.4, 0) arc [start angle = 180, end angle = 210, radius = 0.4];
+\draw (-0.5, 0) arc [start angle = 180, end angle = 210, radius = 0.5];
+\draw (195:0.5) to[bend left=10] (-2, 0.8)node[left]{$\lambda_{m}$};
+
+\end{tikzpicture}

@@ -1,0 +1,18 @@
+
+\begin{tikzpicture}
+
+\draw [<-] (-3, 0)node[left]{$\bm{s}$}--(3, 0);
+\draw (-3, 3)--(3, -3);
+\draw [<-] (-2.5, -2)node[below left]{$\bm{n}$}--(2.5, 2);
+\draw [scale=0.8] (-3.3, 2.7)--(-2.7, 3.3)--(3.3, -2.7)--(2.7, -3.3)--cycle;
+\draw [->] (0, 0)--(0.6, 2.5)[above]node{鏡面反射};
+\draw [<-] (4, 1)--+(1, 0);
+\draw [<-] (4, 0)--+(1, 0)node[right]{Sun}node[below=12pt,  right]{$P$（輻射圧〔\si{N/m^2}〕）};
+\draw [<-] (4, -1)--+(1, 0);
+
+\draw (0.8, 0) arc [start angle = 0, end angle = 78, radius = 0.8cm];
+\node at (58:1.2) {$\psi$};
+\node at (20:1.2) {$\psi$};
+\draw (2, -2.1) to[bend right] (1, -2)node[left]{面積$A$};
+
+\end{tikzpicture}

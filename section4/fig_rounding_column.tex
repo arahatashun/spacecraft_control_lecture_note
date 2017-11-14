@@ -1,0 +1,28 @@
+
+\begin{tikzpicture}[scale=0.9]
+
+\coordinate (O) at (0, 0);
+
+
+\draw (0, 2) circle [x radius = 1, y radius = 0.3];
+\draw (-1, -2) arc [start angle = 180, end angle = 360, x radius = 1, y radius = 0.3];
+\draw (1, 2)--+(0, -4);
+\draw (-1, 2)--+(0, -4);
+\draw [densely dashed] (0, 3)--(0, -3);
+\draw [->] (-0.5, 2.7) arc [start angle = 180, end angle = 360, x radius = 0.5, y radius = 0.15];
+
+\node at (2.5, 0) {$\Rightarrow$};
+\node at (2.5, -0.5) {$\theta$が大きくなる};
+
+\draw (5, 0) circle [x radius = 0.3, y radius = 1];
+\draw (9, -1) arc [start angle = -90, end angle = 90, x radius = 0.3, y radius = 1];
+\draw (5, 1)--+(4, 0);
+\draw (5, -1)--+(4, 0);
+\draw [densely dashed] (7, 3)--+(0, -6)node[below]{フラットスピン};
+
+\draw [->] (4, 0) arc [start angle = 180, end angle = 270, radius = 2];
+\draw [->] (10, 0) arc [start angle = 0, end angle = 90, radius = 2];
+
+\node at (3, -4) {1958年 エクスプローラ1号};
+
+\end{tikzpicture}

@@ -1,0 +1,43 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+\coordinate (A) at (-2.7, 1.97);
+
+\draw [densely dashed] (-3, 0)node{$\times$}node[below]{地球中心}--(3, 0)node[right]{軌道面};
+
+\draw (3, 2)node[below=4mm]{太陽} circle [radius = 2mm];
+\draw [decorate, decoration={ticks, segment length = 2.36mm, amplitude = 0.5mm}] (3, 2) circle [radius = 3mm];
+
+\draw [->] (2.45, 1.75)--(0.9, 0.6);
+\draw (1.2, 0.8) node[right=1mm]{$\beta$} arc [start angle = 30, end angle = 0, radius = 0.3];
+
+\draw (-3, 2) arc [start angle = 90, end angle = -90, x radius = 3, y radius = 2];
+
+\draw [->] (-2.7, 0)node[above right]{$\alpha$} arc [start angle = 0, end angle = 80, radius = 0.3];
+\draw (-3, 0)--(A);
+
+\draw (0.3, 0.3) rectangle (-0.3, -0.3);
+\draw (0, 0.3)--+(0, 0.3);
+\draw (0, -0.3)--+(0, -0.3);
+\draw (-0.3, 0.5) rectangle (0.3, 1.5);
+\draw (-0.3, -0.5) rectangle (0.3, -1.5);
+
+\begin{scope}[darkgreen, -latex]
+\draw (0, 0)--(0, 1)node[above=2mm, right=-3mm]{$X_a$（進行方向）};
+\draw (0, 0)--(0, -1)node[below=2mm, right=-3mm]{$Y_a$（面外方向）};
+\draw (0, 0)--(-1, 0)node[above]{$Z_a$};
+\end{scope}
+
+\draw ($(A)+(0.3, 0.3)$) rectangle ($(A)+(-0.3, -0.3)$);
+\draw ($(A)+(0, 0.3)$)--+(0, 0.3);
+\draw ($(A)+(0, -0.3)$)--+(0, -0.3);
+\draw ($(A)+(-0.3, 0.5)$) rectangle ($(A)+(0.3, 1.5)$);
+\draw ($(A)+(-0.3, -0.5)$) rectangle ($(A)+(0.3, -1.5)$);
+
+\begin{scope}[red, -latex]
+\draw (A)--+(-1, 0.2)node[left]{$X$};
+\draw (A)--+(0, -1)node[below, right=-1mm]{$Y$};
+\draw (A)--+(-0.15, -1)node[left=1mm]{$Z$};
+\end{scope}
+
+\end{tikzpicture}

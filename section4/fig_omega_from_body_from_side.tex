@@ -1,0 +1,18 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (O)--(2, 0)node[right]{$x_b$};
+\draw (O)--(0, 2.5)node[left]{$y_b$};
+\draw (O)--(-1, -1)node[below left]{$z_b$};
+\end{scope}
+
+\draw (0, 1.5) circle [x radius = 1.5, y radius = 0.5];
+
+\draw (O) to[bend left]node[left]{$\omega_y$} (0, 1.5);
+\draw [->] (O)--(1.5, 1.5)node[below right]{$\bm{\omega}^b$};
+\draw [->] (0.3, 2)--+(-0.01, 0);
+\draw (0.5, 1.95) to[bend left=10] (1.5, 2.5)node[right]{$I_s > I_T$のとき};
+
+\end{tikzpicture}

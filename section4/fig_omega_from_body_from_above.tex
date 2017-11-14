@@ -1,0 +1,21 @@
+
+\begin{tikzpicture}[scale=0.8]
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (0, -2.5)--(0, 2.5)node[right]{$x_b$};
+\draw (-2.5, 0)--(2.5, 0)node[right]{$z_b$};
+\end{scope}
+\draw (O)node[above left = 2mm]{$y_b$} circle [radius = 0.3];
+
+\draw (O) circle [radius = 2];
+\draw [->] (120:2)--(122:2);
+\draw (60:2) to[bend left = 10] (2.4, 2)node[right]{$\bm{\omega}_b$の軌跡$(I_s > I_T)$};
+
+\begin{scope}[darkgreen]
+\draw (O) circle [radius = 1.5];
+\draw [->] (40:1.5)--(39:1.5);
+\draw (30:1.5) to[bend left = 10] (2.7, 1)node[right]{$\bm{\omega}_b \ (I_s < I_T)$};
+\end{scope}
+
+\end{tikzpicture}

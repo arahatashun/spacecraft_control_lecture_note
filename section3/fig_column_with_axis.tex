@@ -1,0 +1,16 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex, thick]
+\draw (O)--(2, -2)node[below right]{$x$};
+\draw (O)--(2.4, 2)node[above right]{$y$};
+\draw (O)--(0, 3)node[above]{$z$};
+\end{scope}
+
+\draw (-2, 1)--(-2, -1);
+\draw (2, 1)--(2, -1);
+\draw (0, 1) circle [x radius = 2, y radius = 0.6];
+\draw (0, -1) circle [x radius = 2, y radius = 0.6];
+
+\end{tikzpicture}

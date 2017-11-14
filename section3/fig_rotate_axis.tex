@@ -1,0 +1,22 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+\coordinate (Y) at (2, -1);
+\coordinate (Y0) at (2, 0);
+\coordinate (Z) at (-1, -2);
+\coordinate (Z0) at (0, -2.2);
+
+\begin{scope}[-latex]
+\draw (O)--(Y)node[right]{$y$};
+\draw (O)--(Y0)node[right]{$y_0$};
+\draw (O)--(Z)node[below]{$z$};
+\draw (O)--(Z0)node[below]{$z_0$（地心）};
+\end{scope}
+
+\draw [->] (0, -0.5) node[below left = -0.8mm]{$\phi$} arc [start angle = 270, end angle = 243, radius = 0.5];
+\draw [->] (0.5, 0) node[below right = -0.8mm]{$\phi$} arc [start angle = 0, end angle = -27, radius = 0.5];
+
+\draw (O) circle [radius = 0.2];
+\node [above left = 1] at (O) {$x_0$};
+
+\end{tikzpicture}

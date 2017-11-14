@@ -1,0 +1,604 @@
+\documentclass[class=article, crop=false, dvipdfmx, fleqn]{standalone}
+\input{../preamble}
+\begin{document}
+\section{姿勢運動にあたる外乱}
+\subsection{Gravity Gradient Torque}
+\qquad\qquad --- 地球中心と衛星各部の距離が異なることに起因
+
+\begin{minipage}{0.45\linewidth}
+\input{fig_vector_diagram}
+\end{minipage}\hspace{15zw}
+\begin{minipage}{0.4\linewidth}
+\input{fig_direction_on_arc}
+\end{minipage}
+
+\noindent
+\textcolor{darkgreen}{$x_0, y_0, z_0$ : orbital frame}\\
+\textcolor{red}{$x, y, z$ : body frame}\\
+$\bm{r}+\bm{R}=\bm{R_0}$\\
+$dm$に働く力$d\bm{F}$は,
+\begin{equation}
+d\bm{F} = 
+\frac{\mu_e \bm{R} dm}{\|\bm{R}\| ^3} =
+\mu_e \frac{\bm{R_0} - \bm{r}}{\| \bm{R_0} - \bm{r} \| ^3} dm
+\end{equation}
+$\bm{r}\ll \bm{R_0}$より
+\begin{equation}
+d\bm{F} = \frac{\mu_e(\bm{R_0} -\bm{r})}{R_0^3}
+\bigl[ 1 + 3\frac{\bm{r} \cdot \bm{R_0}}{R_0^2} + \underbrace{\mathrm{0}(\frac{r^2}{R_0^2})}_{0} \bigr]
+\end{equation}
+C周りのトルク
+\begin{align}
+\bm{g} &=
+\int_m \bm{r} \times d\bm{F}\\ 
+&=\frac{\mu_e}{{R_0}^3} 
+\underbrace{\int \bm{r}\times
+(\bm{R}_0 - \bm{r})dm}_{\bm{0}}
++\frac{3\mu_e}{{R_0}^5} \int \bm{r}\times (\bm{R}_0-\bm{r})
+(\bm{r} \cdot \bm{R_0})dm\\
+&(\because \bm{r}\times\bm{r}=\bm{0}
+,\int \bm{r}dm=\bm{0})
+\\
+&= \frac{3\mu_e}{{R_0}^5} \int (\bm{r} \times \bm{R}_0) ( \bm{r} \cdot \bm{R_0} )dm
+\end{align}\\
+基準座標系として$x_0$，$y_0$，$z_0$は$z_0$が$\bm{R_0}$
+方向を向くようにとる。\\
+$x_0$，$y_0$，$z_0$から$xyz$（body frame）への変換を，
+$z$軸周りに$\psi$，
+$y$軸周りに$\theta$，
+$x$軸周りに$\phi$の回転で表現する。
+\begin{align}
+\bm{R_0}^b=R_0
+\begin{bmatrix}
+-\sin\theta\\
+\sin\phi\cos\theta\\
+\cos\phi\cos\theta
+\end{bmatrix},
+\bm{r}^b=
+\begin{bmatrix}
+x\\
+y\\
+z
+\end{bmatrix}
+\end{align}
+これ以降，b-frameで見た成分表記とする.
+\begin{align}
+\int(\bm{r}\times\bm{R}_0)
+(\bm{r}\cdot\bm{R}_0)dm
+&={R_0}^2 \int
+\begin{bmatrix}
+y\cos\phi\cos\theta  -z\sin\phi\cos\theta\\
+-z\sin\theta -x\cos\phi\cos\theta\\
+x\sin\phi\cos\theta + y\sin\theta
+\end{bmatrix}
+(-x\sin\theta+
+y\sin\phi\cos\theta+
+z\cos\phi\cos\theta)dm\\
+&={R_0}^2\int
+\begin{bmatrix}
+(y^2-z^2)
+\cos^2\theta\cos\phi\sin\phi
++f_1(xy,yz,zx)\\
+(x^2-z^2)\sin\theta\cos\theta\cos\phi
++f_2(xy,yz,zx)\\
+(y^2-x^2)\sin\theta\cos\theta\sin\phi+
+f_3(xy,yz,zx)\\
+\end{bmatrix}dm
+\end{align}
+\begin{align}
+\left\{
+\begin{array}{l}
+y^2-z^2=(x^2+y^2)-(x^2+z^2)\\
+f_1(xy,yz,zx)=f_2(xy,yz,zx)=f_3(xy,yz,zx)=0
+\qquad (\because\text{慣性主軸})
+\end{array}
+\right.
+\end{align}
+\begin{align}
+\rightarrow \bm{g}^b = \frac{3\mu_e}{{R_0}^3}
+\begin{bmatrix}
+(I_{xx}-I_{yy})\cos^2{\theta}
+\cos{\phi} \sin{\phi} \\
+(I_{zz}- I_{xx})\sin\theta\cos\theta\cos
+\phi\\
+(I_{xx}-I_{yy})\sin\theta\cos\theta\sin\phi
+\end{bmatrix}
+\end{align}
+$\theta$と$\phi$が小さいケース
+($=z$軸がほぼ地心を向いているとき)
+\begin{align}
+\frac{\mu_e}{R_0^3}&=\bm{0}
+\end{align}
+$\theta$と$\phi$が小さいケース
+（$= z$軸がほぼ地心を向いているとき）
+\begin{align}
+\frac{\mu_\mathrm{e}}{{R_0}^3} & = {\omega_0}^2 \qquad (\omega_0 \text{: 軌道角速度}) \\
+\bm{g}^\mathrm{b} & \fallingdotseq 3 {\omega_0}^2
+\begin{bmatrix}
+(I_{zz} - I_{yy}) \phi \\
+(I_{zz} - I_{xx}) \theta \\
+0
+\end{bmatrix}
+\end{align}
+どういう形がよい？
+
+\input{fig_rotate_axis}
+
+\begin{minipage}{.4\textwidth}
+\input{fig_column_with_axis}
+\end{minipage}
+\hfill
+\begin{minipage}{.4\textwidth}
+$I_{zz}-I_{yy}>0$\\
+$\phi$が正の時トルクも正$\rightarrow$
+ずれが拡大$\rightarrow$
+不安定
+\end{minipage}
+
+\begin{minipage}{.4\textwidth}
+\input{fig_column_with_vert_vec}
+\end{minipage}
+\hfill
+\begin{minipage}{.4\textwidth}
+$I_{zz}-I_{yy}<0$\\
+$\phi$が正の時トルクは負$\rightarrow$
+ずれが小さくなる$\rightarrow$
+安定
+\end{minipage}
+
+\begin{minipage}{0.4\linewidth}
+\input{fig_thin_column_with_axis}
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+軌道上への「置き方」が重要\\
+同様に$\theta$についての安定条件
+$=I_{zz}-I_{xx}<0$\\
+\qquad\qquad$\rightarrow$
+「$I_{zz}$が最小」が安定のための必要条件
+\end{minipage}
+
+
+\noindent
+(補足)
+\begin{enumerate}
+\item gravity gradient torqueは外乱であると同時に,受動的な
+姿勢制御に使える($\ang{1}\sim\ang{2}$)
+\item 安定といっても$\theta,\phi \rightarrow 0$
+に収束しない(0周りに振り子運動する=libration)
+\end{enumerate}
+
+
+\noindent
+$<$姿勢運動(地球指向のため)も考慮に入れたとき$>$\\
+\qquad orbital frame 自体が動く(動座標系)\\
+基準座標系としてorbital frameをとる($X,Y,Z$)$F_0$
+($F_i\cdots$慣性系)\\
+$\rightarrow$衛星とともにY軸周りに$\omega_0$で
+回転\\
+$(X,Y,Z)$ $\rightarrow$ $xyz$(b-frame)への変換を
+$\underexpl{F_p}{\text{principle axis}},
+(\phi,\theta,\psi)$の微小回転で表現する.\\
+\begin{equation}
+\left\{
+\begin{array}{lcl}
+\phi &=& x\text{軸周りの回転}\\
+\theta &=& y\text{軸周りの回転}\\
+\psi &=& z\text{軸周りの回転}
+\end{array}
+\right.
+\end{equation}
+やりたいこと
+\begin{equation}
+\text{Eulerの式} \quad
+\bm{M}^p=
+I(\dot{\bm{\omega}}^p)+
+\bm{\omega}^p\times
+(I\bm{\omega}^p)
+\qquad
+\text{を書き下したい}
+\end{equation}
+$\bm{\omega}$ : $F_p$の$F_i$に対する角速度
+\begin{equation}
+\bm{\omega}
+= \underexplline{\bm{\omega}_0}{i \rightarrow O} + \underexplline{\bm{\omega}_\alpha}{O \rightarrow p}\\
+\end{equation}
+\begin{align}
+{\bm{\omega}_o}^{\overexpl[8pt]{i \ \text{or} \ O}{\text{最終的にpで表したいのでDCMが必要}}}
+&=
+\begin{bmatrix}
+0 \\ 
+-\omega_C
+\\ 0
+\end{bmatrix}
+\left( \omega_C = \sqrt{\frac{\mu}{R^3}} \right) \\
+ {\bm{\omega}_\alpha}^{p} &= 
+\begin{bmatrix}
+\dot{\phi} \\ \dot{\theta} \\ \dot{\psi}
+\end{bmatrix}
+\end{align}
+$F_0$から$F_p$へのDCMは近似的に，
+\begin{equation}
+C_0^p = 
+\begin{bmatrix}
+1 & \psi & -\theta \\
+-\psi & 1 & \phi \\
+\theta & -\phi & 1
+\end{bmatrix}
+\qquad \qty(\theta, \ \phi, \ \psi \text{が十分小さい})
+\end{equation}
+\begin{align}
+\rightarrow 
+\bm{\omega}^p & =
+C_0^p \bm{\omega}_o^o + 
+\bm{\omega}_o^\alpha\\
+& =
+C_0^p 
+\begin{bmatrix}
+0 \\
+-\omega_c \\
+0 
+\end{bmatrix} + 
+\begin{bmatrix} 
+\dot{\phi} \\
+\dot{\theta} \\ 
+\dot{\psi} \\
+\end{bmatrix}\\
+& = 
+\begin{bmatrix}
+\dot{\phi} - \omega_c \psi \\
+\dot{\theta} - \omega_c \\
+\dot{\psi} + \omega_c \phi
+\end{bmatrix}\qquad
+\left(=
+\begin{bmatrix}
+\omega_x\\
+\omega_y\\
+\omega_z
+\end{bmatrix}
+\right)
+\end{align}
+Eulerの式に代入すると
+\begin{equation}
+\left\{
+\begin{array}{lcl}
+I_{xx} \dot{\omega_x} 
++ (I_{zz} - I_{yy})\omega_y \omega_z 
+&=& 3 {\omega_c}^2 (I_{zz} - I_{yz})\phi \\
+I_{yy} \dot{\omega_y} 
++ (I_{xx} - I_{zz})\omega_x \omega_z 
+&=& 3{\omega_c}^2 (I_{zz} - I_{xx}) \theta \\
+I_{zz} \dot{\omega_z} 
++ (I_{yy} - I_{zz}) \omega_y \omega_z 
+&=& 0
+\end{array}
+\right.
+\end{equation}
+簡略化のために
+\begin{equation}
+I_{xx}\equiv I_1,\quad
+I_{yy}\equiv I_2,\quad
+I_{zz}\equiv I_3\qquad
+\text{とする.}
+\end{equation}
+(Eulerの式の一つ目)
+\begin{align}
+&I_1\ddot{\phi}-
+I_1\omega_c\dot{\psi}+
+(I_3-I_2)(-\omega_c+\dot{\theta})
+(\omega_c\phi+\dot{\psi})\\
+&=I_1\ddot{\phi}-(I_1+I_3-I_2)
+\omega_c\dot{\psi}+
+(I_2-I_3)\omega_c-2\phi+
+\mathcal{O}(\epsilon^2)\\
+&=3\omega_c^2(I_3-I_2)\phi
+\end{align}
+このようにして外乱がgravity gradientのみのときに
+\begin{align}
+\begin{cases}
+I_1\ddot{\phi}
+-(I_1+I_3-I_2)\omega_c\dot{\psi}
++4(I_2-I_3)\omega_c^2
+\phi
+&=0 \qquad(1)\\
+I_2\ddot{\theta}
++3(I_1-I_3)\omega_c^2\theta
+&=0 \qquad(2)\\
+I_3\ddot{\psi}
++(I_1+I_3-I_2)\omega_c\dot{\phi}
++(I_2-I_1)\omega_c^2\psi
+&=0\qquad(3)
+\end{cases}
+\end{align}
+定性的に
+\begin{enumerate}
+\item $y$軸まわりは独立している.
+$I_1 > I_3$が安定のための必要十分条件
+\item $x,z$軸は$\omega_c$を介してカップリングしている.
+(1),(3)より\\
+\begin{equation}
+A \equiv
+\begin{bmatrix}
+I_1 & 0\\
+0 & I_3 \\
+\end{bmatrix}
+\qquad
+B \equiv
+\begin{bmatrix}
+0 & -1\\
+1 & 0\\
+\end{bmatrix}
+(I_1 + I_3 - I_2) \omega_c
+\qquad
+C \equiv
+\begin{bmatrix}
+4(I_2- I_3) & 0\\
+0 & I_2 - I_1\\
+\end{bmatrix}
+\omega_c
+\end{equation}
+$\bm{q} \equiv
+\begin{bmatrix}
+\phi \\
+\psi \\
+\end{bmatrix}$
+とすると
+\begin{equation}
+A \ddot{\bm{q}} + B \dot{\bm{q}} + C \bm{q} = \bm{0} 
+\end{equation}
+\end{enumerate}
+上式の安定条件は?\\
+\quad\underline{十分条件}：Cがpositive definite(正定)であること
+$(\forall \bm{x}, \bm{x}^T C \bm{x} > 0)$ \\
+$\therefore I_2 - I_3 >0\wedge I_2 - I_1 > 0$\\
+$\rightarrow$ 1,2から安定のための十分条件は
+\begin{equation}
+\overbrace{I_2}^{\text{ピッチ}} 
+>
+\overbrace{I_1}^{\text{ロール}} > 
+\overbrace{I_3}^{\text{ヨー}}\qquad
+(\omega_c \text{を考えなければ}I_2 > I_3 , I_1 > I_3)
+\end{equation}
+
+
+\noindent
+$<$補足$>$もし厳密な必要十分条件を出すなら
+\begin{equation}
+k_1=
+\frac{I_2-I_3}{I_1},\ \ 
+k_3=
+\frac{I_2-I_1}{I_3}
+\qquad\text{で運動方程式を書き換えると}
+\end{equation}
+\begin{equation}
+s^4+
+(1+3k_1+k_1k_3)\omega_c^2s^2+
+4k_1k_3\omega{c}^4=0\qquad
+\text{(特性方程式)}
+\end{equation}
+4つの根が左半面にある条件
+
+\begin{minipage}{0.45\linewidth}
+\input{fig_stable_area_of_k}
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+\begin{itemize}
+\item $1+3k_1+k_1k_3>0$
+\item $k_1k_3>0$
+\item $
+(1+3k_1+k_1k_3)^2-
+16k_1k_3>0
+$
+\end{itemize}
+\end{minipage}
+
+
+
+\subsection{Solar Radiation Pressure Torque}
+太陽からくるphoton（光子）の力
+
+\input{fig_photon_from_the_sun}
+
+3通りの方法
+\begin{enumerate}[label = (\theenumi)]
+\item 吸収分(absorption)\quad
+$\bm{F}_a=\underexpl{\rho_a}{\text{吸収する割合}}P\underexpl{(\bm{n}\cdot\bm{s})}{\textrm{正面断面積}}\bm{s}$
+
+\item 鏡面反射(specular reflection)\quad
+$\bm{F}_{s}=\underline{2}\rho_sPA(\bm{n}\cdot\bm{s})^2\bm{n}$
+
+\item 散乱反射(拡散反射) (diffuse reflection)\quad
+$\bm{F}_d=\rho_dPA(\bm{n}\cdot\bm{s})\bm{s}+\frac{2}{3}\rho_dPA(\bm{n}\cdot\bm{s})\bm{n}$\\
+法線方向とのなす角のcosに比例して反射する。
+\end{enumerate}
+
+\input{fig_vecs_in_circle}
+
+(1)～(3)を足し合わせると，
+\begin{equation}
+\bm{F} = \bm{F}_a + \bm{F}_s + \bm{F}_d
+	= PA(\bm{n}\cdot \bm{s})\qty{(\rho_a + \rho_d)\bm{s} + \qty(2 (\bm{n}\cdot\bm{s})\rho_s + \frac{3}{2} P_d)\bm{n}}
+\end{equation}
+ただし，$\rho_a + \rho_d + \rho_s = 1$（透過しない材料を仮定）。\\
+トルクにする場合
+\[ \bm{M} = \sum_i \bm{r}_i \times \bm{F}_i \]
+$\bm{r}_i$：（Gから各面の圧力中心までの位置ベクトル）（面の形状中心が多い）
+
+
+\noindent
+（補足）
+\[ P = \SI{4.6e-6}{N/m^2} \quad (\text{\SI{1}{km^2}で\SI{4.6}{N}}) \]
+
+
+\noindent
+(例題)地球指向衛星の太陽電池パドルに当たった場合
+\begin{itemize}
+\item $X_0,Y_0,Z_0$:
+基準のorbital frame($\bm{I}_0\bm{J}_0,\bm{K}_0$)
+\item $X,Y,Z$:
+orbital frame($\bm{I},\bm{J},\bm{K}$)
+\end{itemize}
+
+\input{fig_rounding_satellite}
+
+$\beta$:軌道面と太陽方向のなす角
+\begin{equation}
+\bm{s}=\sin\beta\bm{J}_0+\cos\beta\bm{K}_0
+\end{equation}
+これを$XYZ$軸で表すと
+\begin{align}
+\bm{J}_0=\bm{J},\bm{K}_0=\bm{K}\cos\alpha
++\bm{I}\sin\alpha\\
+\therefore \bm{s}=\sin\beta\bm{J}+
+\cos\beta\cos\alpha\bm{K}+
+\cos\beta\sin\alpha\bm{I}\\
+\therefore
+\bm{s}^0=
+\begin{bmatrix}
+\cos\beta\sin\alpha\\
+\sin\beta\\
+\cos\beta\cos\alpha
+\end{bmatrix}
+\end{align}
+
+・太陽電池パドルの法線方向$\bm{n}$は？
+$\rightarrow$軸回りのジンバルによって$-z_0$方向に指向し続ける。
+\begin{align}
+\bm{n} & = \bm{K}_0 = \bm{K} \cos\alpha + \bm{I} \sin\alpha \\
+\rightarrow \bm{n}^0 & = \begin{bmatrix} \sin\alpha \\ 0 \\ \cos\alpha
+\end{bmatrix}
+\end{align}
+圧力中心のbody frame (ordinal frame)での位置を$\begin{bmatrix} x \\ y \\ z \end{bmatrix}$とすると，
+\begin{align}
+\bm{M}_i & = PA \underexpl{\cos\beta}{(\bm{n}\cdot\bm{s})} \begin{bmatrix} x \\ y \\ z \end{bmatrix} \times
+\begin{bmatrix}
+(1-\rho_s)\sin\alpha\cos\beta + 2\qty(\cos\beta \rho_s + \frac{1}{3} \rho_d)\sin\alpha \\
+(1-\rho_s) \sin\beta
+(1-\rho_s)\cos\alpha \cos\beta + \qty(\cos\beta \rho_s \frac{1}{3} \rho_d) \cos\alpha
+\end{bmatrix}
+\end{align}
+ここで，
+\begin{equation}
+\left\{ \begin{array}{l}
+K_1 = (1-\rho_s) \cos\beta + 2\qty(\cos\beta \rho_s \frac{1}{3} \rho_d) \\
+K_ = (1-\rho_s) \sin\beta
+\end{array} \right.
+\end{equation}
+を導入する（$\beta$は季節変動するが，定数と見る）。
+\begin{align}
+\therefore
+\bm{M}_a=PA\cos\beta\begin{bmatrix}
+x\\
+y\\
+z\\
+\end{bmatrix}
+\times\begin{bmatrix}
+K_1\cos\beta\\
+K_2\\
+K_1\cos\alpha\\
+\end{bmatrix}
+=
+PA\cos\beta\begin{bmatrix}
+yK_1\cos\alpha-\underline{zK_2}\\
+zK_1\sin\alpha-xK_1\cos\alpha\\
+\underline{xK_2}-yK_1\sin\alpha
+\end{bmatrix}
+\end{align}
+定性的に見ると
+\begin{itemize}
+\item $\cos\alpha,\sin\alpha\rightarrow$
+一周で積分すると0
+\item $zK_2,xK_2\rightarrow$角運動量が蓄積される
+\end{itemize}
+よって
+\begin{enumerate}
+\item $K_2=0$にするには，$\rho_s=1\rightarrow $NG(発電できない)
+\item $x=z=0$にするには対称なパドルにすれば良い($+Y$片翼でもいい)
+\end{enumerate}
+\begin{align}
+P & = \SI{4.6e-6}{N/m^2} \quad \text{at \SI{1}{AU}} \\
+	& = \SI{3e-5}{N\m^2} \quad \text{at Mercury} \\
+    & = \SI{3e-9}{N/m^2} \quad \text{at Pluto}
+\end{align}
+地球表面での太陽光の反射 ～34\% （モデル作りにくい，大気の揺らぎなどの影響を受ける）
+\[ \SI{2e-6}{N/m^2} \quad \text{(LEO)} \]
+\[ \SI{3e-8}{N/m^2} \quad \text{(GEO)} \]
+惑星自身のradiation（\underline{赤外}輻射）\\
+$\quad $地球：アルバドの$\frac{1}{3}$程度，木星などはradiationが大きい（反射と比較して大きい）
+
+
+\subsection{Magnetic Torque}
+\begin{align}
+\bm{g}_m&=\bm{m}_m\times\bm{B}\\
+\bm{m}_n&:\textrm{magnetic moment of space craft}
+\begin{cases}
+\text{永久磁石}\\
+\text{回路(電流ループ)}\\
+\text{磁化した金属}
+\end{cases}\\
+\bm{B}&:\textrm{external geomangetic flux density}
+\end{align}
+
+\input{fig_magnetic_red_line}
+
+地磁気のダイポールモーメント(ポテンシャル場)
+\begin{equation}
+\phi_m=-\frac{\mu_m}{R^2}\sin\lambda_m
+\end{equation}
+\begin{itemize}
+\item $\mu_m$:
+$1\times10^7$Wb$\cdot$m
+\item  R:
+地球中心からの距離
+\item $\lambda_m$:
+geomagnetic equational planeから測ったlatitude
+\end{itemize}
+\begin{equation}
+\rightarrow \bm{B}^m = - nabra \phi_m
+= - \frac{\mu_m}{R^3}
+\begin{bmatrix}
+3 \sin\lambda_m \cos\lambda_m \cos\eta_{\overexpl{n}{経度}} \\
+3 \sin\lambda_m \cos\lambda_m \sin\eta_n \\
+3 \sin^2\lambda_m - 1
+\end{bmatrix}
+\end{equation}
+衛星に働くトルクを推定するには，
+\begin{equation}
+\bm{q}_m^b = \bm{m}_m^b \times 
+(
+\underexplline{C_m^b}{\underexpl{C_i^b}{\hspace{-5mm} \uparrow \text{姿勢データ}} \underexpl{C_m^i}{\hspace{5mm}Const.}} \ 
+\underexplline{B^m}{\hspace{2.5cm}\text{データベース（IGRF）}}
+)
+\end{equation}
+$\bm{m}_m^b$をどうやって推定するか？
+\begin{enumerate}[label = \maru{\theenumi}]
+\item 地上で計測（磁気シールド室）\\
+	\quad 様々な動作モードでの計測が必要
+\item 軌道上で推定する：カルマンフィルターなど$\rightarrow$ $-m_m^b$の磁気モーメントでキャンセルすることもある
+\end{enumerate}
+
+
+
+\subsection{その他外乱トルク}
+\begin{enumerate}[label = \maru{\theenumi}]
+\item 粒子との衝突 meteoroid debris(～\SI{8}{km/s}, Jspocが監視してデータベース化)
+\item Thermoelastc deformation
+\begin{align}
+\begin{cases}
+\text{CGの位置} \\
+\text{慣性モーメントの変化}
+\end{cases}
+\end{align}
+夜から昼に出た瞬間に温度差大"heat shock" サーマル
+スナップ
+\item 非環境的トルク
+(内部トルクは角運動量を変えない)
+\begin{itemize}
+\item flexibility
+\item crew motion (ISS)
+\item fuel sloshing
+\item Rwじょう乱
+\end{itemize}
+\end{enumerate}
+
+
+\end{document}

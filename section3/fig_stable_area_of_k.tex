@@ -1,0 +1,16 @@
+
+\begin{tikzpicture}
+\coordinate (O) at (0, 0);
+
+\draw [-latex] (-2, 0)--(2, 0)node[right]{$k_1$};
+\draw [-latex] (0, -2)--(0, 2)node[right]{$k_3$};
+\draw (-1.6, -1.6) rectangle (1.6, 1.6);
+\draw (2, 2)--(-0.3, -0.3)--(-0.3, -1.9)--(0, -1.6);
+
+\fill [pattern = north west lines] (O)--(1.6, 1.6)--(1.6, 0)--cycle;
+\fill [pattern = north west lines] (O)--(-0.3, -0.3)--(-0.3, -1.9)--(0, -1.6)--cycle;
+
+\draw [darkgreen] (1, 0.5) to[bend left=20] (2.2, 1.2)node[right]{$I_2 > I_1 > I_3$に対応};
+\draw [darkgreen] (-0.15, -1) to[bend left=20] (0.5, -2.4)node[right]{$I_2 > I_1 > I_3$にはない領域（エネルギー差につがあると不安定になる）};
+
+\end{tikzpicture}
