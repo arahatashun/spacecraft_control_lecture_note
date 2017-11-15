@@ -211,10 +211,88 @@ $\rightarrow$エネルギー散逸を起こしてやればいい。
 全体のスピン軸に垂直な軸周り$I_T$
 
 \input{fig_dual_spin}
-
-
-
-
-
+\begin{align}
+ T&=
+ \frac{1}{2}
+(I_T\omega_{T}^2
++I_{SP}\omega_{R}^2
++I_{SR}\omega_{R}^2)
+\label{eq:4_1}\\
+ H^2 &=
+ I_T^2\omega_{T}^2
++(I_{SP}\omega_{P}
++I_{SR}\omega_{R})^2
+\label{eq:4_2}\\
+\text{ここで}\omega&
+\equiv\frac{I_{SP}\omega_P
++I_{SR}\omega_{R}}{I_T}
+\qquad \text{(Nutation角周数)}
+\label{eq:4_3}
+\end{align}
+~\eqref{eq:4_2}を微分すると,$\dot{H}=0$より,
+\begin{align}
+  I_T^2\omega_T\dot{\omega_T} +
+  (I_{SP}\omega{P}+I_{SR}\omega_{R})
+  (I_{SP}\dot{\omega_{P}}+
+ \Leftarrow I_{SR}\dot{\omega_{R}})=0 \\
+  I_T\omega_{T}\dot{\omega_{T}} =
+  -\omega_{n}(I_{SP}\dot{\omega_{P}}
+  +  I_{SR}\dot{\omega_{R}}) \label{eq:4_4}
+\end{align}
+~\eqref{eq:4_1}を微分すると,
+\begin{align}
+\dot{T}&=
+I_T\omega_T \dot{\omega{T}} +
+I_{SP}\omega_{P}\dot{\omega_{P}}+
+I_{SR}\omega_{R}\dot{\omega_{R}}
+\label{eq:4_5}\\
+\end{align}
+\text{~\eqref{eq:4_4}を代入}
+\begin{align}
+\dot{T}&= 
+-I_{SP}(\omega_{n}\omega_{p})
+\dot{\omega_{p}}
+- I_{SR}(\omega_{n}\omega_{R})
+\dot{\omega_{R}}\label{eq:4_6}\\
+\end{align}
+ここで
+$\lambda\equiv\omega_n-\omega_P$,
+\qquad$\lambda\equiv\omega_n-\omega_R$
+と置くと,
+\begin{align}
+\dot{T}&=
+-I_{SP}\lambda_p \dot{\omega_P} - 
+I_{SR}\lambda_R \dot{\omega_R}\\
+ &= \dot{T_P}+ \dot{T_R}
+\end{align}
+\begin{empheq}[left=\empheqlbrace]{align}
+ \dot{T_P}=
+ -I_{SP}\lambda_P \omega_{P}\label{eq:4_7} \\
+  \dot{T_R}= 
+  -I_{SR}\lambda_R\omega_{R}\label{eq:4_8}
+\end{empheq}
+~\eqref{eq:4_7}~\eqref{eq:4_8}
+$\Rightarrow$~\eqref{eq:4_4}
+\begin{equation}
+I_T \omega_T \dot{\omega_T} = \omega_n(
+\frac{\dot{T_P}}{\lambda_P} + 
+\frac{\dot{T_R}}{\lambda_R})\label{eq:4_9}
+\end{equation}
+$\sin{\theta}^2=
+\frac{I_T^2 \omega_{T}^2}{H^2}$より
+\begin{align}
+2\sin{\theta}\cos{\theta}\dot{\theta}=
+\frac{2I_T^2 \omega_T \dot{\omega_T}}{H^2}
+=\frac{2I_T\omega_n (\frac{\dot{T_P}}{\lambda_P} + 
+\frac{\dot{T_R}}{\lambda_R})}{H^2}\\
+\therefore \dot{\theta}
+= \frac{2I_T \omega_n}{\sin{2\theta}H^2}
+\underline
+{(\frac{\dot{T_P}}{\lambda_P} + 
+\frac{\dot{T_R}}{\lambda_R}
+)}\\
+\text{安定化のためには}\qquad\frac{\dot{T_P}}{\lambda_P}+ \frac{\dot{T_R}}{\lambda_R}
+<0\label{eq:4_11}
+\end{align}
 
 \end{document}

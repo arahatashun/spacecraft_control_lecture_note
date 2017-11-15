@@ -30,6 +30,11 @@
 \usepackage{standalone}
 \usepackage{bm}
 \usepackage{empheq}
+\usepackage{etoolbox}
+\AtBeginEnvironment{empheq}{%
+  \linespread{0.8}\selectfont\narrowbaselines
+}
+\usepackage{cases}
 % set up for hyperref
 \hypersetup{%
 	bookmarksnumbered = true,%
@@ -44,7 +49,11 @@
 	pdfauthor = {Shun Arahata, Hirotaka Kondo, Ryosuke Morita},%
 	pdfkeywords = {},%
 	}
-
+%hyperref bm
+\pdfstringdefDisableCommands{%
+\renewcommand*{\bm}[1]{#1}%
+% any other necessary redefinitions
+}
 % set up for siunitx
 \sisetup{%
 	%detect-family = true,
@@ -103,3 +112,5 @@
 \definecolor{orangered}{HTML}{FF4500}
 
 \definecolor{emph}{HTML}{FF4500}
+
+\numberwithin{equation}{section}
