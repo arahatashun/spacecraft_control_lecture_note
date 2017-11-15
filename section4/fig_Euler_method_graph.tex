@@ -1,0 +1,19 @@
+
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (O)--(5, 0)node[right]{$t$};
+\draw (O)--(0, 4)node[left]{$\bm{x}$};
+\end{scope}
+
+\draw (2, 2)--(4, 3);
+\begin{scope}[densely dashed]
+\draw (2, 0)node[below]{$t$}--(2, 2);
+\draw (4, 0)node[below]{$t + \Delta t$}--(4, 3);
+\end{scope}
+
+\draw (3, 2.5) to[bend right=10] (4.5, 2)node[right]{傾き$= \bm{f}\qty(\bm{x}(t), t)$};
+
+\end{tikzpicture}

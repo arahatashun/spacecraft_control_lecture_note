@@ -1,0 +1,21 @@
+
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (O)--(1.8, 2)node[right]{$x$（進行方向）};
+\draw (O)--(0, -2)node[right]{$y$（面外方向）};
+\draw (O)--(-2, 0)node[left]{$z$};
+\end{scope}
+
+\draw (-0.6, -0.6)--+(1.2, 0)--+(1.2, 1.2)--+(0, 1.2)--cycle;
+\draw (-0.6, 0.6)--+(0.45, 0.5);
+\draw (0.6, 0.6)--+(0.45, 0.5);
+\draw (0.6, -0.6)--+(0. 45, 0.5);
+\draw (-0.15, 1.1)--(1.05, 1.1)--(1.05, -0.1);
+
+\draw (-4, 0)node[above left]{地心} circle [radius = 0.05];
+\fill (O) circle [radius = 0.05];
+
+\end{tikzpicture}

@@ -32,7 +32,7 @@
 \end{wrapfigure}
 
 $y$をスピン軸，
-Principal axisをbody frameとする。\\
+Principal axisをbody frameとする.\\
 外乱トルクがないとき
 \begin{align}
 I_{xx}\dot{\omega_x}&=(I_{yy}-I_{zz})w_yw_z\\
@@ -40,7 +40,7 @@ I_{yy}\dot{\omega_y}&=(I_{zz}-I_{xx})w_zw_x\\
 I_{zz}\dot{\omega_z}&=(I_{xx}-I_{yy})w_xw_z
 \end{align}
 今，$\omega_y=\omega_s(\mbox{目標)}+\epsilon(\mbox{擾乱})\qquad |\epsilon| \ll 1$\\
-$|\omega_x|，|\omega_z| \ll 1$と仮定する。
+$|\omega_x|，|\omega_z| \ll 1$と仮定する.
 
 \begin{align}
 I_{xx}\dot{\omega_x} &= (I_{yy}-I_{zz})\omega_s\omega_z\\
@@ -70,7 +70,7 @@ I_{zz}\dot{\omega_z} &= (I_{xx}-I_{yy})\omega_s
 a>0\Leftrightarrow I_{yy}>I_{xx},I_{zz}\quad or \quad I_{yy}
 < I_{xx}, I_{zz}
 \end{equation}
-つまりy軸が慣性モーメントの最大軸か最小軸のとき。
+つまりy軸が慣性モーメントの最大軸か最小軸のとき.
 
 \begin{minipage}{0.45\linewidth}
 \input{fig_large_inertial_moment_column}
@@ -118,11 +118,11 @@ $\omega_x,\omega_z$は$90^\circ$位相ずれで振動.$\sqrt[]{\omega_x^2+\omega
 
 \begin{itemize}
 \item $\bm{H}$とスピン軸の貼る平面内いつも
-$\bm{\omega}$がある。
-\item 衛星は$\bm{\omega}$を中心に回る。
+$\bm{\omega}$がある.
+\item 衛星は$\bm{\omega}$を中心に回る.
 \end{itemize}
-慣性系においてy(スピン軸)は$\bm{H}$の軸周りに回転する。
-これを``Nutation運動''と呼ぶ。
+慣性系においてy(スピン軸)は$\bm{H}$の軸周りに回転する.
+これを``Nutation運動''と呼ぶ.
 
 \begin{minipage}{0.45\linewidth}
 (1)$I_S<I_T$のとき
@@ -130,7 +130,7 @@ $\bm{\omega}$がある。
 \input{fig_corns_touching_outside}
 \vspace{6mm}
 
-space coneに外接してbody coneが回転。
+space coneに外接してbody coneが回転.
 \end{minipage}
 \hfill
 \begin{minipage}{0.45\linewidth}
@@ -138,7 +138,7 @@ space coneに外接してbody coneが回転。
 
 \input{fig_corns_touching_inside}
 
-space coneに内接しながらbody coneが回転。
+space coneに内接しながらbody coneが回転.
 \end{minipage}
 \vspace{\baselineskip}
 
@@ -169,7 +169,7 @@ H^2&=
 &=\frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}
 \end{align}
 エネルギー散逸があるので$\dot{T}<0$\\
-よって$I_S>I_T$である必要がある。
+よって$I_S>I_T$である必要がある.
 つまりスピン軸周りの$I$が最大(平らな円筒形)
 
 \begin{center}
@@ -181,12 +181,12 @@ H^2&=
 ・定性的な解釈\\
 \[ T=\frac{H^2}{2I_{SS}} \qquad I_{SS}\text{:各瞬間ごとのスピン軸周りの慣性モーメント} \]
 ($\because T=\frac{1}{2}I_{SS}\omega_{ss}^2$)\\
-$H$:一定，$T$が減る。\\
+$H$:一定，$T$が減る.\\
 \qquad $T$はどこまで小さくできるか?\\
 $\rightarrow$ $I_{SS}$が最大となると$T$最小\\
 $\rightarrow$ 最後は$I$最大の軸周りの回転に落ち着く\\
-$I_S>I_T$が成り立つとき，$|\dot{T}|$を大きくすれば$|\theta|$は0に戻りやすい。
-$\rightarrow$エネルギー散逸を起こしてやればいい。
+$I_S>I_T$が成り立つとき，$|\dot{T}|$を大きくすれば$|\theta|$は0に戻りやすい.
+$\rightarrow$エネルギー散逸を起こしてやればいい.
 \begin{enumerate}
 \item Nutation damper
 \begin{center}
@@ -291,8 +291,231 @@ $\sin{\theta}^2=
 {(\frac{\dot{T_P}}{\lambda_P} + 
 \frac{\dot{T_R}}{\lambda_R}
 )}\\
-\text{安定化のためには}\qquad\frac{\dot{T_P}}{\lambda_P}+ \frac{\dot{T_R}}{\lambda_R}
+\text{安定化のためには}
+\qquad\frac{\dot{T_P}}{\lambda_P}
++ \frac{\dot{T_R}}{\lambda_R}
 <0\label{eq:4_11}
+\end{align}
+仮定:$|\omega_p|\ll|\omega_R|,|\omega_T|\ll|\omega_R|$
+(ほとんどローター側のみスピン)
+\begin{equation}
+\lambda_P = \omega_n - \omega_P = \frac{(I_{sp} - I_T)\omega_P + I_{SR} \omega_R}{I_T}
+	\fallingdotseq \frac{I_{SR}}{I_T} \omega_R
+    \label{eq:lambdaP}
+\end{equation}
+\begin{equation}
+\lambda_R = \omega_n - \omega_R = \frac{I_{sp} \omega_P + (I_{SR} - I_T) \omega_R}{I_T}
+	\fallingdotseq \qty(\frac{I_{SR}}{I_T} - 1) \omega_R
+    \label{eq:lambdaR}
+\end{equation}
+~\eqref{eq:lambdaP}，~\eqref{eq:lambdaR}$\rightarrow$ ~\eqref{eq:4_11}に代入して，
+\begin{equation}
+\underexpl{\dfrac{\dot{T}_P}{I_{SR}/I_T}}{\textcolor{darkgreen}{<0}} + \dfrac{\dot{T}_R}{I_{SR}/I_T - 1} < 0
+\label{eq:Tdot-relation}
+\end{equation}
+\begin{itemize}
+\item [Case1] $I_{SR}>I_T\Rightarrow$必ず安定
+\item [Case2] $I_{SR}<I_{T}
+\Rightarrow|\dot{T}_p|>|\dot{T}_R|
+\frac{\frac{I_{SR}}{I_T}}{1-\frac{I_{SR}}{I_T}}$なら安定
+\end{itemize}
+例)
+$\frac{I_{SR}}{I_T}=\frac{2}{3}$の時
+\qquad
+$|\dot{T}_p|>2|\dot{T}_R|$で安定\\
+$\rightarrow$プラットフォームでのエネルギー散逸を大きくする\\
+($\Rightarrow$ニューテーションダンパーをプラットフォームに乗せるなど)\\
+なぜ大事か$\rightarrow$設計自由度を増やす\\
+
+\input{fig_columnPR}
+INTELSAT-IV%\Roman{4}
+
+\begin{itemize}
+\item $I_{SR}<I_T$でもOK
+\item 細長いスピン衛星でもOK$\rightarrow$
+フェアリングに入りやすい
+\end{itemize}
+
+%\input{fig_Euler_method_graph}
+
+
+\subsection{Bias Momentum方式}
+\qquad ---ジャイロ剛性を得るためのホイールを中に持つ
+
+\begin{itemize}
+\item Fixed Momentum Wheel：$y$軸（慣性空間で一定方向）
+\item Activeに制御するトルク
+	\begin{itemize}
+    \item $y$軸周り：ホイールの角速度を変える
+    \item $x, z$軸：スラスター，磁気トルカーなど
+    \end{itemize}
+\end{itemize}
+
+\input{fig_cube_with_axis}
+
+$\cdot$ 内部角運動量
+\begin{empheq}[left=\empheqlbrace]{align}
+h_x&=0\\
+h_y&=-I_{\omega}\Omega=-h\\
+h_z&=0
+\end{empheq}
+\begin{itemize}
+\item [$I_{\omega}$:]
+ホイールの慣性モーメント
+\item [$\Omega$:]
+ホイールの角速度
+\end{itemize}
+
+\begin{equation}
+  \bm{\omega}^b = 
+ \begin{bmatrix}
+  \omega_x\\
+  \omega_y\\
+  \omega_z
+  \end{bmatrix}
+=
+\begin{bmatrix}
+  \dot{\Phi}-\omega_o \Psi \\
+  \dot{\theta} -\omega_o\\
+  \dot{\Psi} -\omega_o\Phi
+ \end{bmatrix}
+\end{equation}
+\begin{itemize}
+\item [$\phi,\theta,\psi$]
+orbital frameからのずれ
+\item [$\omega_0$]
+地球指向のための角速度
+(円軌道$\rightarrow$軌道角速度)
+\end{itemize}
+
+\begin{align}
+\bm{H}^b&= \bm{H}_b^b \bm{H}_w^b\\
+ &=
+ \begin{bmatrix}
+ I_{xx}\omega_x\\
+  I_{yy}\omega_y\\
+   I_{zz}\omega_z
+ \end{bmatrix}
+ +
+ \begin{bmatrix}
+ h_x\\
+ h_y\\
+ h_z
+ \end
+\end{bmatrix}
+=
+\begin{bmatrix}
+I_{xx}(\dot{\Phi}-\omega_o\Psi)\\
+I_{yy}(\dot{\theta}-\omega_o)-h\\
+I_{zz}(\dot{\Psi}+\omega_o) \Phi
+\end{bmatrix}
+\end{align}
+\begin{align}
+\bm{M}^b&=\dot{\bm{H_{rel}^b}} + \dot{\omega}^b \times \dot{H}^b\\
+&=
+\begin{bmatrix}
+I_{xx}(\ddot{\Phi} -\omega_o\dot{\psi}) + 
+h(\dot{\s}
+\end{bmatrix}
+\end{align}
+
+
+\begin{equmerate}[label=仮定\maru{\theenumi}]
+\item
+\begin{equation}
+h \ll \omega_0 I_{xx}, \ \omega_0 I_{yy}, \ \omega_0 I_{zz}
+\end{equation}
+$\dot{\theta}, \dot{\psi}, \dot{\phi}$が小さい
+
+\item
+Gravity Gradient Torqueはあらかじめ含めておく
+\begin{equation}
+\bm{M}_q = 
+	\begin{bmatrix}
+    3 {\omega_0}^2 (I_{zz} - I_{yy}) \phi \\
+    3 {\omega_0}^2 (I_{zz} - I_{xx}) \theta \\
+    0
+    \end{bmatrix}
+\end{equation}
+\begin{align}
+\rightarrow
+& M_x = I_{xx} \ddot{\phi} + \omega_0 h \phi + h \dot{\psi} \\
+& M_y = I_{yy} \ddot{\theta} + 3{\omega_0}^2 \theta (I_{zz} - I_{xx}) + \dot{h} \\
+& M_z = I_{zz} \ddot{\psi} + \omega_0 h \psi - h \dot{\theta}
+\end{align}
+\end{enumerate}
+特徴
+\begin{enumerate}[label=\theenumi)]
+\item ピッチ軸周り$\rightarrow$独立
+\item ロール,ヨー軸周り$\rightarrow$hを介してカップリング
+している
+\end{enumerate}
+制御を考える
+\begin{enumerate}[label=(\theenumi)]IV%IV
+\item　ピッチ軸:hを使ってコントロールする
+(ホイールの回転速度を変化させる)\\
+Simple Caseとして$I_{xx}=I_{yy}$とする\\
+$\rightarrow M_y=I_{yy}\ddot{\theta}-\dot{h}$
+\end{enumerate}
+制御則の例
+\begin{equation}
+\dot{h}=-K_{\theta}(\tau_{\theta}\dot{\theta}+\theta)
+\qquad(\text{PD制御})
+\end{equation}
+これを代入すると,閉ループ系は,二次系(バネ+ダンパー系)となる.
+\begin{align}
+M_y
+&=
+I_{yy}\ddot{\theta}+
+K_{\theta}\tau_{\theta}\dot{\theta}+K_{\theta}\theta
+\\
+&=
+I_{yy}
+(\ddot{\theta}+
+2\xi_{\theta}\omega_{\theta}\dot{\theta}
++\omega^2_{\theta}\theta)
+\end{align}
+\begin{equation}
+\text{ここで}
+\qquad
+\omega_{\theta}=
+\sqrt[]{\frac{K_{\theta}}{I_{yy}}}\quad
+(\text{固有周波数}),
+\xi_{\theta}=
+\frac{\tau_{\theta}}{2}
+\sqrt[]{\frac{K_{\theta}}{I_{yy}}}
+\quad( \text{減衰係数})
+\end{equation}
+閉ループ伝達関数
+$
+H(s)=G(s)K(s)=
+\frac{K_{\tehta}(\tau_{\theta}s+1)}{I_{yy}s^2}
+$
+\begin{enumerate}
+\item little damping
+\item over damping
+\footnote{little dampingとover dampingどちらが
+良いのかミッション次第}
+\item critically damped system　(臨界減衰)\\
+$\rightarrow$一般的にはこれを目指す.
+\end{enumerate}
+臨界減衰であるためには,
+\begin{equation}
+(K_{\theta}\tau_{\theta})^2
+-4K_{\theta}I_{yy}=0\qquad
+\therefore
+\tau_{\theta}=2
+\sqrt[]{\frac{I_{yy}}{K_{\theta}}}
+\end{equation}
+この時の系の挙動
+\begin{align}
+\frac{\theta(s)}{M_{y}(s)}\\
+&=\frac{G}{1+GK}\\
+&=
+\frac{1}
+{I_{yy}s^2+K_{\theta}\tau_{\theta}s+K_{\theta}}\\
+&=
+\frac{1}{I_{yy}(s+\frac{1}{\tau})^2}
 \end{align}
 
 \end{document}
