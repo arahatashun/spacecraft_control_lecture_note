@@ -389,7 +389,8 @@ orbital frameからのずれ
 \end{itemize}
 
 \begin{align}
-\bm{H}^b&= \bm{H}_b^b \bm{H}_w^b\\
+\bm{H}^b&=
+\bm{H}_b^b \bm{H}_w^b\\
  &=
  \begin{bmatrix}
  I_{xx}\omega_x\\
@@ -401,8 +402,7 @@ orbital frameからのずれ
  h_x\\
  h_y\\
  h_z
- \end
-\end{bmatrix}
+ \end{bmatrix}
 =
 \begin{bmatrix}
 I_{xx}(\dot{\Phi}-\omega_o\Psi)\\
@@ -410,17 +410,20 @@ I_{yy}(\dot{\theta}-\omega_o)-h\\
 I_{zz}(\dot{\Psi}+\omega_o) \Phi
 \end{bmatrix}
 \end{align}
+
 \begin{align}
-\bm{M}^b&=\dot{\bm{H_{rel}^b}} + \dot{\omega}^b \times \dot{H}^b\\
+\bm{M}^b&=
+\dot{\bm{H_{rel}^b}} +
+\dot{\omega}^b \times \dot{H}^b\\
 &=
 \begin{bmatrix}
 I_{xx}(\ddot{\Phi} -\omega_o\dot{\psi}) + 
-h(\dot{\s}
+%h(\dot{\s})
 \end{bmatrix}
 \end{align}
 
 
-\begin{equmerate}[label=仮定\maru{\theenumi}]
+\begin{enumerate}[label=仮定\maru{\theenumi}]
 \item
 \begin{equation}
 h \ll \omega_0 I_{xx}, \ \omega_0 I_{yy}, \ \omega_0 I_{zz}
@@ -451,7 +454,7 @@ Gravity Gradient Torqueはあらかじめ含めておく
 している
 \end{enumerate}
 制御を考える
-\begin{enumerate}[label=(\theenumi)]IV%IV
+\begin{enumerate}[label=(\theenumi)]%IV%IV
 \item　ピッチ軸:hを使ってコントロールする
 (ホイールの回転速度を変化させる)\\
 Simple Caseとして$I_{xx}=I_{yy}$とする\\
@@ -489,13 +492,16 @@ I_{yy}
 閉ループ伝達関数
 $
 H(s)=G(s)K(s)=
-\frac{K_{\tehta}(\tau_{\theta}s+1)}{I_{yy}s^2}
+\frac{K_{\theta}(\tau_{\theta}s+1)}{I_{yy}s^2}
 $
-\begin{enumerate}
+
+\input{fig_root_focus}
+
+\begin{enumerate}[label=\maru{\theenumi}]
 \item little damping
 \item over damping
 \footnote{little dampingとover dampingどちらが
-良いのかミッション次第}
+良いのかはミッション次第}
 \item critically damped system　(臨界減衰)\\
 $\rightarrow$一般的にはこれを目指す.
 \end{enumerate}
@@ -509,13 +515,25 @@ $\rightarrow$一般的にはこれを目指す.
 \end{equation}
 この時の系の挙動
 \begin{align}
-\frac{\theta(s)}{M_{y}(s)}\\
-&=\frac{G}{1+GK}\\
+\frac{\theta(s)}{M_{y}(s)}&=\frac{G}{1+GK}\\
 &=
 \frac{1}
 {I_{yy}s^2+K_{\theta}\tau_{\theta}s+K_{\theta}}\\
 &=
 \frac{1}{I_{yy}(s+\frac{1}{\tau})^2}
 \end{align}
+
+
+
+%%%% 誰か配置して %%%%
+
+\input{fig_block_board}		%ブロック線図
+
+\input{fig_decay_graph_1}	%減衰するグラフその1
+
+\input{fig_updown}			%極値の後0に収束するグラフ
+
+\input{fig_goto_static_graph.tex}	%ステップの後定常状態になるグラフ
+
 
 \end{document}

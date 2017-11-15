@@ -1,0 +1,17 @@
+
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (O)--(4, 0)node[right]{$t$};
+\draw (O)--(0, 3)node[left]{$\theta$};
+\end{scope}
+
+\draw [densely dashed] (0, 2)node[left]{$\theta_\mathrm{max}$}--(1.5, 2)--(1.5, 0)node[below]{$\tau$};
+
+\draw (O) parabola [bend at end] (1.5, 2);
+\draw (1.5, 2) parabola (2.5, 1);
+\draw (2.5, 1) to[bend right] (4, 0.1);
+
+\end{tikzpicture}

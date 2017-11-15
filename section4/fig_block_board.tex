@@ -1,0 +1,31 @@
+
+\begin{tikzpicture}[outer sep = 0pt]
+
+\draw
+	(0, 0) node[draw, circle] (O) {}
+	(2, 0) node[draw, rectangle] (diff) {$K_\theta (\tau_\theta s + 1)$}
+	(5, 0) node[draw, circle] (outer) {}
+	(7, 0) node[draw, rectangle] (int) {$\frac{1}{I_{yy} s^2}$}
+	;
+
+\begin{scope}[->]
+\draw (-2, 0) to node[above]{$\theta_{ref}$} (O)node[above left]{$+$}node[below left]{$-$};
+\draw (O)--(diff)node[above = 3mm]{\textcolor{darkgreen}{制御則$K(s)$}};
+\draw (diff)--(outer)node[above left]{$+$}node[below left]{$+$};
+\draw ($(outer)+(0, 1)$)node[above right]{$M_q$\textcolor{darkgreen}{外乱トルク}}--(outer);
+\draw (outer)--(int)node[above=3mm]{\textcolor{darkgreen}{$G(s)$}};
+\draw (int)--(9, 0)node[right]{$\theta$};
+\draw (8, 0)--(8, -2)--(0, -2)--(O);
+\end{scope}
+
+\begin{scope}[darkgreen]
+\node [above] at ($(diff)+(1.5, 0)$) {トルク};
+\node [below] at ($(diff)+(1.5, 0)$) {指令};
+\draw [<-] ($(diff) + (0.1, -0.1)$) to[bend left=10] (2, -0.5)node[below left]{$\dot{\theta}はジャイロ$};
+\draw [<-] ($(diff) + (0.6, -0.1)$) to[bend right=10] (2.5, -1)node[below right]{$\theta$はEarth Season Star Sensor};
+\end{scope}
+
+
+%% grid
+%\draw [step=1cm, very thin, black!25!white] (-5, -5) grid (8, 8);
+\end{tikzpicture}
