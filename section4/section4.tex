@@ -489,6 +489,7 @@ I_{yy}
 \sqrt[]{\frac{K_{\theta}}{I_{yy}}}
 \quad( \text{減衰係数})
 \end{equation}
+\input{fig_block_board}\\		%ブロック線図 
 閉ループ伝達関数
 $
 H(s)=G(s)K(s)=
@@ -496,7 +497,7 @@ H(s)=G(s)K(s)=
 $
 
 \input{fig_root_focus}
-
+\input{fig_decay_graph_1}	%減衰するグラフその1
 \begin{enumerate}[label=\maru{\theenumi}]
 \item little damping
 \item over damping
@@ -523,17 +524,51 @@ $\rightarrow$一般的にはこれを目指す.
 \frac{1}{I_{yy}(s+\frac{1}{\tau})^2}
 \end{align}
 
-
+\begin{align}
+\frac{\theta (s)}{\theta_{ref} (s)}
+= \frac{GK}{1+GK}
+&= \frac{2 \sqrt{K_{\theta} I_{yy}}(s+\frac{1}{2\tau})}
+{I_{yy}(s+\frac{1}{\tau})^2}\\
+&=\frac{2(s+\frac{1}{2\tau})}{\tau (s+\frac{1}{\tau})^2}
+=\frac{2}{\tau (s+\frac{1}{\tau})}
+-\frac{1}{\tau^2 (s+\frac{1}{\tau})^2}
+\end{align}
 
 %%%% 誰か配置して %%%%
-
-\input{fig_block_board}		%ブロック線図
-
-\input{fig_decay_graph_1}	%減衰するグラフその1
-
+外乱トルクが入ったときの$\theta$の挙動
+\begin{enumerate}
+\item{インパルス状(デブリの衝突,thrusterのmisfireなど}
+\begin{align}
+M_y(s) &= M_0 (M_y(t) = M_0 \delta(t))\\
+\rightarrow 
+\theta(s) &= \frac{M_0}{I_{yy}}
+\frac{1}{(s+\frac{1}{\tau})^2}\\
+\therefore 
+\theta(t) &= \frac{M_0}{I_{yy}} 
+t
+\exp(-\frac{1}{\tau} t)\\
+\theta_{max} &= \frac{M_0}{I_{yy}}\tau \exp(-1) 
+<\mbox{許容範囲}\\
+\mbox{になるように}\tau\mbox{を決める.}
+\end{align}
 \input{fig_updown}			%極値の後0に収束するグラフ
-
+\item{sin状(太陽輻射圧など)}
+\begin{equation}
+M_y=M_0 \cos(\omega_0 t)
+\end{equation}
+定常状態では
+\begin{align}
+\theta &= \theta_{max} \cos(\omega_0 t - \Psi_0)\\
+\theta_{max} &= \frac{M_0 \tau^2}{I_{yy}}
+\frac{1}
+{\sqrt{(1-\tau^2 \omega_0)^2
++(2\tau \omega_0)^2}}\\
+\Psi_0 &= \arctan(\frac{2\tau \omega_0}{1- \tau^2 \omega_0^2})
+\end{align}
+通常,
+$\tau \omega_0<< 1\rightarrow$
+$\theta_{max} = \frac{M_0 \tau^2}{I_{yy}} = \frac{M_{\theta}}{K_\theta}$
 \input{fig_goto_static_graph.tex}	%ステップの後定常状態になるグラフ
-
+\end{enumerate}
 
 \end{document}
