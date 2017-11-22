@@ -570,5 +570,28 @@ $\tau \omega_0<< 1\rightarrow$
 $\theta_{max} = \frac{M_0 \tau^2}{I_{yy}} = \frac{M_{\theta}}{K_\theta}$
 \input{fig_goto_static_graph.tex}	%ステップの後定常状態になるグラフ
 \end{enumerate}
+もう一つの要求(制約条件):Momentum wheelの角速度
+\begin{align}
+\dot{h}&=
+I_{\omega}\dot{\Omega}=
+-K_\theta (\tau_\theta \dot{\theta} + \theta)\\
+\therefore \quad \Omega (s)&=
+-\frac{K_\theta}{I_\omega s}(\tau_\theta s+1)
+\theta (s)+\frac{\Omega_0}{s}
+\qquad \Omega_0\text{初期値}\\
+\therefore \Omega (s)&=
+-\frac{2\tau s}{I_w s(\tau s+1)^2}
+M_y(s)+\frac{\Omega_0}{s}
+\end{align}
+\begin{enumerate}
+\item 外乱がインパルス状: $M_y(s) = M_0$\\
+\begin{align}
+\rightarrow \Omega(t) = -
+\frac{M_0}{I_w}(1 + 
+(\frac{t}{\tau} - )\exp(-\frac{t}{\tau}) + \Omega_0\\
+t\rightarrow \infty
+\underexpl{\Omega_{ss}}{\textcolor{darkgreen}{}} = -\frac{M_0}{I_w} + \Omega_0
+\end{align}
 
+\end{enumerate}
 \end{document}
