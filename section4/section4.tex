@@ -578,20 +578,61 @@ I_{\omega}\dot{\Omega}=
 \therefore \quad \Omega (s)&=
 -\frac{K_\theta}{I_\omega s}(\tau_\theta s+1)
 \theta (s)+\frac{\Omega_0}{s}
-\qquad \Omega_0\text{初期値}\\
-\therefore \Omega (s)&=
+\qquad \Omega_0\text{:初期値}\\
+\therefore \qquad \Omega (s)&=
 -\frac{2\tau s}{I_w s(\tau s+1)^2}
 M_y(s)+\frac{\Omega_0}{s}
 \end{align}
 \begin{enumerate}
 \item 外乱がインパルス状: $M_y(s) = M_0$\\
 \begin{align}
-\rightarrow \Omega(t) = -
-\frac{M_0}{I_w}(1 + 
-(\frac{t}{\tau} - )\exp(-\frac{t}{\tau}) + \Omega_0\\
-t\rightarrow \infty
-\underexpl{\Omega_{ss}}{\textcolor{darkgreen}{}} = -\frac{M_0}{I_w} + \Omega_0
+\rightarrow \Omega(t) &= -
+\frac{M_0}{I_w}[1 + 
+(\frac{t}{\tau} - 1)]\exp(-\frac{t}{\tau}) + \Omega_0\\
+t&\rightarrow \infty \quad
+\underexpl{\Omega_{ss}}{\textcolor{darkgreen}{steady\,state}} = -\frac{M_0}{I_w} + \Omega_0
+\end{align}
+$M_0$:外から加わった角運動量\\
+$\rightarrow$これをホイールが吸収
+\item 外乱がsin状 :$M_y(t) = M_0 \cos(\omega_0 t)$\\
+\begin{equation}
+\Omega(s) = -
+\frac{(2ts + 1)sM_0}{I_ws(\tau s + 1)^2 (s^2 + \omega_0 ^2)} + \frac{\Omega_0}{s}
+\end{equation}
+$\tau \omega_0 <<1$を仮定,steady stateでは
+\begin{align}
+ \Omega_{ss}(t) = - \frac{M_0}
+ {I_w \omega_0}
+ \sin(\omega_0 t) + \Omega_0
+\end{align}
+\input{fig_Omega_simple_vibration}		%置コ消
+$\Omega_{max}$が$\Omega_{limit}$に収まるようにする.
+
+
+
+\input{fig_Omega_fin_graph}	%置いたらコメント消して
+\begin{description}
+\item [desaturation](momentum unloading)\\
+外から逆向きのトルクを加えてホイールの速度を戻す
+\begin{itemize}
+\item 外力トルクが必要
+\item スラスタ
+\item 磁気トルカ
+\end{itemize}
+\item [ゼロクロス]あまり使いたくない
+\begin{itemize}
+\item 回転数の計測制度が悪い
+\item 回転機構にストレス?
+\end{itemize}
+\end{description}
+\end{enumerate}
+%上の方にpitchのitemがあるけどいまやるとばぐりそうなので暫定的に
+(2) Roll,Yaw軸の(x,z軸)の制御\\
+\begin{align}
+ \begin{bmatrix}
+   M_x\\
+   M_z
+ \end{bmatrix}
 \end{align}
 
-\end{enumerate}
 \end{document}

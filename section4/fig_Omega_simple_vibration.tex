@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (O)--(4, 0)node[right]{$t$};
+\draw (0, -2)--(0, 3.5);
+\end{scope}
+
+\draw (0, 3) to node[above]{$+\Omega_\mathrm{limit}$} (4, 3);
+\draw (0, -1.5) to node[below]{$-\Omega_\mathrm{limit}$} (4, -1.5);
+
+\draw [densely dashed] (0, 1.5)node[left]{$\Omega_0$}--+(4, 0);
+
+\draw (0, 1.5) sin (0.5, 2) cos (1, 1.5) sin (1.5, 1) cos (2, 1.5) sin (2.5, 2) cos (3, 1.5) sin (3.5, 1);
+
+
+%% grid
+%\draw [step=1cm, very thin, black!25!white] (-5, -5) grid (8, 8);
+\end{tikzpicture}
