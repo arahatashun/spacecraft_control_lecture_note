@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\draw [-latex] (-4, 0)--(2, 0)node[right]{$x$};
+
+\begin{scope}[darkgreen]
+\draw [densely dashed] (-3, 0)node[below]{古い推定$\hat{x}(-)$}--+(0, 5);
+\draw (-6, 0.5) cos (-4, 1.5) sin (-3, 2) cos (-1.5, 1.5) sin (1, 0.5);
+\end{scope}
+
+\begin{scope}[red]
+\draw [densely dashed] (-1.5, 0)--+(0, 5)node[above]{新しい推定値$\hat{x}(+)$};
+\draw (-4, 0.6) cos (-2.5, 2) sin (-1.5, 3) cos (-0.5, 2) sin (1, 0.6);
+\end{scope}
+
+\draw (0, 0)node[below]{$z$}--+(0, 5);
+\draw (-1, 0.6) cos (-0.5, 2) sin (0, 4) cos (0.5, 2) sin (1, 0.6);
+
+\draw [decorate, decoration=brace] (3, 5) to node[right]{update}node[below right]{更新} (3, -1);
+
+%% grid
+%\draw [step=1cm, very thin, black!25!white] (-5, -5) grid (8, 8);
+\end{tikzpicture}

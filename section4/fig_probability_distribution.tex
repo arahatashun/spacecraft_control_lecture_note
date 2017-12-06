@@ -1,0 +1,25 @@
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\draw [-latex] (-2, 0)--(6, 0)node[right]{$x$};
+
+\draw [densely dashed] (0, 0)node[below]{$\hat{x}_{t=0}$}--+(0, 5);
+\draw (-1, 0.5) cos (-0.5, 2) sin (0, 4) cos (0.5, 2) sin (1, 0.5);
+
+\begin{scope}[darkgreen]
+\draw [densely dashed] (4, 0)node[below]{$\hat{x}_{t}$}--+(0, 5);
+\draw (-0.3, 0.5) cos (2, 1.2) sin (4, 2) cos (6, 1.2) sin (8, 0.5);
+
+\draw [->] (0.5, 1)--+(2, 0);
+\draw (6, 1.2) to[bend left=10] (6.5, 2)node[right]{確率分布の広がりの変化も}node[below right]{式で表す必要};
+\draw (1, 1) to[bend right] (1.2, -1)node[below]{$\hat{x}$の変化を微分方程式から求める};
+
+\draw [decorate, decoration=brace] (11, 5) to node[right]{propagation}node[below right]{伝搬} (11, -1);
+\end{scope}
+
+
+
+%% grid
+%\draw [step=1cm, very thin, black!25!white] (-5, -5) grid (8, 8);
+\end{tikzpicture}

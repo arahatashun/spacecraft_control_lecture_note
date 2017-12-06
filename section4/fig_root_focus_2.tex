@@ -1,0 +1,35 @@
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (-2, 0)--(2.5, 0)node[right]{$\Re$};
+\draw (0, -3)--(0, 3)node[right]{$\Im$};
+\end{scope}
+
+\begin{scope}[darkgreen, <->]
+\draw (0, 2) to[bend right=80] (0, 1.5);
+\draw (0, -2) to[bend left=80] (0, -1.5);
+\draw (-4, 0)--(-2, 0);
+\draw (O) parabola bend (-1.5, 2) (-3, 0);
+\draw (O) parabola bend (-1.5, -2) (-3, 0);
+\end{scope}
+
+
+\node at (0, 2) {$\times$};
+\node [right] at (0, 2) {$\Omega_n$};
+\node at (0, -2) {$\times$};
+\node [right] at (0, -2) {$-\Omega_n$};
+\node at (0, 1.5) {$\circ$};
+\node [right] at (0, 1.5) {$\omega_n$};
+\node at (0, -1.5) {$\circ$};
+\node [right] at (0, -1.5) {$\omega_n$};
+\node at (-2, 0) {$\circ$};
+\node [below] at (-2, 0) {$-\frac{1}{\tau_b}$};
+
+\draw (O) to[bend left=20] (1, 0.5)node[right]{2個};
+
+
+%% grid
+%\draw [step=1cm, very thin, black!25!white] (-5, -5) grid (8, 8);
+\end{tikzpicture}

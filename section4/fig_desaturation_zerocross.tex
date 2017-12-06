@@ -1,0 +1,28 @@
+\begin{tikzpicture}
+
+\coordinate (O) at (0, 0);
+
+\begin{scope}[-latex]
+\draw (O)--(4, 0)node[right]{$t$};
+\draw (0, -3.5)--(0, 3.5);
+\end{scope}
+
+\draw (0, 3)node[left]{$+\Omega_\mathrm{limit}$}--(4, 3);
+\draw (0, -3)node[left]{$-\Omega_\mathrm{limit}$}--(4, -3);
+
+\begin{scope}[darkgreen]
+\draw (0, 0.5)--(1.5, 3);
+\draw [densely dashed] (1.5, 3)--(2.5, -3);
+\draw [->] (1.5, 3)--(1.8, 1.2);
+\draw (1.8, 1.2)--(2, 0.4)--(2.5, 3);
+\draw [->] (2.5, 3)--(3, 1.5); 
+\end{scope}
+
+\draw [<-] (1.6, 2.4) to[bend left=10] (3, 3.5)node[right]{desaturation};
+
+\begin{scope}[red]
+\draw (2, 0) node[draw, circle] (zerocross) {};
+\draw (zerocross) to[bend right=10] (3, -1.5)node[right]{ゼロクロス};
+\end{scope}
+
+\end{tikzpicture}

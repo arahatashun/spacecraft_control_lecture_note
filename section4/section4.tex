@@ -633,10 +633,174 @@ $\Omega_{max}$が$\Omega_{limit}$に収まるようにする.
    M_x\\
    M_z
  \end{bmatrix}
-\end{align}
 =
 \begin{bmatrix}
-  I_
+  I_{xx} s^2 + \omega_0 h& hs\\
+  -hs & I_{zz} s^2 + \omega_0 h\\
 \end{bmatrix}
+\begin{bmatrix}
+  \Phi(s)\\
+  \Psi(s)
+\end{bmatrix}
+\end{align}
+仮定 $I_{xx} = I_{zz}$,$h \fallingdotseq const$(時間変化が小さい)
+\begin{equation}
+\rightarrow \frac{\Psi(s)}{M_z(s)} = 
+\frac{I_{xx}s^2 + \omega_0 h}{(I_{xx}s^2 + \omega_h)^2 + h^2 s^2}
+\end{equation}
+
+特性方程式は,
+\begin{equation}
+s^4+(2\omega_0 \omega_n+\omega^2)s^2+{\omega_0}^2{\omega_n}^2=0\qquad
+\text{ただし}\omega_n=\frac{h}{I_{xx}}\qquad\mathrm{Nutation 周波数}
+\end{equation}
+\begin{align}
+\therefore s^2&\equiv
+-\frac{{\omega_n}^2}{2}
+\begin{bmatrix}
+(1+2\frac{\omega_0}{\omega_n}\pm\sqrt[]{1+4\frac{\omega_0}{\omega_n}})
+\end{bmatrix}
+\\
+&=\qty[
+-\frac{{\omega_n}^2}{2}
+(1+2\frac{\omega_0}{\omega_n})\pm
+(1+2\frac{\omega_0}{\omega_n}-2(\frac{\omega_0}{\omega_n})^2.....)
+]
+\end{align}
+
+\input{fig_desaturation_zerocross}		%置コ消
+
+ロール・ヨーのcoupling\\
+$\rightarrow$どちらか一方だけ制御し,0に制御できれば,他方も0に制御できる.\\
+$\rightarrow$より重要で情報のとりやすいx軸を制御する.(スラスタ,磁気トルクなど)
+\subsection{Zero Momentum Stabilization}
+内部,外部にジャイロ剛性のための角運動量を持たない.
+\begin{equation}
+\bm{H}_b = 
+  \begin{bmatrix}
+   I_{xx}\omega_x\\
+   I_{yy}\omega_y\\
+   I_{zz}\omega_z
+  \end{bmatrix}
+  ,\qquad
+  \bm{H}_w = \bm{0}
+\end{equation}
+\begin{align}
+\begin{bmatrix}
+M_x\\
+M_y\\
+M_z
+\end{bmatrix}
+ = 
+ \begin{bmatrix}
+  I_{xx}\ddot{\phi} + 4\omega_0^2(I_{yy} - I_{zz})\phi
+  - \omega_0(I_{xx} - I_{yy} + I_{zz})\dot{\psi}\\
+  I_{yy}\ddot{\theta} + 3 \omega_0^2(I_{xx} - I_{zz})\theta\\
+  I_{zz}\ddot{\psi} + \omega_0 ^2 (I_{yy}- I_{xx})\psi
+  + \omega_0(I_{xx} + I_{zz} - I_{yy})\dot{\phi}
+ \end{bmatrix}
+\end{align}
+ (gravity gradientの効果を含む)\\
+ 地球指向のための$\omega_0$を介してx,z軸がcouoling
+ \begin{equation}
+ \omega_0=\frac{\mu}{r^3}
+ \equiv\frac{2\pi}{6000}\approx
+ 10^{-3}\mathrm{rad/s}\qquad\text{とても小さい}
+ \end{equation}
+$\therefore$3軸は独立として別々に制御する\\
+\begin{description}
+\item 制御方法
+\begin{itemize}
+\item 各軸にリアクションホイール(X,Y,Z+skew(予備)などの構成)
+\item unloadingする際にはスラスタなどの外力トルクを使う
+\end{itemize}
+制御則の例
+\begin{equation}
+M_x=I_w\dot{h_x}=I_WK_\phi(\tau_\phi 
+\underbrace{\dot{\phi}}_{\text{バイアスモメンタム衛星のy軸周り\\
+と同じ議論}}+\phi)
+\qquad\text{PD制御}
+\end{equation}
+\end{description}
+
+
+\noindent
+（補足）
+柔軟性の影響\\
+\qquad \qquad $\rightarrow$ 太陽電池パドル，大型アンテナ
+
+単純なモデル\\
+solar array \\
+\input{fig_column_loading_torque}
+
+軸回りの運動方程式
+\begin{align}
+I_b \ddot{\theta_b} + K(\theta_b - \theta_s) = T \label{eq:lb}\\
+I_s \ddot{\theta_s} + K\theta_s - \theta_b) = 0 \label{eq:ls}\\
+\theta_r = \theta_s - \theta_b\mbox{ねじれ}\label{eq:thetar}
+\end{align}
+~\eqref{eq:lb},~\eqref{eq:thetar}より
+\begin{align}
+  I_b \ddot{\theta_b} + I_s\ddot{theta_s} = T\\
+  (I_b + I_s)\ddot{\theta_b} + I_s(\ddot{\theta_s} - \ddot{\theta_b}) = T
+\end{align}
+$I_T:= I_s + I_b$とおくと
+\begin{equation}
+I_T \ddot{\therefore_b} = T - I_s \ddot{\theta_r} \label{eq:I_T}
+\end{equation}
+~\eqref{eq:ls}より
+\begin{equation}
+\ddot{\theta}_s-\ddot{\theta}_b  +\ddot{\theta}_b
++\frac{K}{I_s}\theta_r=0\\
+\text{~\eqref{eq:thetar}より}
+\therefore \ddot{\theta}_r+\omega_n^2\theta_r=-
+\ddot{\theta}_b \label{eq:theta_r2}
+\end{equation}
+ここで$\omega_n=\sqrt{\frac{K}{I_s}}$
+(solar arrayのnatural frequency)
+$T\rightarrow \theta_b$への伝達関数を求める.
+\begin{align}
+\text{~\eqref{eq:theta_r2}より} 
+\theta_r = \frac{-s^2}{s^2 + \omega^2} \theta_b\\
+\text{~\eqref{eq:I_T}より}
+I_T s^2 \theta_b + I_s s^2 \theta_r= T\\
+\therefore (I_T s^2 - \frac{I_s s^4}{s^2 + \omega^2})
+\theta_b = T
+\end{align}
+
+\input{fig_block_board_2}
+
+\input{fig_root_focus_2}
+
+\begin{itemize}
+\item K>0で安定である
+\item どんなKでも,$\omega_n$から$\Omega_n$の振動が
+残る
+\item 追従性,外乱耐性などを考えて$K_\theta$,$\tau_\theta$を決める
+\end{itemize}
+
+%\newpage
+%カルマンフィルター\\
+%台車の位置$x$を推定するシステムを考える。
+%\begin{enumerate}
+%\item a = $\ddot{x}$ $\rightarrow$ 2回積分すればx\\
+%			aにはノイズ(誤差)が入る\\
+ %           $\rightarrow$誤差が発散する
+%\item カメラで時々台車の位置を測定する
+%\end{enumerate}
+%1,2のどちらに重みを置くべきか?
+
+%\input{fig_vehcle_camera}
+
+%\input{fig_probability_distribution}
+
+%\input{fig_probability_update}
+
+%\underline{状態方程式の線形化}---線形化してカルマンフィルターを適用する\qquad EKF
+%(Extended Kalman Filter)
+%\begin{enumerate}
+%\item 推定系の世界(仮想)\\
+%$\dot{\bm{\omega}} = f(\bm{\omega})\leftarrow \mbox{外乱は含まない}$
+%\end{enumerate}
 
 \end{document}
