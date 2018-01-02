@@ -4,16 +4,17 @@
 \coordinate (O) at (0, 0);
 \coordinate (start) at (-2, 0);
 \coordinate (land) at (-3, 0);
-
+\node at (-2,5) {H(s)+1=0の根軌跡};
 \begin{scope}[-latex]
 \draw (-4, 0)--(2, 0)node[right]{$\Re$};
 \draw (0, -2)--(0, 4)node[right]{$\Im$};
 \end{scope}
 
 \begin{scope}[->]
-\draw(1, 0) to node[above]{\textcolor{darkgreen}{$K = 0$}} (O);
-\draw (land)--(start)node[above]{\textcolor{darkgreen}{$K \rightarrow \infty$}};
-\draw (land)--+(-1, 0)node[above]{\textcolor{darkgreen}{$K \rightarrow \infty$}};
+\draw[red](1, 0) to node[above]{\textcolor{darkgreen}{$K = 0$}} (O);
+\draw[red](-1,0) to (0,0);
+\draw[red] (land)--(start)node[above]{\textcolor{darkgreen}{$K \rightarrow \infty$}};
+\draw[red] (land)--+(-1, 0)node[above]{\textcolor{darkgreen}{$K \rightarrow \infty$}};
 \draw (O) parabola bend ($(O)!0.5!(land) + (0, 2.5)$) (land);
 \draw (O) parabola bend ($(O)!0.5!(land) + (0, -2.5)$) (land);
 \end{scope}

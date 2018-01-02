@@ -1,0 +1,21 @@
+# intermediate files #
+####################################
+*.bat
+*.gz
+*.aux
+*.log
+*.bbl
+*.blg
+*.lot
+*.tcp
+*.toc
+*.lof
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

@@ -556,8 +556,8 @@ geomagnetic equational planeから測ったlatitude
 \rightarrow \bm{B}^m = - nabra \phi_m
 = - \frac{\mu_m}{R^3}
 \begin{bmatrix}
-3 \sin\lambda_m \cos\lambda_m \cos\eta_{\overexpl{n}{経度}} \\
-3 \sin\lambda_m \cos\lambda_m \sin\eta_n \\
+3 \sin\lambda_m \cos\lambda_m \cos\eta_{\overexpl{経度}{m}} \\
+3 \sin\lambda_m \cos\lambda_m \sin\eta_m \\
 3 \sin^2\lambda_m - 1
 \end{bmatrix}
 \end{equation}
@@ -566,7 +566,7 @@ geomagnetic equational planeから測ったlatitude
 \bm{q}_m^b = \bm{m}_m^b \times 
 (
 \underexplline{C_m^b}{\underexpl{C_i^b}{\hspace{-5mm} \uparrow \text{姿勢データ}} \underexpl{C_m^i}{\hspace{5mm}Const.}} \ 
-\underexplline{B^m}{\hspace{2.5cm}\text{データベース（IGRF）}}
+\underexplline{\bm{B}^m}{\hspace{2.5cm}\text{データベース（IGRF）}}
 )
 \end{equation}
 $\bm{m}_m^b$をどうやって推定するか？

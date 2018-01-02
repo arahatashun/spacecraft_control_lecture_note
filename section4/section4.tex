@@ -19,7 +19,7 @@
 \item 能動制御
 	\begin{itemize}
     \item Bias momentum
-    \item zero momentum
+    \item Zero momentum
     \end{itemize}
 \end{itemize}
 \renewcommand{\labelitemi}{\textbullet}
@@ -39,13 +39,13 @@ I_{xx}\dot{\omega_x}&=(I_{yy}-I_{zz})w_yw_z\\
 I_{yy}\dot{\omega_y}&=(I_{zz}-I_{xx})w_zw_x\\
 I_{zz}\dot{\omega_z}&=(I_{xx}-I_{yy})w_xw_z
 \end{align}
-今，$\omega_y=\omega_s(\mbox{目標)}+\epsilon(\mbox{擾乱})\qquad |\epsilon| \ll 1$\\
+今，$\omega_y=\omega_s(\text{目標)}+\epsilon(\text{擾乱})\qquad |\epsilon| \ll 1$\\
 $|\omega_x|，|\omega_z| \ll 1$と仮定する.
-
+Eulerの方程式に代入して,二次の微小量を消すと,
 \begin{align}
 I_{xx}\dot{\omega_x} &= (I_{yy}-I_{zz})\omega_s\omega_z\\
 I_{yy}\dot{\epsilon} &= 0 \\
-I_{zz}\dot{\omega_z} &= (I_{xx}-I_{yy})\omega_s
+I_{zz}\dot{\omega_z} &= (I_{xx}-I_{yy})\omega_s\omega_x
 \end{align}
 以上の線形の運動方程式になる.
 
@@ -54,21 +54,23 @@ I_{zz}\dot{\omega_z} &= (I_{xx}-I_{yy})\omega_s
 \underline{Dynamics解析}
 \begin{enumerate}[label=\theenumi)]
 \item $y$軸 \qquad $\varepsilon = \mathrm{Const.}$
-\item $x, z$軸 \quad Conplug $\rightarrow$ 
+\item $x, z$軸 \quad Couplug $\rightarrow$ 
 	\begin{align}
-    I_{xx} \ddot{\omega_x} & = (I_{yy} - I_{zz})\omega_s \dot{\omega_z} \\
-    		&= \frac{(I_{yy}-I_{zz})(I_{xx}-I_{yy})}{I_{zz}} {\omega_s}^2 \omega_x
+    I_{xx} \ddot{\omega_x} 
+    & = (I_{yy} - I_{zz})\omega_s \dot{\omega_z} \\
+    &= \frac{(I_{yy}-I_{zz})(I_{xx}-I_{yy})}{I_{zz}}
+    {\omega_s}^2 \omega_x
     \end{align}
     ここで
-    \[ a = \frac{(I_{yy}-I_{zz})(I_{xx}-I_{yy})}{I_{zz}} {\omega_s}^2 \]
+    \[ a = \frac{(I_{yy}-I_{zz})(I_{yy}-I_{xx})}{I_{zz}} {\omega_s}^2 \]
     とおくと，
     \[ \ddot{\omega_x} + a\omega_x = 0 \]
     \[ \ddot{\omega_z} + a\omega_z = 0 \]
 \end{enumerate}
 安定(発散でない)のための必要条件は
 \begin{equation}
-a>0\Leftrightarrow I_{yy}>I_{xx},I_{zz}\quad or \quad I_{yy}
-< I_{xx}, I_{zz}
+a>0\Leftrightarrow I_{yy}>I_{xx},I_{xz}\quad or \quad I_{yy}
+< I_{xx}, I_{xz}
 \end{equation}
 つまりy軸が慣性モーメントの最大軸か最小軸のとき.
 
@@ -86,7 +88,7 @@ if\quad a<0 \Rightarrow
 A\exp(\sqrt[]{-a}t)\rightarrow\infty
 \end{equation}
 $x$と$z$の連成振動\\
-簡単のために$I_{xx} = I_{yy}=I_T,I_{yy}I_S$とおく.\\
+簡単のために$I_{xx} = I_{zz}=I_T,I_{yy}=I_S$とおく.\\
 \begin{align}
 \omega_x&=A\sin(\lambda t-\phi)\\
 \omega_z&=A\frac{|I_S-I_T|}{I_S-I_T}
@@ -94,7 +96,7 @@ $x$と$z$の連成振動\\
 \lambda&=\sqrt[]{a}=\frac{|I_S-I_T|}{I_T}\omega_s\\
 A,\phi&:\text{積分定数}
 \end{align}
-$\omega_x,\omega_z$は$90^\circ$位相ずれで振動.$\sqrt[]{\omega_x^2+\omega_z^2}=A=\mathrm{Const.}$の円運動\\
+$\omega_x,\omega_z$は$90^\circ$位相ずれで振動.\qquad$\sqrt[]{\omega_x^2+\omega_z^2}=A=\mathrm{Const.}$の円運動\\
 
 
 \noindent
@@ -117,11 +119,11 @@ $\omega_x,\omega_z$は$90^\circ$位相ずれで振動.$\sqrt[]{\omega_x^2+\omega
 \end{center}
 
 \begin{itemize}
-\item $\bm{H}$とスピン軸の貼る平面内いつも
+\item $\bm{H}$とスピン軸の貼る平面内にいつも
 $\bm{\omega}$がある.
 \item 衛星は$\bm{\omega}$を中心に回る.
 \end{itemize}
-慣性系においてy(スピン軸)は$\bm{H}$の軸周りに回転する.
+慣性系においてy(スピン軸)は$\bm{H}$周りに回転する.
 これを``Nutation運動''と呼ぶ.
 
 \begin{minipage}{0.45\linewidth}
@@ -153,25 +155,23 @@ T&=\frac{1}{2}(I_T{\omega_T}^2+I_S{\omega_S}^2)
 \qquad \text{減少する}
 \label{T}\\
 H^2&=
-{I_T}^2+{\omega_T}^2+{I_S}^2+{\omega_S}^2\qquad
+{I_T}^2{\omega_T}^2+{I_S}^2{\omega_S}^2\qquad
 \text{外力が働らかなければ一定}
 \label{H}\\
 \sin\theta&=\frac{I_T \omega_T}{H}\rightarrow
 \sin^2\theta=\frac{{I_T}^2{\omega_T}^2}
-{H^2}=\frac{I_T}{(I_S-I_T)H^2}(2I_ST-H)
+{H^2}=\frac{I_T}{(I_S-I_T)H^2}(2I_ST-H^2)
 \end{align}
 時間微分すると
 \begin{align}
 2\sin\theta \cos\theta \cdot \dot{\theta}&=
-\frac{I_T}{(I_S-I_T)H^2}2I_S\dot{Y}\\
+\frac{I_T}{(I_S-I_T)H^2}2I_S\dot{T}\\
 \therefore\qquad \dot{\theta}&=
 \frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}\\
-&=\frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}
-\end{align}
+&=\frac{2I_SI_T\dot{T}}{\sin2\theta(I_S-I_T)H^2}\end{align}
 エネルギー散逸があるので$\dot{T}<0$\\
 よって$I_S>I_T$である必要がある.
 つまりスピン軸周りの$I$が最大(平らな円筒形)
-
 \begin{center}
 \input{fig_rounding_column}
 \end{center}
@@ -180,11 +180,11 @@ H^2&=
 \noindent
 ・定性的な解釈\\
 \[ T=\frac{H^2}{2I_{SS}} \qquad I_{SS}\text{:各瞬間ごとのスピン軸周りの慣性モーメント} \]
-($\because T=\frac{1}{2}I_{SS}\omega_{ss}^2$)\\
+$$(\because T=\frac{1}{2}I_{SS}\omega_{SS}^2,\quad H^2=I^2_{SS}\omega^2_{SS})$$\\
 $H$:一定，$T$が減る.\\
 \qquad $T$はどこまで小さくできるか?\\
 $\rightarrow$ $I_{SS}$が最大となると$T$最小\\
-$\rightarrow$ 最後は$I$最大の軸周りの回転に落ち着く\\
+$\rightarrow$ 最後は$I$最大の軸周りの回転に収束\\
 $I_S>I_T$が成り立つとき，$|\dot{T}|$を大きくすれば$|\theta|$は0に戻りやすい.
 $\rightarrow$エネルギー散逸を起こしてやればいい.
 \begin{enumerate}
@@ -223,18 +223,21 @@ $\rightarrow$エネルギー散逸を起こしてやればいい.
 +(I_{SP}\omega_{P}
 +I_{SR}\omega_{R})^2
 \label{eq:4_2}\\
-\text{ここで}\omega&
+\text{ここで}\omega_n&
 \equiv\frac{I_{SP}\omega_P
 +I_{SR}\omega_{R}}{I_T}
 \qquad \text{(Nutation角周数)}
 \label{eq:4_3}
 \end{align}
-~\eqref{eq:4_2}を微分すると,$\dot{H}=0$より,
+~\eqref{eq:4_2}を微分すると,$\dot{H}=0$より
 \begin{align}
   I_T^2\omega_T\dot{\omega_T} +
-  (I_{SP}\omega{P}+I_{SR}\omega_{R})
+  (I_{SP}\omega_{P}+I_{SR}\omega_{R})
   (I_{SP}\dot{\omega_{P}}+
- \Leftarrow I_{SR}\dot{\omega_{R}})=0 \\
+ I_{SR}\dot{\omega_{R}})=0 \\
+\end{align}
+$\frac{1}{I_T}$倍すると
+\begin{align}
   I_T\omega_{T}\dot{\omega_{T}} =
   -\omega_{n}(I_{SP}\dot{\omega_{P}}
   +  I_{SR}\dot{\omega_{R}}) \label{eq:4_4}
@@ -242,7 +245,7 @@ $\rightarrow$エネルギー散逸を起こしてやればいい.
 ~\eqref{eq:4_1}を微分すると,
 \begin{align}
 \dot{T}&=
-I_T\omega_T \dot{\omega{T}} +
+I_T\omega_T \dot{\omega_{T}} +
 I_{SP}\omega_{P}\dot{\omega_{P}}+
 I_{SR}\omega_{R}\dot{\omega_{R}}
 \label{eq:4_5}\\
@@ -250,26 +253,27 @@ I_{SR}\omega_{R}\dot{\omega_{R}}
 \text{~\eqref{eq:4_4}を代入}
 \begin{align}
 \dot{T}&= 
--I_{SP}(\omega_{n}\omega_{p})
+-I_{SP}(\omega_{n}-\omega_{P})
 \dot{\omega_{p}}
-- I_{SR}(\omega_{n}\omega_{R})
+- I_{SR}(\omega_{n}-\omega_{R})
 \dot{\omega_{R}}\label{eq:4_6}\\
 \end{align}
 ここで
-$\lambda\equiv\omega_n-\omega_P$,
-\qquad$\lambda\equiv\omega_n-\omega_R$
+$\lambda_P\equiv\omega_n-\omega_P$,
+\qquad
+$\lambda_R\equiv\omega_n-\omega_R$
 と置くと,
 \begin{align}
 \dot{T}&=
--I_{SP}\lambda_p \dot{\omega_P} - 
+-I_{SP}\lambda_P \dot{\omega_P} - 
 I_{SR}\lambda_R \dot{\omega_R}\\
  &= \dot{T_P}+ \dot{T_R}
 \end{align}
 \begin{empheq}[left=\empheqlbrace]{align}
  \dot{T_P}=
- -I_{SP}\lambda_P \omega_{P}\label{eq:4_7} \\
+ -I_{SP}\lambda_P \dot{\omega_{P}}\label{eq:4_7} \\
   \dot{T_R}= 
-  -I_{SR}\lambda_R\omega_{R}\label{eq:4_8}
+  -I_{SR}\lambda_R\dot{\omega_{R}}\label{eq:4_8}
 \end{empheq}
 ~\eqref{eq:4_7}~\eqref{eq:4_8}
 $\Rightarrow$~\eqref{eq:4_4}
@@ -278,10 +282,10 @@ I_T \omega_T \dot{\omega_T} = \omega_n(
 \frac{\dot{T_P}}{\lambda_P} + 
 \frac{\dot{T_R}}{\lambda_R})\label{eq:4_9}
 \end{equation}
-$\sin{\theta}^2=
+$\sin^2{\theta}=
 \frac{I_T^2 \omega_{T}^2}{H^2}$より
 \begin{align}
-2\sin{\theta}\cos{\theta}\dot{\theta}=
+2\sin{\theta}\cos{\theta}\cdot\dot{\theta}=
 \frac{2I_T^2 \omega_T \dot{\omega_T}}{H^2}
 =\frac{2I_T\omega_n (\frac{\dot{T_P}}{\lambda_P} + 
 \frac{\dot{T_R}}{\lambda_R})}{H^2}\\
@@ -325,6 +329,8 @@ $\frac{I_{SR}}{I_T}=\frac{2}{3}$の時
 $|\dot{T}_p|>2|\dot{T}_R|$で安定\\
 $\rightarrow$プラットフォームでのエネルギー散逸を大きくする\\
 ($\Rightarrow$ニューテーションダンパーをプラットフォームに乗せるなど)\\
+
+
 なぜ大事か$\rightarrow$設計自由度を増やす\\
 
 \input{fig_columnPR}
@@ -339,7 +345,7 @@ INTELSAT-IV%\Roman{4}
 %\input{fig_Euler_method_graph}
 
 
-\subsection{Bias Momentum方式}
+\subsection{Bias Momentum Stabilization}
 \qquad ---ジャイロ剛性を得るためのホイールを中に持つ
 
 \begin{itemize}
@@ -375,15 +381,15 @@ h_z&=0
   \end{bmatrix}
 =
 \begin{bmatrix}
-  \dot{\Phi}-\omega_o \Psi \\
+  \dot{\phi}-\omega_o \psi \\
   \dot{\theta} -\omega_o\\
-  \dot{\Psi} -\omega_o\Phi
+  \dot{\psi} -\omega_o\phi
  \end{bmatrix}
 \end{equation}
 \begin{itemize}
-\item [$\phi,\theta,\psi$]
+\item [$\phi,\theta,\psi$:]
 orbital frameからのずれ
-\item [$\omega_0$]
+\item [$\omega_0$:]
 地球指向のための角速度
 (円軌道$\rightarrow$軌道角速度)
 \end{itemize}
@@ -405,19 +411,31 @@ orbital frameからのずれ
  \end{bmatrix}
 =
 \begin{bmatrix}
-I_{xx}(\dot{\Phi}-\omega_o\Psi)\\
+I_{xx}(\dot{\phi}-\omega_o\psi)\\
 I_{yy}(\dot{\theta}-\omega_o)-h\\
-I_{zz}(\dot{\Psi}+\omega_o) \Phi
+I_{zz}(\dot{\psi}+\omega_o) \phi
 \end{bmatrix}
 \end{align}
 
 \begin{align}
-\bm{M}^b&=
+\bm{M}^b&
+(\text{外部トルク})
+=
 \dot{\bm{H_{rel}^b}} +
-\dot{\omega}^b \times \dot{H}^b\\
+\dot{\bm{\omega}}^b \times \dot{\bm{H}}^b\\
 &=
 \begin{bmatrix}
-I_{xx}(\ddot{\Phi} -\omega_o\dot{\psi}) + 
+I_{xx}(\ddot{\phi} -\omega_o\dot{\psi}) + 
+h(\dot{\psi}+\omega_0 \theta)+
+(I_{zz} - I_{yy})\times
+(\dot{\theta}-\omega_0)
+(\dot{\psi}+\omega_0 \phi)\\
+-\dot{h}+I_{yy}\ddot{\theta}\\
+I_{zz}(\ddot{\psi}+\omega_0 \dot{\phi})
+-h(\ddot{\phi}-\omega_0\psi)+
+(I_{yy}-I_{xx})
+(\dot{\theta}-\omega_0)
+(\dot{\phi}-\omega_0\psi)
 %h(\dot{\s})
 \end{bmatrix}
 \end{align}
@@ -426,7 +444,7 @@ I_{xx}(\ddot{\Phi} -\omega_o\dot{\psi}) +
 \begin{enumerate}[label=仮定\maru{\theenumi}]
 \item
 \begin{equation}
-h \ll \omega_0 I_{xx}, \ \omega_0 I_{yy}, \ \omega_0 I_{zz}
+h \gg \omega_0 I_{xx}, \ \omega_0 I_{yy}, \ \omega_0 I_{zz}
 \end{equation}
 $\dot{\theta}, \dot{\psi}, \dot{\phi}$が小さい
 
@@ -440,26 +458,26 @@ Gravity Gradient Torqueはあらかじめ含めておく
     0
     \end{bmatrix}
 \end{equation}
+$M_x,M_y,M_z$: gravity gradient以外の外力トルク
 \begin{align}
 \rightarrow
 & M_x = I_{xx} \ddot{\phi} + \omega_0 h \phi + h \dot{\psi} \\
-& M_y = I_{yy} \ddot{\theta} + 3{\omega_0}^2 \theta (I_{zz} - I_{xx}) + \dot{h} \\
-& M_z = I_{zz} \ddot{\psi} + \omega_0 h \psi - h \dot{\theta}
+& M_y = I_{yy} \ddot{\theta} + 3{\omega_0}^2 \theta (I_{zz} - I_{xx}) - \dot{h} \\
+& M_z = I_{zz} \ddot{\psi} + \omega_0 h \psi - h \dot{\phi}
 \end{align}
 \end{enumerate}
-特徴
+$<$特徴$>$
 \begin{enumerate}[label=\theenumi)]
 \item ピッチ軸周り$\rightarrow$独立
 \item ロール,ヨー軸周り$\rightarrow$hを介してカップリング
 している
 \end{enumerate}
-制御を考える
+$<$制御$>$
 \begin{enumerate}[label=(\theenumi)]%IV%IV
 \item　ピッチ軸:hを使ってコントロールする
-(ホイールの回転速度を変化させる)\\
-Simple Caseとして$I_{xx}=I_{yy}$とする\\
+(ホイールの角速度を変化させる)\\
+Simple Caseとして$I_{xx}=I_{zz}$とする\\
 $\rightarrow M_y=I_{yy}\ddot{\theta}-\dot{h}$
-\end{enumerate}
 制御則の例
 \begin{equation}
 \dot{h}=-K_{\theta}(\tau_{\theta}\dot{\theta}+\theta)
@@ -495,16 +513,15 @@ $
 H(s)=G(s)K(s)=
 \frac{K_{\theta}(\tau_{\theta}s+1)}{I_{yy}s^2}
 $
-
 \input{fig_root_focus}
 \input{fig_decay_graph_1}	%減衰するグラフその1
-\begin{enumerate}[label=\maru{\theenumi}]
+\begin{enumerate}[label=\protect\circled{\arabic*}]
 \item little damping
 \item over damping
 \footnote{little dampingとover dampingどちらが
 良いのかはミッション次第}
 \item critically damped system　(臨界減衰)\\
-$\rightarrow$一般的にはこれを目指す.
+$\rightarrow$これがbest.
 \end{enumerate}
 臨界減衰であるためには,
 \begin{equation}
@@ -525,7 +542,7 @@ $\rightarrow$一般的にはこれを目指す.
 \end{align}
 
 \begin{align}
-\frac{\theta (s)}{\theta_{ref} (s)}
+\frac{\theta (s)}{\theta_{\mathrm{ref}} (s)}
 = \frac{GK}{1+GK}
 &= \frac{2 \sqrt{K_{\theta} I_{yy}}(s+\frac{1}{2\tau})}
 {I_{yy}(s+\frac{1}{\tau})^2}\\
@@ -535,11 +552,12 @@ $\rightarrow$一般的にはこれを目指す.
 \end{align}
 
 %%%% 誰か配置して %%%%
-外乱トルクが入ったときの$\theta$の挙動
+\paragraph{外乱トルクが入ったときの$\theta$の挙動}
 \begin{enumerate}
-\item{インパルス状(デブリの衝突,thrusterのmisfireなど}
+\item{インパルス状\footnote{デブリの衝突,thrusterのmisfireなど}}
 \begin{align}
-M_y(s) &= M_0 (M_y(t) = M_0 \delta(t))\\
+M_y(s) &= M_0\\
+(M_y(t) &= M_0 \delta(t))\\
 \rightarrow 
 \theta(s) &= \frac{M_0}{I_{yy}}
 \frac{1}{(s+\frac{1}{\tau})^2}\\
@@ -548,29 +566,28 @@ M_y(s) &= M_0 (M_y(t) = M_0 \delta(t))\\
 t
 \exp(-\frac{1}{\tau} t)\\
 \theta_{max} &= \frac{M_0}{I_{yy}}\tau \exp(-1) 
-<\mbox{許容範囲}\\
-\mbox{になるように}\tau\mbox{を決める.}
+<\text{許容範囲になるように}\tau\text{を決める.}
 \end{align}
 \input{fig_updown}			%極値の後0に収束するグラフ
-\item{sin状(太陽輻射圧など)}
+\item{sin状\footnote{太陽輻射圧など}}
 \begin{equation}
 M_y=M_0 \cos(\omega_0 t)
 \end{equation}
 定常状態では
 \begin{align}
-\theta &= \theta_{max} \cos(\omega_0 t - \Psi_0)\\
+\theta &= \theta_{max} \cos(\omega_0 t - \psi_0)\\
 \theta_{max} &= \frac{M_0 \tau^2}{I_{yy}}
 \frac{1}
 {\sqrt{(1-\tau^2 \omega_0)^2
 +(2\tau \omega_0)^2}}\\
-\Psi_0 &= \arctan(\frac{2\tau \omega_0}{1- \tau^2 \omega_0^2})
+\psi_0 &= \arctan(\frac{2\tau \omega_0}{1- \tau^2 \omega_0^2})
 \end{align}
 通常,
 $\tau \omega_0<< 1\rightarrow$
 $\theta_{max} = \frac{M_0 \tau^2}{I_{yy}} = \frac{M_{\theta}}{K_\theta}$
 \input{fig_goto_static_graph.tex}	%ステップの後定常状態になるグラフ
 \end{enumerate}
-もう一つの要求(制約条件):Momentum wheelの角速度
+\paragraph{もう一つの要求(制約条件):Momentum wheelの角速度}
 \begin{align}
 \dot{h}&=
 I_{\omega}\dot{\Omega}=
@@ -594,6 +611,7 @@ t&\rightarrow \infty \quad
 \end{align}
 $M_0$:外から加わった角運動量\\
 $\rightarrow$これをホイールが吸収
+\input{fig_Omega_fin_graph}
 \item 外乱がsin状 :$M_y(t) = M_0 \cos(\omega_0 t)$\\
 \begin{equation}
 \Omega(s) = -
@@ -605,17 +623,15 @@ $\tau \omega_0 <<1$を仮定,steady stateでは
  {I_w \omega_0}
  \sin(\omega_0 t) + \Omega_0
 \end{align}
-\input{fig_Omega_simple_vibration}		%置コ消
-$\Omega_{max}$が$\Omega_{limit}$に収まるようにする.
+\input{fig_Omega_simple_vibration}
+$\Omega_{max}$が$\pm\Omega_{limit}$に収まるようにする.
 
-
-
-\input{fig_Omega_fin_graph}	%置いたらコメント消して
+\input{fig_desaturation_zerocross}
 \begin{description}
 \item [desaturation](momentum unloading)\\
 外から逆向きのトルクを加えてホイールの速度を戻す
+外力トルクが必要
 \begin{itemize}
-\item 外力トルクが必要
 \item スラスタ
 \item 磁気トルカ
 \end{itemize}
@@ -627,7 +643,7 @@ $\Omega_{max}$が$\Omega_{limit}$に収まるようにする.
 \end{description}
 \end{enumerate}
 %上の方にpitchのitemがあるけどいまやるとばぐりそうなので暫定的に
-(2) Roll,Yaw軸の(x,z軸)の制御\\
+\item Roll,Yaw軸の(x,z軸)の制御\\
 \begin{align}
  \begin{bmatrix}
    M_x\\
@@ -643,23 +659,25 @@ $\Omega_{max}$が$\Omega_{limit}$に収まるようにする.
   \Psi(s)
 \end{bmatrix}
 \end{align}
-仮定 $I_{xx} = I_{zz}$,$h \fallingdotseq const$(時間変化が小さい)
+仮定 $I_{xx} = I_{zz}$,$h \fallingdotseq Const$(時間変化が小さい)
 \begin{equation}
-\rightarrow \frac{\Psi(s)}{M_z(s)} = 
-\frac{I_{xx}s^2 + \omega_0 h}{(I_{xx}s^2 + \omega_h)^2 + h^2 s^2}
+\rightarrow \frac{\psi(s)}{M_z(s)} = 
+\frac{I_{xx}s^2 + \omega_0 h}{(I_{xx}s^2 + \omega_0 h)^2 + h^2 s^2}
 \end{equation}
 
 特性方程式は,
 \begin{equation}
-s^4+(2\omega_0 \omega_n+\omega^2)s^2+{\omega_0}^2{\omega_n}^2=0\qquad
+s^4+(2\omega_0 \omega_n+\omega_n^2)s^2+{\omega_0}^2{\omega_n}^2=0\qquad
 \text{ただし}\omega_n=\frac{h}{I_{xx}}\qquad\mathrm{Nutation 周波数}
 \end{equation}
 \begin{align}
-\therefore s^2&\equiv
+\therefore s^2&
+\approx
 -\frac{{\omega_n}^2}{2}
 \begin{bmatrix}
-(1+2\frac{\omega_0}{\omega_n}\pm\sqrt[]{1+4\frac{\omega_0}{\omega_n}})
-\end{bmatrix}
+(1+2\frac{\omega_0}{\omega_n})
+\pm\sqrt[]{1+4\frac{\omega_0}{\omega_n}})
+\end{bmatrix}\footnotemark
 \\
 &=\qty[
 -\frac{{\omega_n}^2}{2}
@@ -667,12 +685,27 @@ s^4+(2\omega_0 \omega_n+\omega^2)s^2+{\omega_0}^2{\omega_n}^2=0\qquad
 (1+2\frac{\omega_0}{\omega_n}-2(\frac{\omega_0}{\omega_n})^2.....)
 ]
 \end{align}
-
-\input{fig_desaturation_zerocross}		%置コ消
-
+\footnotetext{$\omega_0 \ll \omega_n$を仮定}
+\begin{enumerate}
+\item [$+$の方]
+\begin{align}
+s^2&\approx-\omega^2_n(1+2\frac{\omega_0}{\omega_n})\approx-\omega^2_n\\
+\rightarrow s&=\pm\omega_n j
+\end{align}
+Nutation周波数で振動
+\item [$-$の方]
+\begin{align}
+s^2&\approx
+-\frac{\omega^2_n}{2}\times 2(\frac{\omega_0}{\omega_n})^2
+\approx-\omega^2_0\\
+\rightarrow s&=\pm\omega_0 j
+\end{align}
+軌道角速度で振動
+\end{enumerate}
 ロール・ヨーのcoupling\\
 $\rightarrow$どちらか一方だけ制御し,0に制御できれば,他方も0に制御できる.\\
 $\rightarrow$より重要で情報のとりやすいx軸を制御する.(スラスタ,磁気トルクなど)
+\end{enumerate}
 \subsection{Zero Momentum Stabilization}
 内部,外部にジャイロ剛性のための角運動量を持たない.
 \begin{equation}
@@ -701,26 +734,26 @@ M_z
  \end{bmatrix}
 \end{align}
  (gravity gradientの効果を含む)\\
- 地球指向のための$\omega_0$を介してx,z軸がcouoling
+ 地球指向のための$\omega_0$を介してx,z軸がcoupling
  \begin{equation}
- \omega_0=\frac{\mu}{r^3}
- \equiv\frac{2\pi}{6000}\approx
+ \omega_0=\sqrt{\frac{\mu}{r^3}}
+ \approx
+ \frac{2\pi}{6000}\approx
  10^{-3}\mathrm{rad/s}\qquad\text{とても小さい}
  \end{equation}
-$\therefore$3軸は独立として別々に制御する\\
+$\therefore\quad$3軸は独立として別々に制御する\\
 \begin{description}
 \item 制御方法
 \begin{itemize}
 \item 各軸にリアクションホイール(X,Y,Z+skew(予備)などの構成)
 \item unloadingする際にはスラスタなどの外力トルクを使う
 \end{itemize}
-制御則の例
+\item 制御則の例
 \begin{equation}
-M_x=I_w\dot{h_x}=I_WK_\phi(\tau_\phi 
-\underbrace{\dot{\phi}}_{\text{バイアスモメンタム衛星のy軸周り\\
-と同じ議論}}+\phi)
+M_x=I_w\dot{h_x}=I_WK_\phi(\tau_\theta\dot{\phi}\footnotemark+\phi)
 \qquad\text{PD制御}
 \end{equation}
+\footnotetext{バイアスモメンタム衛星のy軸周りと同じ議論}
 \end{description}
 
 
@@ -734,28 +767,29 @@ solar array \\
 \input{fig_column_loading_torque}
 
 軸回りの運動方程式
-\begin{align}
+\begin{empheq}[left=\empheqlbrace]{align}
 I_b \ddot{\theta_b} + K(\theta_b - \theta_s) = T \label{eq:lb}\\
-I_s \ddot{\theta_s} + K\theta_s - \theta_b) = 0 \label{eq:ls}\\
-\theta_r = \theta_s - \theta_b\mbox{ねじれ}\label{eq:thetar}
-\end{align}
+I_s \ddot{\theta_s} + K(\theta_s - \theta_b) = 0 \label{eq:ls}\\
+\theta_r = \theta_s - \theta_b\text{(ねじれ)}\label{eq:thetar}
+\end{empheq}
 ~\eqref{eq:lb},~\eqref{eq:thetar}より
 \begin{align}
-  I_b \ddot{\theta_b} + I_s\ddot{theta_s} = T\\
+  I_b \ddot{\theta_b} + I_s\ddot{\theta_s} = T\\
   (I_b + I_s)\ddot{\theta_b} + I_s(\ddot{\theta_s} - \ddot{\theta_b}) = T
 \end{align}
-$I_T:= I_s + I_b$とおくと
+$I_T \equiv I_s + I_b$とおくと
 \begin{equation}
-I_T \ddot{\therefore_b} = T - I_s \ddot{\theta_r} \label{eq:I_T}
+I_T \ddot{\theta_b} = T - I_s \ddot{\theta_r} \label{eq:I_T}
 \end{equation}
 ~\eqref{eq:ls}より
-\begin{equation}
-\ddot{\theta}_s-\ddot{\theta}_b  +\ddot{\theta}_b
+\begin{align}
+\underbrace{\ddot{\theta}_s-\ddot{\theta}_b}_{\ddot{\theta_r}}
++\ddot{\theta}_b
 +\frac{K}{I_s}\theta_r=0\\
 \text{~\eqref{eq:thetar}より}
-\therefore \ddot{\theta}_r+\omega_n^2\theta_r=-
+\ddot{\theta}_r+\omega_n^2\theta_r=-
 \ddot{\theta}_b \label{eq:theta_r2}
-\end{equation}
+\end{align}
 ここで$\omega_n=\sqrt{\frac{K}{I_s}}$
 (solar arrayのnatural frequency)
 $T\rightarrow \theta_b$への伝達関数を求める.
@@ -765,15 +799,28 @@ $T\rightarrow \theta_b$への伝達関数を求める.
 \text{~\eqref{eq:I_T}より}
 I_T s^2 \theta_b + I_s s^2 \theta_r= T\\
 \therefore (I_T s^2 - \frac{I_s s^4}{s^2 + \omega^2})
-\theta_b = T
+\theta_b = T\\
+\frac{I_b(s^2+\Omega_n^2)}{s^2+\omega^2_n}
+s^2\theta_b
+&=T
 \end{align}
-
+但し,
+$\Omega_n=\frac{I_T}{I_b}\omega^2_n$
+\begin{align}
+\frac{\theta_b}{T}=
+\frac{s^2+\omega^2}
+{I_bs^2(s^2+\Omega^2_n)}
+=
+\underbrace{\frac{1}{I_Ts}}_{\text{剛性項}}+
+\underbrace{\frac{1}{I_bI_T(s^2+\Omega^2_n)}}
+_{柔軟項}
+\end{align}
 \input{fig_block_board_2}
 
 \input{fig_root_focus_2}
 
 \begin{itemize}
-\item K>0で安定である
+\item K$>$0で安定である
 \item どんなKでも,$\omega_n$から$\Omega_n$の振動が
 残る
 \item 追従性,外乱耐性などを考えて$K_\theta$,$\tau_\theta$を決める
@@ -800,7 +847,7 @@ I_T s^2 \theta_b + I_s s^2 \theta_r= T\\
 %(Extended Kalman Filter)
 %\begin{enumerate}
 %\item 推定系の世界(仮想)\\
-%$\dot{\bm{\omega}} = f(\bm{\omega})\leftarrow \mbox{外乱は含まない}$
+%$\dot{\bm{\omega}} = f(\bm{\omega})\leftarrow \text{外乱は含まない}$
 %\end{enumerate}
 
 \end{document}
